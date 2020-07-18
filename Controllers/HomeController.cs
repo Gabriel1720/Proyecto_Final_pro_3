@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Tienda_.Models;
+using Proyecto_final_pro_3.Models; 
 
 namespace Tienda_.Controllers
 {
