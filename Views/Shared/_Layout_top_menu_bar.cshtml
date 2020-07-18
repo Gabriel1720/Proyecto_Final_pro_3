@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Tienda_</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+            <div class="container-fluid py-3" style="border-bottom: 2px solid rgb(255, 11, 65, .2);">
+                  <div class="d-flex flex-row">
+                  <div class="mr-auto"> 
+                        <a href="#" style=" color: #323232;"><strong class="text-dark">AMERA</strong> <b style="color:#FD5924;">Express</b><span>.com</span> </a>
+                        </div>
+                        <div> 
+                              <a href="#" class="mr-4" style="color: #323232;"><strong>Nueva Cuenta</strong></a>
+                              <button class="text-white border-0  py-1 px-4" style="background:#FD5924; border-radius: 50px;">Go to Market</button>
+                        </div>
+                  </div>
+            </div> 
+    </header>
+    <div class="container-fluid">
+        <main role="main" class="pb-1">
+            @RenderBody()
+        </main>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
