@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\losto\\source\\repos\\Proyecto_final_pro_3\\Proyecto_final_pro_3\\Proyecto_final_pro_3.csproj": {}
+    "C:\\Users\\tejad\\OneDrive\\Escritorio\\Aplicaciones\\ASP\\ProyectoFinal\\Proyecto_final_pro_3\\Proyecto_final_pro_3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\losto\\source\\repos\\Proyecto_final_pro_3\\Proyecto_final_pro_3\\Proyecto_final_pro_3.csproj": {
+    "C:\\Users\\tejad\\OneDrive\\Escritorio\\Aplicaciones\\ASP\\ProyectoFinal\\Proyecto_final_pro_3\\Proyecto_final_pro_3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\losto\\source\\repos\\Proyecto_final_pro_3\\Proyecto_final_pro_3\\Proyecto_final_pro_3.csproj",
+        "projectUniqueName": "C:\\Users\\tejad\\OneDrive\\Escritorio\\Aplicaciones\\ASP\\ProyectoFinal\\Proyecto_final_pro_3\\Proyecto_final_pro_3.csproj",
         "projectName": "Proyecto_final_pro_3",
-        "projectPath": "C:\\Users\\losto\\source\\repos\\Proyecto_final_pro_3\\Proyecto_final_pro_3\\Proyecto_final_pro_3.csproj",
-        "packagesPath": "C:\\Users\\losto\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\losto\\source\\repos\\Proyecto_final_pro_3\\Proyecto_final_pro_3\\obj\\",
+        "projectPath": "C:\\Users\\tejad\\OneDrive\\Escritorio\\Aplicaciones\\ASP\\ProyectoFinal\\Proyecto_final_pro_3\\Proyecto_final_pro_3.csproj",
+        "packagesPath": "C:\\Users\\tejad\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tejad\\OneDrive\\Escritorio\\Aplicaciones\\ASP\\ProyectoFinal\\Proyecto_final_pro_3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\losto\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tejad\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -37,6 +37,18 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.6, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -47,12 +59,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.1.2, 3.1.2]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -61,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
