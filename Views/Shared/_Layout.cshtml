@@ -9,25 +9,40 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Proyecto_final_pro_3</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                    <span class="font-weight-bold">AMERA </span>
+                    <span class="text-warning"> Xpres</span>
+                    <span class="font-weight-bold"> .com</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav flex-grow-1 row align-conten-center">
+                        <li class="nav-item col-lg-6 col-12 offset-lg-1 rounded border d-flex py-2 py-md-0 padre">
+                            <ion-icon name="search-outline" class="icono"></ion-icon>
+                            <input type="text" placeholder="Escriba el producto que desea buscar" class="fi w-100 ml-2 border-0 rounded-0">
+                            <span class="glyphicon glyphicon-plus"></span>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="nav-item col-lg-2 offset-lg-1 p-0 py-md-0 padre pl-3 pl-lg-0">
+                            <a class="link-ir text-decoration-none" asp-controller="Cuenta" asp-action="Login">Login</a>
+                            <samp class="link-ir">|</samp>
+                            <a class="link-ir text-decoration-none" asp-controller="" asp-action="">Register</a>
+                        </li>
+                        <li class="nav-item col-12 col-lg-1 offset-lg-1 py-2 py-md-0 padre">
+                            <ion-icon name="cart-outline" class="icono"></ion-icon>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+
+
+
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -40,6 +55,10 @@
             &copy; 2020 - Proyecto_final_pro_3 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
+    <!--Ionic icons js-->
+    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tejad\\OneDrive\\Escritorio\\Aplicaciones\\ASP\\ProyectoFinal\\Proyecto_final_pro_3\\Proyecto_final_pro_3.csproj": {}
+    "C:\\Users\\Oscar Mora\\source\\repos\\Proyecto_final_pro_3\\Proyecto_final_pro_3.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tejad\\OneDrive\\Escritorio\\Aplicaciones\\ASP\\ProyectoFinal\\Proyecto_final_pro_3\\Proyecto_final_pro_3.csproj": {
+    "C:\\Users\\Oscar Mora\\source\\repos\\Proyecto_final_pro_3\\Proyecto_final_pro_3.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tejad\\OneDrive\\Escritorio\\Aplicaciones\\ASP\\ProyectoFinal\\Proyecto_final_pro_3\\Proyecto_final_pro_3.csproj",
+        "projectUniqueName": "C:\\Users\\Oscar Mora\\source\\repos\\Proyecto_final_pro_3\\Proyecto_final_pro_3.csproj",
         "projectName": "Proyecto_final_pro_3",
-        "projectPath": "C:\\Users\\tejad\\OneDrive\\Escritorio\\Aplicaciones\\ASP\\ProyectoFinal\\Proyecto_final_pro_3\\Proyecto_final_pro_3.csproj",
-        "packagesPath": "C:\\Users\\tejad\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tejad\\OneDrive\\Escritorio\\Aplicaciones\\ASP\\ProyectoFinal\\Proyecto_final_pro_3\\obj\\",
+        "projectPath": "C:\\Users\\Oscar Mora\\source\\repos\\Proyecto_final_pro_3\\Proyecto_final_pro_3.csproj",
+        "packagesPath": "C:\\Users\\Oscar Mora\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Oscar Mora\\source\\repos\\Proyecto_final_pro_3\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\tejad\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Oscar Mora\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -67,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
         }
       }
     }
