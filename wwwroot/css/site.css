@@ -96,3 +96,20 @@ body {
 .fi:focus {
     outline: none;
 }
+
+/*Registrarse*/
+.registro {
+    width: 50%;
+    height: 600px;
+}
+
+.input-round {
+    border-radius: 20px;
+}
+
+@media (max-width: 600px) {
+    .registro {
+        width: 90%;
+        height: 600px;
+    }
+}

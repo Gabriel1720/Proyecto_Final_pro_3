@@ -15,7 +15,7 @@ namespace Tienda_.Controllers
         return View(); 
     }
 
-    public IActionResult Registrase() {
+    public IActionResult Registrarse() {
         return View();
     }
 
