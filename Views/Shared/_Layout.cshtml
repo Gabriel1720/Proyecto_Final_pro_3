@@ -6,6 +6,13 @@
     <title>@ViewData["Title"] - Proyecto_final_pro_3</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+
+    <!--owl responsive carrusel-->
+    <link rel="stylesheet" href="carrusel/owl.carousel.min.css" />
+    <link rel="stylesheet" href="carrusel/owl.theme.default.min.css">
+
+    <!--JQuery js-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
     <header>
@@ -13,7 +20,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand" asp-controller="Home" asp-action="Index">
-                    <span class="font-weight-bold">AMERA </span>
+                    <span class="font-weight-bold"> </span>
                     <span class="text-warning"> Xpres</span>
                     <span class="font-weight-bold"> .com</span>
                 </a>
@@ -40,7 +47,7 @@
             </div>
         </nav>
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background: #FD5924">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow" style="background: #FD5924">
             <div class="container">
                 <div class="collapse navbar-collapse" id="navbarNav">
 
@@ -52,7 +59,9 @@
                             <a class="nav-link text-white pl-2" href="#">Producto</a>
                         </li>
                         <li class="nav-item ml-sm-auto">
-                            <a class="nav-link text-white pl-2" href="#">Categoria</a>
+                            <a class="nav-link text-white pl-2" data-toggle="collapse" href="#collapseCategoria" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Categoria <ion-icon class="text-white" name="caret-down"></ion-icon>
+                            </a>
                         </li>
                         <li class="nav-item ml-sm-auto">
                             <a class="nav-link text-white pl-2" href="#">Contactanos</a>
@@ -65,8 +74,49 @@
             </div>
         </nav>
 
+        <section class="collapse " id="collapseCategoria" style="background: rgba(255, 111, 65, 0.87);">
+            <div class="border-top text-muted container py-3">
+                <section class="row">
+                    <div class="col-6 col-sm-3">
+                        <ul class="link link-white link-p-2">
+                            <li><a href="#">Vegetales</a></li>
+                            <li><a href="#">Fruta</a></li>
+                            <li><a href="#">Bebidas</a></li>
+                            <li><a href="#">Alcohol</a></li>
+                            <li><a href="#">Abarrotes</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-sm-3">
+                        <ul class="link link-white link-p-2">
+                            <li><a href="#">Carnes</a></li>
+                            <li><a href="#">Pescados</a></li>
+                            <li><a href="#">Mariscos</a></li>
+                            <li><a href="#">Reposteria</a></li>
+                            <li><a href="#">Panaderia</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-sm-3"> 
+                        <ul class="link link-white link-p-2">
+                            <li><a href="#">Graneria</a></li>
+                            <li><a href="#">Dulces</a></li>
+                            <li><a href="#">Lacteos</a></li>
+                            <li><a href="#">Deli</a></li>
+                            <li><a href="#">Otos</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-sm-3">
+                        <ul class="link link-white link-p-2">
+                            <li><a href="#">Cuidado personal</a></li>
+                            <li><a href="#">Detergente</a></li>
+                            <li><a href="#">Desechables</a></li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </section>
+
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -132,6 +182,30 @@
             &copy; 2020 - Proyecto_final_pro_3 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>-->
+
+
+    <!--Script Owl Carrusel-->
+    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+    <script src="carrusel/owl.carousel.min.js"></script>
+    <script>
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 5
+                }
+            }
+        })
+    </script>
+
     <!--Ionic icons js-->
     <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
 
