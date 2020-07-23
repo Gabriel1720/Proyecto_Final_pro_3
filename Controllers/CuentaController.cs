@@ -21,14 +21,17 @@ namespace Tienda_.Controllers
             return View();
         }
     
-        public IActionResult Detalle_Producto()
-        {
-                return View();
-        }
-
         public IActionResult Cuenta_Administrador()
         {
             return View();
         }  
+        public IActionResult Detalle_Producto()
+        {
+            return View();
+        }
+        public IActionResult Cambiar_Contrasena_Administrador()
+        {
+            return View();
+        }
     }
 }
