@@ -13,4 +13,13 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Cliente\Controllers\" />
+    <Folder Include="Areas\Cliente\Data\" />
+    <Folder Include="Areas\Cliente\Models\" />
+    <Folder Include="Areas\Cliente\Views\" />
+  </ItemGroup>
+
 </Project>
