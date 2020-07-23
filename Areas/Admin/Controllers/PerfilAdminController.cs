@@ -23,5 +23,9 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
         {
             return View();
         }
+        public IActionResult Nuevo_Producto()
+        {
+            return View();
+        }
     }
 }
