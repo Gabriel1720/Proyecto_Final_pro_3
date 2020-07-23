@@ -206,7 +206,7 @@ link-white,
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 575px) {
     .sidemenu-pc {
         display: none;
     }
