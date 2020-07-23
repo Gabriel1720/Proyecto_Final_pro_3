@@ -21,10 +21,5 @@ namespace Tienda_.Controllers
             return View();
         }  
          
-        public IActionResult Detalle_Producto()
-        {
-            return View();
-        }
-       
     }
 }

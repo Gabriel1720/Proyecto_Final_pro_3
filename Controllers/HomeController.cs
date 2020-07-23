@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Proyecto_final_pro_3.Models; 
 
@@ -11,9 +12,18 @@ namespace Tienda_.Controllers
 {
     public class HomeController : Controller
     {
-        
-        public IActionResult Index()
+        public DB_A64A4C_SuperMercadoContext _contex = new DB_A64A4C_SuperMercadoContext();
+
+        public async Task<IActionResult> Index()
         {
+            ViewBag.Productos = await _contex.Producto.Where(x => x.Precio >= 0 || x.Precio <= 100).ToListAsync();
+            return View();
+        }
+
+        public async Task<IActionResult> Detalle_Producto(int? id)
+        {         
+            ViewBag.producto = await _contex.Producto.FindAsync(id);
+            ViewBag.Productos = await _contex.Producto.Where(x => x.Precio >= 0 || x.Precio <= 100).ToListAsync();
             return View();
         }
 
