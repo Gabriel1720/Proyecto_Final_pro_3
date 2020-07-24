@@ -15,13 +15,15 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
     public class GestionProductos : Controller
     {
         readonly DB_A64A4C_SuperMercadoContext _context = new DB_A64A4C_SuperMercadoContext();
-        public GestionProductos()
-        {
-            
-        }
+        
+        //Get list of Productos
         public async Task<IActionResult> Index()
         {
-            var products = await _context.Producto.Include(T =>T.IdCategoriaNavigation).ToListAsync(); 
+            var products = await _context.Producto.Include(T =>T.IdCategoriaNavigation).ToListAsync();
+            if (products == null)
+            {
+                return NotFound();
+            }
             return View(products);
         }
 
@@ -43,7 +45,25 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 RedirectToAction(nameof(Index));
             }
-            ViewData["CategoriaNombre"] = new SelectList(_context.Categoria, "IdCategoria", "Nombre", producto.IdCategoria);
+            ViewData["CategoriaNombre"] = new SelectList(_context.Categoria, "IdCategoria", "Nombre", 
+                producto.IdCategoria);
+            return View(producto);
+        }
+
+        //Get Details about that 
+        public async Task<IActionResult>Details(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+            //table productos and categoria
+            Producto producto = await _context.Producto.Include(T=> T.IdCategoriaNavigation).
+                FirstOrDefaultAsync(p => p.IdProducto == id);
+            if (producto == null)
+            {
+                return NotFound();
+            }
             return View(producto);
         }
     }

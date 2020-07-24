@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<Proyecto_final_pro_3.Models.Producto>
 
-@if (Model.Any())
-{
+
 <table class="table table-hover  table-responsive-sm">
 
     <thead>
@@ -28,7 +27,10 @@
                 @Html.DisplayFor(model => ItemProducto.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(model => ItemProducto.Precio)
+                RD$ @Html.DisplayFor(model => ItemProducto.Precio)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@ItemProducto.IdProducto">Detalles</a>
             </td>
         </tr>
         }
@@ -36,8 +38,3 @@
     </tbody>
 
 </table>
-}
-else
-{
-    <h5>Aun no ha agregado datos......</h5>
-}
