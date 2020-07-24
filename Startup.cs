@@ -51,6 +51,10 @@ namespace Proyecto_final_pro_3
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapAreaControllerRoute("Admin", "Admin", "{controller=PerfilAdmin}/{action=Cuenta}/{id?}");
+                endpoints.MapAreaControllerRoute("GestionProductos", "Admin", "{controller=GestionProductos}/{action=Index}/{id?}");
+                endpoints.MapAreaControllerRoute("Cliente", "Cliente", "{controller=PerfilCliente}/{action=Index}/{id?}");
+               // endpoints.MapAreaControllerRoute("Productoes", "Admin", "{controller=Productoes}/{action=Index}/{id?}");
             });
         }
     }

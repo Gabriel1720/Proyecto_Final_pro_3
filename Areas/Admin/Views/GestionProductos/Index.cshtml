@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Proyecto_final_pro_3.Models.Producto>
+
+
+<table class="table table-hover  table-responsive-sm">
+
+    <thead>
+        <tr>
+            <th>
+                <span style="color:#FF561F; font-size:20px;" >Categoria</span>
+            </th>
+            <th>
+             <span style="color:#FF561F; font-size:20px;" >Nombre del producto</span>
+            </th>
+            <th>
+              <span style="color:#FF561F; font-size:20px;" >  @Html.DisplayNameFor(model => model.Precio)</span>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var ItemProducto in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => ItemProducto.IdCategoriaNavigation.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(model => ItemProducto.Nombre)
+            </td>
+            <td>
+                RD$ @Html.DisplayFor(model => ItemProducto.Precio)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@ItemProducto.IdProducto">Detalles</a>
+            </td>
+        </tr>
+        }
+
+    </tbody>
+
+</table>

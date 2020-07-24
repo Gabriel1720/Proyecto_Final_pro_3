@@ -18,10 +18,23 @@ a {
   border-color: #1861ac;
 }
 
+.btn-outline-oscuro {
+    color: black;
+    border: 1px solid #7D7D7D;
+    border-radius: 5px;
+}
+
+.btn-outline-oscuro:hover,
+.btn-outline-oscuro:focus {
+    background-color: #FD5924;
+    color: white;
+    border: none;
+}
+
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
 }
 
 /* Sticky footer styles
@@ -193,7 +206,7 @@ link-white,
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 575px) {
     .sidemenu-pc {
         display: none;
     }
