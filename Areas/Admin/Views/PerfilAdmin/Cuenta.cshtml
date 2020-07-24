@@ -1,4 +1,6 @@
-﻿<div class="container p-3 mt-4">
+﻿@model Proyecto_final_pro_3.Models.Usuario;
+
+<div class="container p-3 mt-4">
 
     <div class="text-center mt-1">
 
@@ -8,30 +10,34 @@
     <!-- Segundo div, div cuenta -->
 
 
-
-
         <div class="text-center">
+            
             <div class="rounded-circle" style="background-color: #FD5924; margin: auto; color: #fff; font-size: 30px; width: 50px; height: 50px;">
                 <p>A</p>
             </div>
             <p class="mt-1 text-center"> Administrador</p>
             <h3 class="mt-3 text-center" style="color: #FF561F;">Mi Cuenta</h3>
-            <label for="Nombre" style="margin-right: 44%;">Nombre</label>
-            <input id="Nombre" class="form-control" type="text" name="nombre" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 25%;">
-            <label class="mt-3" for="Apellido" style="margin-right: 44%;">Apellido</label>
-            <input id="Apellido" class="form-control" type="text" name="apellido" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 25%;">
-            <label class="mt-3" for="Correo" style="margin-right: 45%;">Correo</label>
-            <input id="Correo" class="form-control" type="email" name="correo" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 25%;">
-            <br>
+           
+            <form method="post">
+                <label for="Nombre" style="margin-right: 44%;">Nombre</label>
+                <input asp-for="Nombre" id="nombre" class="form-control" type="text" name="nombre" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 25%;">
 
-            <div class="mt-4 ">
-                <button class="btn mr-3" style="width: 23%; background: #FD5924; color: #fff;">Guardar</button>
-                <button class="btn ml-3" style="width: 23%; background: #FD5924; color: #fff;">Cambiar </button>
-            </div>
+                <label class="mt-3" for="Apellido" style="margin-right: 44%;">Apellido</label>
+                <input asp-for="Apellido" id="Apellido" class="form-control" type="text" name="apellido" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 25%;">
+
+                <label class="mt-3" for="Correo" style="margin-right: 45%;">Correo</label>
+                <input asp-for="Correo" id="Correo" class="form-control" type="email" readonly name="correo" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 25%;">
+                <br>
+                <input type="hidden" asp-for="IdRol" />
+                <input type="hidden" asp-for="FechaNacimiento" />
+                <input type="hidden" asp-for="Password" />
+                <input type="hidden" asp-for="IdUsuario" />
+
+                <div class="mt-4">
+                    <button asp-controller="PerfilAdmin" asp-action="Edit" type="submit" class="btn mr-3" style="width: 23%; background: #FD5924; color: #fff;">Guardar</button>
+                    <button asp-controller="PerfilAdmin" asp-action="CambiarContrasena" type="submit" class="btn ml-3" style="width: 23%; background: #FD5924; color: #fff;">Cambiar Contraseña</button>
+                </div>
+            </form>   
+            
         </div>
-
-
-
-
-
 </div>
