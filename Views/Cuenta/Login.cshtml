@@ -1,3 +1,5 @@
+@model Proyecto_final_pro_3.Models.Usuario;
+
 @{
     Layout = "~/Views/Shared/_Layout_top_menu_bar.cshtml";
 
@@ -17,12 +19,14 @@
                     <div class="d-inline-block" style="width: 40%;border: 1px solid rgb(255, 11, 65, 0.3);height: 1px;"></div>
 
                     <div class="mb-5 mt-3">
-                        <form>
+                        <form  asp-controller="Cuenta" asp-action="Login">
                             <div class="form-group">
                                 <input type="email" placeholder="Correo Electronico" name="correo" class="form-control" style="background-color:rgb(255, 114, 68, 0.1); border:none; border-radius:50px; color:#323232;">
                             </div>
                             <div class="form-group">
-                                <input type="email" placeholder="Contraseña" name="correo" class="form-control" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; color: #323232;">
+                                <input type="password" placeholder="Contraseña" name="correo" class="form-control" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; color: #323232;">
+                            </div>
+                            <div>
                             </div>
                             <a href="#">Olvide la contraseña?</a><br />
                             <input class="my-2 border-0 px-3 py-1 text-white" type="submit" value="Entrar a mi cuenta" style="background:#FD5924;border-radius:50px;">
@@ -31,8 +35,7 @@
                     <br />
                     <strong>No tengo mi cuenta todavia,</strong>
                     <a href="#">Registrarme</a>
-
-
+            
                 </div>
             </div>
             <div class="col-md-6">
