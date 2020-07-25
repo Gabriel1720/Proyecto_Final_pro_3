@@ -30,7 +30,8 @@
 
         @foreach (Producto producto in ViewBag.Productos)
         {
-            if (producto.Precio >= 0 && producto.Precio <= 50) {
+            if (producto.Precio >= 0 && producto.Precio <= 50)
+            {
             <div class="item" style="position:relative;">
                 <div style="position: absolute; width: 80px;">
                     <img src="~/imagen/oferta2.png" class="img-fluid img-center" alt="">
@@ -40,8 +41,24 @@
                         <img src="@producto.Foto" class="img-fluid img-center" alt="">
                     </div>
                     <div class="text-center pt-sm-2" style="height: 30%;">
-                        <p>@producto.Nombre</p>
-                        <h4>@producto.Precio $</h4>
+                       @{ 
+                           string srt = producto.Nombre;
+                           if (srt.Length >= 38)
+                           {
+                               srt = srt.Substring(0, 33) + "...";
+                               <p>@srt</p>
+                           }
+                           else if (srt.Length <= 22)
+                           {
+                                <p>@producto.Nombre</p>
+                                <br/>
+                           }
+                           else
+                           {
+                                <p>@producto.Nombre</p>
+                           }
+                       }                        
+                        <h5>RD$ @producto.Precio</h5>
                     </div>
                     <div class="m-auto" style="height: 25%;">
                         <a class="btn btn-outline-oscuro btn-block btn-sm" asp-route-id="@producto.IdProducto" asp-controller="Home" asp-action="Detalle_Producto">Comprar ahora</a>
@@ -70,8 +87,24 @@
                         <img src="@producto.Foto" class="img-fluid img-center" alt="">
                     </div>
                     <div class="text-center pt-sm-2" style="height: 30%;">
-                        <p>@producto.Nombre</p>
-                        <h4>@producto.Precio $</h4>
+                        @{
+                            string srt = producto.Nombre;
+                            if (srt.Length >= 38)
+                            {
+                                srt = srt.Substring(0, 33) + "...";
+                                <p>@srt</p>
+                            }
+                            else if (srt.Length <= 22)
+                            {
+                                <p>@producto.Nombre</p>
+                                <br />
+                            }
+                            else
+                            {
+                                <p>@producto.Nombre</p>
+                            }
+                        }
+                    <h5>RD$ @producto.Precio</h5>
                     </div>
                     <div class="m-auto" style="height: 25%;">
                         <a class="btn btn-outline-oscuro btn-block btn-sm" asp-route-id="@producto.IdProducto" asp-controller="Home" asp-action="Detalle_Producto">Comprar ahora</a>
@@ -87,7 +120,7 @@
 <div class="container mt-3">
     <div class="row">
         <div class="col-12 col-md-6">
-            <p class="display-4 " style="color: #FF6F41;">Resive tu compra en menos de 30 <br/> minutos</p>
+            <p class="display-4 " style="color: #FF6F41;">Recibe tu compra en menos de 30 <br/> minutos</p>
         </div>
         <div class="col-12 col-md-6">
            <img src="~/imagen/delivery.jpg" class="img-fluid"/>
