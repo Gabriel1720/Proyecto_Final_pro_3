@@ -13,10 +13,23 @@
         <div class="d-inline-block col-12 col-md-6 mt-3 mt-md-0" style="padding-left: 4%;">
 
             <h2 class="">@ViewBag.Producto.Nombre</h2>
-            <br/>
+            <br />
             <p class="h5 font-weight-normal">@ViewBag.Producto.Descripcion</p>
-            <br/>
-            <p class="h5"><strong>RD$@ViewBag.Producto.Precio</strong></p>
+            <br />
+            <div class="" style="position:relative;">
+                <p class="h5 d-inline-block"><strong>RD$ @ViewBag.Producto.Precio</strong></p>
+                <p class="h5 d-inline-block" style="position:absolute; right:15%;">
+                    <strong>Cantidad: </strong>
+                    <select name="option">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </p>
+            </div>
+            
 
             <button class="btn border-0  mt-4 mb-5 p-2 col-5 " style="background: #FD5924; color: #fff;">Comprar ahora</button>
             <button class="btn border-0  mt-4 mb-5 p-2 col-5 " style="background: #85E30C; color: #fff; margin-left: 7%;">Añadir Carrito</button>

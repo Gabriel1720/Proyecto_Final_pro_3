@@ -90,6 +90,10 @@ body {
     list-style: none;
 }
 
+.link li:hover{
+    font-size: large;
+}
+
 link-dark,
 .link li a{
     color: #4E4E4E;
@@ -154,6 +158,9 @@ link-white,
     background-color: #FD5924;
 }
 
+.text-orange {
+    color: #FD5924;
+}
 .sidemenu {
     height: 100vh;
     width: 310px;
@@ -215,5 +222,16 @@ link-white,
         display: block;
     }
 }
-
 /**/
+
+.select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: 0;
+    box-shadow: 0;
+    border: 0 !important;
+    background-color: #FF6F41;
+    color: white;
+    width: 90px;
+    height: 35px;
+}
