@@ -2,55 +2,67 @@ using System ;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http; 
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Proyecto_final_pro_3.Models;
 using System.Threading.Tasks;
 using System.Net.Http;
-using System.Web; 
+using Microsoft.AspNetCore.Authorization;
+using Newtonsoft.Json;
+
 
 namespace Tienda_.Controllers
 {
     public class CuentaController : Controller
     {
         private readonly static DB_A64A4C_SuperMercadoContext _context = new DB_A64A4C_SuperMercadoContext();
+ 
 
-
+        [HttpGet]
         public IActionResult Login() {
             return View(); 
         
         }
 
          
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public  IActionResult Login(Usuario user)
+        public  IActionResult Login(UserLogin userLogin)
         {
-           if (ModelState.IsValid) {
-               
-                Usuario fromDBuser = _context.Usuario.Where(db_user => db_user.Correo == user.Correo).FirstOrDefault();
+            if (ModelState.IsValid) {
+                Usuario userDB = _context.Usuario.Where(user => user.Correo == userLogin.Correo && user.Password == userLogin.Password).FirstOrDefault();
+                
+                if (userDB != null)
+                {
+                   // establecer la session 
+                  HttpContext.Session.SetString("userID", userDB.IdUsuario.ToString());
 
-                if (isValid(fromDBuser)) {
-                    // crear cookies 
-                   //  HttpCookie cookies = new HttpCookie(); 
+                    // opciones de los cookies 
+                    CookieOptions options = new CookieOptions();
+                    options.Expires = DateTime.Now.AddDays(5); 
 
-                    
+                    // establecer los cookies 
+                    Response.Cookies.Append("UserID", userDB.IdUsuario.ToString(), options);
 
-                    if (fromDBuser.IdRol == 2) {
+
+                    if (userDB.IdRol == 1)
+                    {
                         return RedirectToAction("Cuenta", "PerfilAdmin", new { area = "Admin" });
-                     
                     }
-                        return RedirectToAction("Index", "Home");
+
+                    return RedirectToAction("Index", "Home");
+
                 }
-           
+
+                ViewBag.mensaje = "El usuario no existe";  
+            }
+
+
+            return View(userLogin);      
 
         }
-    
-          return RedirectToAction("Cuenta", "PerfilAdmin", new { area = "Admin" });
-   
-        }
 
+     
         public IActionResult Nueva_cuenta() 
         {
             return View(); 
@@ -62,23 +74,16 @@ namespace Tienda_.Controllers
         }
 
 
-        // verificar que el usuario existe en la base de datos 
+        
 
-        public   static  bool isValid(Usuario usuario) {
+        public IActionResult LoggedOut()
+        {
+            // Response.Cookies.Delete("useID");
+            HttpContext.Session.Clear(); 
 
-            Usuario fromDBuser =  _context.Usuario.Where(db_user => db_user.Correo == usuario.Correo).FirstOrDefault(); 
-
-            if (fromDBuser != null) {
-                if (fromDBuser.Correo == usuario.Correo && fromDBuser.Password == usuario.Password)
-                {
-                    return true;
-                }
-            }
-
-            return false; 
- 
+            return RedirectToAction("Login"); 
         }
 
- 
+
     }
 }

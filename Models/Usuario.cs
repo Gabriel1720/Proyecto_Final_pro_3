@@ -18,13 +18,8 @@ namespace Proyecto_final_pro_3.Models
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public DateTime? FechaNacimiento { get; set; }
-
-        [Required(ErrorMessage = "El correo es obligatorio")]
-        [EmailAddress (ErrorMessage = "correo es invalido")]
         public string Correo { get; set; }
         public int IdRol { get; set; }
-
-        [Required(ErrorMessage = "La contraseña es obligatoria")]
         public string Password { get; set; }
 
         public virtual Rol IdRolNavigation { get; set; }

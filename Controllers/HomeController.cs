@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -17,6 +19,9 @@ namespace Tienda_.Controllers
         public async Task<IActionResult> Index()
         {
             ViewBag.Productos = await _contex.Producto.Where(x => x.Precio >= 0 || x.Precio <= 100).ToListAsync();
+
+            // ViewBag.UserID = Request.Cookies["userID"];
+            ViewBag.UserID = HttpContext.Session.GetString("userID"); 
             return View();
         }
 

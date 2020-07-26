@@ -1,45 +1,55 @@
-@model Proyecto_final_pro_3.Models.Usuario;
+﻿@model Proyecto_final_pro_3.Models.UserLogin
 
 @{
-    Layout = "~/Views/Shared/_Layout_top_menu_bar.cshtml";
-
+    ViewData["Title"] = "Iniciar Sesion";
+    Layout = "~/Views/Shared/_Layout_top_menu_bar.cshtml" ;
 }
+
 
 <div class="container-fluid mt-4">
     <div class="row">
-            <div class="col-sm-12 col-md-6 text-center">
-                <div class="p-4 w-75" style="border: 1px solid rgb(255, 11, 65, 0.3); border-radius:10px;">
-                    <h4>Inicio Sesion </h4>
-                    <button class="border-0 my-2 p-2 w-75" style="color:white; border-radius:50px; background:#0088EA; margin-bottom:5px;"> <img class="mb-1 mr-2" src="~/iconos/facebook-icon.png" width="20" height="20" /> Facebook</button> <br />
-                    <button class="border-0 mb-3 p-2  w-75" style="color:white; border-radius:50px; background:#FF6258;">  <img class="mb-1 mr-2" src="~/iconos/google_icon.png" width="26" /> Google</button>
+        <div class="col-sm-12 col-md-6 text-center" >
+            <div class="p-4 w-75 shadow-sm">
+                <h4>INICIAR SESION </h4>
+                <button class="border-0 my-2 p-2 w-75" style="color:white; border-radius:50px; background:#0088EA; margin-bottom:5px;"> <img class="mb-1 mr-2" src="~/iconos/facebook-icon.png" width="20" height="20" /> Facebook</button> <br />
+                <button class="border-0 mb-3 p-2  w-75" style="color:white; border-radius:50px; background:#FF6258;">  <img class="mb-1 mr-2" src="~/iconos/google_icon.png" width="26" /> Google</button>
 
-                    <br />
-                    <div class="d-inline-block" style="width: 40%; border: 1px solid rgb(255, 11, 65, 0.3);height: 1px"></div>
-                    <b>o</b>
-                    <div class="d-inline-block" style="width: 40%;border: 1px solid rgb(255, 11, 65, 0.3);height: 1px;"></div>
+                <br />
+                <div class="d-inline-block" style="width: 40%; border: 1px solid rgb(255, 11, 65, 0.3);height: 1px"></div>
+                <b>o</b>
+                <div class="d-inline-block" style="width: 40%;border: 1px solid rgb(255, 11, 65, 0.3);height: 1px;"></div>
 
-                    <div class="mb-5 mt-3">
-                        <form  asp-controller="Cuenta" asp-action="Login">
-                            <div class="form-group">
-                                <input type="email" placeholder="Correo Electronico" name="correo" class="form-control" style="background-color:rgb(255, 114, 68, 0.1); border:none; border-radius:50px; color:#323232;">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" placeholder="Contraseña" name="correo" class="form-control" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; color: #323232;">
-                            </div>
-                            <div>
-                            </div>
-                            <a href="#">Olvide la contraseña?</a><br />
-                            <input class="my-2 border-0 px-3 py-1 text-white" type="submit" value="Entrar a mi cuenta" style="background:#FD5924;border-radius:50px;">
-                        </form>
-                    </div>
-                    <br />
-                    <strong>No tengo mi cuenta todavia,</strong>
-                    <a href="#">Registrarme</a>
-            
+                <div class="mb-5 mt-3">
+                    <form asp-controller="Cuenta" asp-action="Login">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <input asp-for="Correo" placeholder="Correo Electronico" class="form-control" style="background-color:rgb(255, 114, 68, 0.1); border:none; border-radius:50px; color:#323232;">
+                            <span asp-validation-for="Correo" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Password" type="password" placeholder="Contraseña" class="form-control" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; color: #323232;">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div>
+                        </div>
+                        <a href="#">Olvide la contraseña?</a><br />
+                        <input class="my-2 border-0 px-3 py-1 text-white" type="submit" value="Entrar a mi cuenta" style="background:#FD5924;border-radius:50px;">
+                    </form>
                 </div>
+                <br />
+                <strong>No tengo mi cuenta todavia,</strong>
+                <a href="#">Registrarme</a>
+
             </div>
-            <div class="col-md-6">
-                <h1 style="font-size: 72px;color: #FD8D75">¡Compra lo que te gusta!</h1>
-            </div>
+        </div>
+        <div class="col-md-6">
+            <h1 style="font-size: 72px;color: #FD8D75">¡Compra lo que te gusta!</h1>
+        </div>
     </div>
 </div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
