@@ -235,3 +235,33 @@ link-white,
     width: 90px;
     height: 35px;
 }
+.boton {
+    width: 50px;
+    height: 50px;
+    background-color: #FD5924;
+    margin: 20px;
+    padding: 7.5px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    font-size: 50px;
+    text-align:center;
+    line-height: 25px;
+    text-transform: uppercase;
+    position: absolute;
+    top: 57px;
+    left: 350px;
+   float:left;
+}
+
+    .boton:hover {
+        opacity: 0.50;
+        -moz-opacity: .50;
+        filter: alpha (opacity=50);
+    }
+
+    .boton a {
+        color: #fff;
+        text-decoration: none;
+        padding: 7.5px 7.5px 7.5px 0;
+    }
