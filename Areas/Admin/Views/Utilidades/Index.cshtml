@@ -1,22 +1,30 @@
 ﻿<div>
-    <h2 class="text-center mt-4" style="color: #FD5924;">lISTADO DE CUMPLEAÑOS POR MES</h2>
+    <h2 class="text-center mt-4" style="color: #FD5924;">LISTADO DE CUMPLEAÑOS POR MES</h2>
 
     <div class="col-5 mx-auto">
-        <span class="d-inline-block mr-0 mt-4">
-            <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" class="text-center padre btn" style="background-color: #FD5924; height:35px; width:100px;">
-                <p class="m-0 d-inline-block text-white">Mes</p>
-                <ion-icon class="ml-2 d-inline-block icono text-white" name="caret-down"></ion-icon>
-            </a>
-        </span>
-        <span class="collapse" id="collapseExample">
+        <!-- <span class="d-inline-block mr-0 mt-4">
+         <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" class="text-center padre btn" style="background-color: #FD5924; height:35px; width:100px;">
+             <p class="m-0 d-inline-block text-white">Mes</p>
+             <ion-icon class="ml-2 d-inline-block icono text-white" name="caret-down"></ion-icon>
+         </a>
+     </span> -->
+        <form method="post">
             <select name="mes" class="select text-center">
-                <option>1-Enero</option>
-                <option>2-Febreo</option>
-                <option>3-Marzo</option>
-                <option>4-Abril</option>
-                <option>5-Mayo</option>
+                <option value="0">Mes</option>
+                <option value="1">1-Enero</option>
+                <option value="2">2-Febreo</option>
+                <option value="3">3-Marzo</option>
+                <option value="4">4-Abril</option>
+                <option value="5">5-Mayo</option>
             </select>
-        </span>
+            <input class="btn btn-primary" type="submit" asp-controller="Utilidades" asp-action="IndexMes" value="Buscar" />
+        </form>
+
+        @if (ViewBag.error != null)
+        {
+            <span class="text-danger">@ViewBag.error</span>
+        }
+
     </div>
 
     <div class="col-10 mt-4 mx-auto">
@@ -28,49 +36,31 @@
                     <th style="color: #FD5924;">Fecha de nacimiento</th>
                     <th style="color: #FD5924;">Email</th>
                     <th>
-                        <a href="#" class="col-10 text-center padre pl-4 btn" style="background-color: #297E0B; height:30px; width:150px;">
+                        <a asp-controller="Utilidades" asp-action="ReadCsv" class="col-10 text-center padre pl-4 btn" style="background-color: #297E0B; height:30px; width:150px;">
                             <p class="m-0 d-inline-block text-white">Exportar a CSV</p>
                         </a>
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">Lucas</th>
-                    <td>Martines</td>
-                    <td>Otto@hotmail.com</td>
-                    <td>lechuga</td>
-                    <td>
-                        <a href="#" class="col-10 text-center padre pl-4 btn" style="background-color: #FD5924; height:30px; width:130px;">
-                            <p class="m-0 d-inline-block text-white">Pedidos</p>
-                            <ion-icon class="ml-2 d-inline-block icono text-white" name="eye-outline"></ion-icon>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Lucas</th>
-                    <td>Martines</td>
-                    <td>Otto@hotmail.com</td>
-                    <td>lechuga</td>
-                    <td>
-                        <a href="#" class="col-10 text-center padre pl-4 btn" style="background-color: #FD5924; height:30px; width:130px;">
-                            <p href="#" class="m-0 d-inline-block text-white">Pedidos</p>
-                            <ion-icon class="ml-2 d-inline-block icono text-white" name="eye-outline"></ion-icon>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Lucas</th>
-                    <td>Martines</td>
-                    <td>Otto@hotmail.com</td>
-                    <td>lechuga</td>
-                    <td>
-                        <a href="#" class="col-10 text-center padre pl-4 btn" style="background-color: #FD5924; height:30px; width:130px;">
-                            <p href="#" class="m-0 d-inline-block text-white">Pedidos</p>
-                            <ion-icon class="ml-2 d-inline-block icono text-white" name="eye-outline"></ion-icon>
-                        </a>
-                    </td>
-                </tr>
+                @{
+                    foreach (Usuario usuario in ViewBag.Usuario)
+                    {
+                        <tr>
+                            <th scope="row">@usuario.Nombre</th>
+                            <td>@usuario.Apellido</td>
+                            <td>@usuario.FechaNacimiento</td>
+                            <td>@usuario.Correo</td>
+                            <td>
+                                <a asp-route-id="@usuario.IdUsuario" class="col-10 text-center padre pl-4 btn" style="background-color: #FD5924; height:30px; width:130px;">
+                                    <p class="m-0 d-inline-block text-white">Detalles</p>
+                                    <ion-icon class="ml-2 d-inline-block icono text-white" name="eye-outline"></ion-icon>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+
             </tbody>
         </table>
 
