@@ -45,7 +45,7 @@ namespace Proyecto_final_pro_3.Models
                     .WithMany(p => p.Carrito)
                     .HasForeignKey(d => d.IdProducto)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_IdProducto");
+                    .HasConstraintName("FK_CARRITO_PRODUCTO");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Carrito)
@@ -75,7 +75,7 @@ namespace Proyecto_final_pro_3.Models
                     .WithMany(p => p.Compra)
                     .HasForeignKey(d => d.IdProducto)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_IdProductoCompra");
+                    .HasConstraintName("FK_COMPRA_PRODUCTO");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Compra)
@@ -168,7 +168,7 @@ namespace Proyecto_final_pro_3.Models
                     .WithMany(p => p.Producto)
                     .HasForeignKey(d => d.IdCategoria)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_IdCategoria");
+                    .HasConstraintName("FK_PRODUCTO_CATEGORIA");
             });
 
             modelBuilder.Entity<Rol>(entity =>
