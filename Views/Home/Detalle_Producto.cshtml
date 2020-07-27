@@ -47,26 +47,23 @@
 
         @foreach (Producto producto in ViewBag.Productos)
         {
-            if (producto.Precio >= 51 && producto.Precio <= 100)
-            {
+          
             <div class="item" style="position: relative;">
-                <div style="position: absolute; width: 80px;">
-                    <img src="~/imagen/oferta2.png" class="img-fluid img-center" alt="">
-                </div>
-                <div class="border px-sm-4 pt-2" style="height: 350px;width:220px ;">
+                <div class="px-sm-4 pt-2" style="height: 350px;width:220px ;">
                     <div class="" style="height: 45%;">
                         <img src="@producto.Foto" class="img-fluid img-center" alt="">
                     </div>
                     <div class="text-center pt-sm-2" style="height: 30%;">
                         <p>@producto.Nombre</p>
                         <h4>@producto.Precio $</h4>
+                        <br />
                     </div>
                     <div class="m-auto" style="height: 25%;">
                         <a class="btn btn-outline-oscuro btn-block btn-sm" asp-route-id="@producto.IdProducto" asp-controller="Home" asp-action="Detalle_Producto">Comprar ahora</a>
                     </div>
                 </div>
             </div>
-            }
+          
         }
 
     </div>

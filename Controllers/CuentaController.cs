@@ -16,15 +16,34 @@ namespace Tienda_.Controllers
     public class CuentaController : Controller
     {
         private readonly static DB_A64A4C_SuperMercadoContext _context = new DB_A64A4C_SuperMercadoContext();
- 
+
 
         [HttpGet]
-        public IActionResult Login() {
-            return View(); 
-        
+        public IActionResult Login()
+        {
+            string session = HttpContext.Session.GetString("userID"); 
+
+            if (session != null)
+            {
+                Usuario userDB = _context.Usuario.Where(user => user.IdUsuario == Convert.ToInt32(session) ).FirstOrDefault();
+
+                if (userDB != null)
+                {
+
+                    if (userDB.IdRol == 1)
+                    {
+                        return RedirectToAction("Cuenta", "PerfilAdmin", new { area = "Admin" });
+                    }
+
+                    return RedirectToAction("Index", "Home");
+                }
+             }
+
+            return View();
+
         }
 
-         
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public  IActionResult Login(UserLogin userLogin)

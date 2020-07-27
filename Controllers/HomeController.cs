@@ -27,9 +27,11 @@ namespace Tienda_.Controllers
         }
 
         public async Task<IActionResult> Detalle_Producto(int? id)
-        {         
-            ViewBag.producto = await _contex.Producto.FindAsync(id);
-            ViewBag.Productos = await _contex.Producto.Where(x => x.Precio >= 0 || x.Precio <= 100).ToListAsync();
+        {
+            var productoDB = await _contex.Producto.Where(x => x.IdProducto == id ).FirstOrDefaultAsync();
+            ViewBag.producto = productoDB;
+            ViewBag.Productos = await _contex.Producto.Where(x => x.IdCategoria == productoDB.IdCategoria ).ToArrayAsync();
+            
             return View();
         }
 
@@ -37,16 +39,15 @@ namespace Tienda_.Controllers
         [HttpGet]
         public async Task<IActionResult> Categorias(int? id) {
             var listaProductos = await _contex.Producto.Where(producto => producto.IdCategoria == id).ToListAsync();
-            ViewBag.Productos = listaProductos;     
+            var categoria = await _contex.Categoria.Where(x => x.IdCategoria == listaProductos.FirstOrDefault().IdCategoria).FirstOrDefaultAsync();
+            ViewBag.Productos = listaProductos;
+            ViewBag.categoria = categoria.Nombre;
+            ViewBag.cantidad = listaProductos.Count(); 
             return View();     
         }
 
 
-
-        public IActionResult Top_menu_bar()
-        {
-            return View();
-        }
+ 
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -5,58 +5,66 @@
 }
 
 
-<div class="container">
-    <div class="row">
-        <div class="d-sm-none d-md-block col-md-2">
-              <h4>CATEGORIAS</h4>
+<div class="container-fluid">
+    <div class="row my-4">
+        <div class="col-md-2 d-d-sm-none d-md-block">
+              <h4 class="text-center" style="color:#FD5924">CATEGORIAS</h4>
 
-              <ul>
-                  <li><a>Fruta</a></li>
-                  <li><a href="#">Bebidas</a></li>
-                  <li><a href="#">Alcohol</a></li>
-                  <li><a href="#">Abarrotes</a></li>
-                  <li><a href="#">Carnes</a></li>
-                  <li><a href="#">Pescados</a></li>
-                  <li><a href="#">Mariscos</a></li>
-                  <li><a href="#">Reposteria</a></li>
+              <ul class="py-4" style="list-style:none;">
+                  <li><a asp-route-id="11" asp-controller="Home" asp-action="Categorias">Fruta</a></li>
+                  <li><a asp-route-id="12" asp-controller="Home" asp-action="Categorias">Bebidas</a></li>
+                  <li><a asp-route-id="1" asp-controller="Home" asp-action="Categorias">Alcohol</a></li>
+                  <li><a asp-route-id="14" asp-controller="Home" asp-action="Categorias">Abarrotes</a></li>
+                  <li><a asp-route-id="15" asp-controller="Home" asp-action="Categorias">Carnes</a></li>
+                  <li><a asp-route-id="16" asp-controller="Home" asp-action="Categorias">Pescados</a></li>
+                  <li><a asp-route-id="17" asp-controller="Home" asp-action="Categorias">Mariscos</a></li>
+                  <li><a asp-route-id="18" asp-controller="Home" asp-action="Categorias">Reposteria</a></li>
                   <li><a asp-route-id="1" asp-controller="Home" asp-action="Categorias">Panaderia</a></li>
-                  <li><a href="#">Graneria</a></li>
-                  <li><a href="#">Dulces</a></li>
-                  <li><a href="#">Lacteos</a></li>
-                  <li><a href="#">Deli</a></li>
-                  <li><a href="#">Otos</a></li>
-                  <li><a href="#">Cuidado personal</a></li>
-                  <li><a href="#">Detergente</a></li>
-                  <li><a href="#">Desechables</a></li>
+                  <li><a asp-route-id="2" asp-controller="Home" asp-action="Categorias">Graneria</a></li>
+                  <li><a asp-route-id="1" asp-controller="Home" asp-action="Categorias">Dulces</a></li>
+                  <li><a asp-route-id="4" asp-controller="Home" asp-action="Categorias">Lacteos</a></li>
+                  <li><a asp-route-id="5" asp-controller="Home" asp-action="Categorias">Deli</a></li>
+                  <li><a asp-route-id="6" asp-controller="Home" asp-action="Categorias">Otros</a></li>
+                  <li><a asp-route-id="7" asp-controller="Home" asp-action="Categorias">Cuidado personal</a></li>
+                  <li><a asp-route-id="1" asp-controller="Home" asp-action="Categorias">Detergente</a></li>
+                  <li><a asp-route-id="8" asp-controller="Home" asp-action="Categorias">Desechables</a></li>
               </ul>
 
         </div>
-        <div class="col-sm-12 col-md-10">
-            <h2>@ViewBag.categoria</h2>
-            <hr />
+        <div class="col-sm-12 col-md-10 p-0 mr-0" style="clear:both;">
+            <div class="row mb-4  m-0 p-0">
+                <div class="col-11 p-0 m-0">
+                    <h2 class="text-uppercase">@ViewBag.categoria</h2>
+                    <hr style="border-width: 1px; border-color:#FD5924;" />
 
-            <div class="row">
-                @foreach (var producto in ViewBag.productos)
-                {
-                <div class="col-sm-4 col-md-3">
-                    <div class="px-sm-4 pt-2" style="height: 350px;width:220px ;">
-                        <div class="" style="height: 45%;">
-                            <img src="@producto.Foto" class="img-fluid img-center" alt="">
-                        </div>
-                        <div class="text-center pt-sm-2" style="height: 30%;">
-
-                            <p>@producto.Nombre</p>
-                            <br />
-
-                            <h5>RD$ @producto.Precio</h5>
-                        </div>
-                        <div class="m-auto" style="height: 25%;">
-                            <a class="btn btn-outline-oscuro btn-block btn-sm" asp-route-id="@producto.IdProducto" asp-controller="Home" asp-action="Detalle_Producto">Comprar ahora</a>
-                        </div>
-                    </div>
+                    <p class="float-right"> <img src="~/iconos/etiqueta.png" width="24" /> @ViewBag.cantidad Articulos </p>
 
                 </div>
-                 
+            </div>
+            <div class="row mx-0">
+
+
+                @foreach (var producto in ViewBag.productos)
+                {
+                    <div class="col-sm-4 col-md-3">
+                        <div class="px-sm-4 pt-2" style="height: 350px;width:220px ;">
+                            <div style="height: 45%;">
+                                <img src="@producto.Foto" class="img-fluid img-center" alt="">
+                            </div>
+                            <div class="text-center pt-sm-2" style="height: 30%;">
+
+                                <p>@producto.Nombre</p>
+
+                                <h5>RD$ @producto.Precio</h5>
+                                <br />
+                            </div>
+                            <div class="m-auto" style="height: 25%;">
+                                <a class="btn btn-outline-oscuro btn-block btn-sm" asp-route-id="@producto.IdProducto" asp-controller="Home" asp-action="Detalle_Producto">Comprar ahora</a>
+                            </div>
+                        </div>
+
+                    </div>
+
                 }
 
             </div>
