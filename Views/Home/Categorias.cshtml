@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewData["Title"] = "Busqueda por categoria";
+
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="d-sm-none d-md-block col-md-2">
+              <h4>CATEGORIAS</h4>
+
+              <ul>
+                  <li><a>Fruta</a></li>
+                  <li><a href="#">Bebidas</a></li>
+                  <li><a href="#">Alcohol</a></li>
+                  <li><a href="#">Abarrotes</a></li>
+                  <li><a href="#">Carnes</a></li>
+                  <li><a href="#">Pescados</a></li>
+                  <li><a href="#">Mariscos</a></li>
+                  <li><a href="#">Reposteria</a></li>
+                  <li><a asp-route-id="1" asp-controller="Home" asp-action="Categorias">Panaderia</a></li>
+                  <li><a href="#">Graneria</a></li>
+                  <li><a href="#">Dulces</a></li>
+                  <li><a href="#">Lacteos</a></li>
+                  <li><a href="#">Deli</a></li>
+                  <li><a href="#">Otos</a></li>
+                  <li><a href="#">Cuidado personal</a></li>
+                  <li><a href="#">Detergente</a></li>
+                  <li><a href="#">Desechables</a></li>
+              </ul>
+
+        </div>
+        <div class="col-sm-12 col-md-10">
+            <h2>@ViewBag.categoria</h2>
+            <hr />
+
+            <div class="row">
+                @foreach (var producto in ViewBag.productos)
+                {
+                <div class="col-sm-4 col-md-3">
+                    <div class="px-sm-4 pt-2" style="height: 350px;width:220px ;">
+                        <div class="" style="height: 45%;">
+                            <img src="@producto.Foto" class="img-fluid img-center" alt="">
+                        </div>
+                        <div class="text-center pt-sm-2" style="height: 30%;">
+
+                            <p>@producto.Nombre</p>
+                            <br />
+
+                            <h5>RD$ @producto.Precio</h5>
+                        </div>
+                        <div class="m-auto" style="height: 25%;">
+                            <a class="btn btn-outline-oscuro btn-block btn-sm" asp-route-id="@producto.IdProducto" asp-controller="Home" asp-action="Detalle_Producto">Comprar ahora</a>
+                        </div>
+                    </div>
+
+                </div>
+                 
+                }
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

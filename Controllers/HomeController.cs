@@ -6,6 +6,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Proyecto_final_pro_3.Models; 
@@ -31,6 +32,16 @@ namespace Tienda_.Controllers
             ViewBag.Productos = await _contex.Producto.Where(x => x.Precio >= 0 || x.Precio <= 100).ToListAsync();
             return View();
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Categorias(int? id) {
+            var listaProductos = await _contex.Producto.Where(producto => producto.IdCategoria == id).ToListAsync();
+            ViewBag.Productos = listaProductos;     
+            return View();     
+        }
+
+
 
         public IActionResult Top_menu_bar()
         {

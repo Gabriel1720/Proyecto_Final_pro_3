@@ -15,51 +15,51 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body class="m-0">
-    <header>
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
-                    <span class="font-weight-bold">AMERA</span>
-                    <span class="text-warning"> Xpres</span>
-                    <span class="font-weight-bold"> .com</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav flex-grow-1 row align-conten-center">
-                        <li class="nav-item col-lg-6 col-12 offset-lg-1 rounded border d-flex py-2 py-md-0 padre">
-                            <ion-icon name="search-outline" class="icono"></ion-icon>
-                            <input type="text" placeholder="¿Que articulo desea buscar?" class="fi w-100 ml-2 border-0 rounded-0 bg-light">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </li>
-                        <li class="nav-item col-lg-2 offset-lg-1 p-0 py-md-0 padre pl-3 pl-lg-0">
 
-                            <a class="link-ir text-decoration-none" asp-controller="Cuenta" asp-action="Login">Login</a>
-                            <samp class="link-ir">|</samp>
-                            <a class="link-ir text-decoration-none" asp-controller="Cuenta" asp-action="Nueva_cuenta">Registerse</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                <span class="font-weight-bold">AMERA</span>
+                <span class="text-warning"> Xpres</span>
+                <span class="font-weight-bold"> .com</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav flex-grow-1 row align-conten-center">
+                    <li class="nav-item col-lg-6 col-12 offset-lg-1 rounded border d-flex py-2 py-md-0 padre">
+                        <ion-icon name="search-outline" class="icono"></ion-icon>
+                        <input type="text" placeholder="¿Que articulo desea buscar?" class="fi w-100 ml-2 border-0 rounded-0 bg-light">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </li>
+                    <li class="nav-item col-lg-2 offset-lg-1 p-0 py-md-0 padre pl-3 pl-lg-0">
 
-                        </li>
-                    </ul>
-                </div>
+                        <a class="link-ir text-decoration-none" asp-controller="Cuenta" asp-action="Login">Login</a>
+                        <samp class="link-ir">|</samp>
+                        <a class="link-ir text-decoration-none" asp-controller="Cuenta" asp-action="Nueva_cuenta">Registerse</a>
+
+                    </li>
+                </ul>
             </div>
-        </nav>
-
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-0 box-shadow" style="background: #FD5924">
+        </div>
+    </nav>
+    <header class="header sticky-top">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-0 box-shadow" style="background: #FD5924;">
             <div class="container">
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    
+
                     <ul class="navbar-nav flex-grow-1 row">
                         <li class="nav-item ml-sm-auto">
-                            <a class="nav-link text-white pl-2" href="#">Inicio</a>
+                            <a class="nav-link text-white pl-2" asp-action="Index">Inicio</a>
                         </li>
                         <li class="nav-item ml-sm-auto">
                             <a class="nav-link text-white pl-2" href="#">Producto</a>
                         </li>
-                        <li class="nav-item ml-sm-auto padre">                            
+                        <li class="nav-item ml-sm-auto padre">
                             <a class="nav-link text-white pl-2" data-toggle="collapse" href="#collapseCategoria" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                Categoria 
+                                Categoria
                             </a>
                             <ion-icon class="text-white" name="caret-down"></ion-icon>
                         </li>
@@ -80,7 +80,7 @@
                 <section class="row">
                     <div class="col-6 col-sm-3">
                         <ul class="link link-white link-p-2">
-                            <li><a href="#">Vegetales</a></li>
+                            <li><a asp-route-id="10" asp-controller="Home" asp-action="Categorias">Vegetales</a></li>
                             <li><a href="#">Fruta</a></li>
                             <li><a href="#">Bebidas</a></li>
                             <li><a href="#">Alcohol</a></li>
@@ -93,7 +93,7 @@
                             <li><a href="#">Pescados</a></li>
                             <li><a href="#">Mariscos</a></li>
                             <li><a href="#">Reposteria</a></li>
-                            <li><a href="#">Panaderia</a></li>
+                            <li><a asp-route-id="1" asp-controller="Home" asp-action="Categorias">Panaderia</a></li>
                         </ul>
                     </div>
                     <div class="col-6 col-sm-3">
