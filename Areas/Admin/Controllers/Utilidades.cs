@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Proyecto_final_pro_3.Models;
+using ReflectionIT.Mvc.Paging;
 
 namespace Proyecto_final_pro_3.Areas.Admin.Controllers
 {
@@ -13,47 +14,44 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
     public class Utilidades : Controller
     {
         DB_A64A4C_SuperMercadoContext _context = new DB_A64A4C_SuperMercadoContext();
-        int indice = 0;
-        public async Task<IActionResult> Index()
-        {
-            ViewBag.Usuario = await _context.Usuario.ToListAsync();
-            return View();
-        }
-
-        public async Task<IActionResult> IndexMes (int mes)
-        {
-            if(mes == 0)
+      
+        public async Task<IActionResult> Index(int page = 1, int mes = 0)
+        {            
+            if(mes != 0)
             {
-                ViewBag.error = "Debe elegir una opcion";
-                ViewBag.Usuario = await _context.Usuario.ToListAsync();
-                return View("Index");
-            }
-            indice = mes;
-            ViewBag.Usuario = await _context.Usuario.Where(x => x.FechaNacimiento.Value.Month == mes).ToListAsync();
+                Guardar.Mes = mes;
+            }         
+        
+            var query = _context.Usuario.AsNoTracking().Where(x => x.FechaNacimiento.Value.Month == Guardar.Mes).OrderBy(x => x.IdUsuario);
 
-            return View("Index");
+            var model = await PagingList.CreateAsync(query, 7, page);
+            ViewBag.Usuario = model;            
+            return View(model);      
+        
         }
 
-        public async Task<IActionResult> ReadCsv()
+
+        public async Task<IActionResult> ReadCsv(int indice)
         {
-            List<Usuario> User = null;
+            List<Usuario> user = null;
             if (indice == 0)
             {
-                User = await _context.Usuario.ToListAsync();
+                user = await _context.Usuario.ToListAsync();
             }
             else
             {
-                User = await _context.Usuario.Where(x => x.FechaNacimiento.Value.Month == indice).ToListAsync();
+                user = await _context.Usuario.Where(x => x.FechaNacimiento.Value.Month == indice).ToListAsync();
             }
             StringBuilder csv = new StringBuilder();
             csv.AppendLine("Nombre,Apellido,Fecha Nacimiento,Email");
             
-            foreach(Usuario usuario in User)
+            foreach(Usuario usuario in user)
             {
                 csv.AppendLine($"{usuario.Nombre},{usuario.Apellido},{usuario.FechaNacimiento},{usuario.Correo}");
             }
 
-            return File(Encoding.UTF8.GetBytes(csv.ToString()), "text/csv","usuariosInfo.csv");
+            return File(Encoding.UTF8.GetBytes(csv.ToString()), "text/csv","usuariosInfoNuevos.csv"); 
+
         }
     }
 }

@@ -272,3 +272,8 @@ link-white,
     padding: 7.5px 7.5px 7.5px 0;
 }
 
+.pagination li {
+    padding: 5px 10px;
+    border: 1px solid #EAEAEA;
+    color: #1b6ec2;
+}
