@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Proyecto_final_pro_3.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace Proyecto_final_pro_3.Areas.Admin.Controllers
 {
@@ -20,8 +21,15 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
 
         public async Task<IActionResult> Cuenta()
         {
-            Usuario usuario = await _context.Usuario.FirstOrDefaultAsync(x => x.Correo == "Oscarmora20@gmail.com");
-            return View(usuario);
+            int loggedUSerID = Convert.ToInt32(HttpContext.Session.GetString("userID")); 
+
+            Usuario usuario = await _context.Usuario.FirstOrDefaultAsync(x => x.IdUsuario == loggedUSerID);
+
+
+            if (usuario != null) {
+                return View(usuario);
+            }
+            return RedirectToAction("Login", "Cuenta"); 
         }
 
         public async Task<IActionResult> Edit(Usuario usuario)

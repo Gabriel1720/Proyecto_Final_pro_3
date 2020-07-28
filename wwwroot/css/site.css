@@ -230,11 +230,17 @@ link-white,
     outline: 0;
     box-shadow: 0;
     border: 0 !important;
-    background-color: #FF6F41;
+    background-color: #FD5924;
     color: white;
-    width: 90px;
+    width: 120px;
     height: 35px;
+
+    border-radius:5px;
+    padding-left:5px;
+    position:relative;
+    cursor:pointer;
 }
+
 .boton {
     width: 50px;
     height: 50px;
@@ -254,14 +260,20 @@ link-white,
    float:left;
 }
 
-    .boton:hover {
-        opacity: 0.50;
-        -moz-opacity: .50;
-        filter: alpha (opacity=50);
-    }
+.boton:hover {
+    opacity: 0.50;
+    -moz-opacity: .50;
+    filter: alpha (opacity=50);
+}
 
-    .boton a {
-        color: #fff;
-        text-decoration: none;
-        padding: 7.5px 7.5px 7.5px 0;
-    }
+.boton a {
+    color: #fff;
+    text-decoration: none;
+    padding: 7.5px 7.5px 7.5px 0;
+}
+
+.pagination li {
+    padding: 5px 10px;
+    border: 1px solid #EAEAEA;
+    color: #1b6ec2;
+}
