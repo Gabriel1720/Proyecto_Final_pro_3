@@ -4,25 +4,25 @@
 
 <div>
     <h2 class="text-center mt-4" style="color: #FD5924;">LISTADO DE CUMPLEAÑOS POR MES</h2>
-
-    <div class="col-5 mx-auto d-flex justify-content-end">
+    <br />
+    <div class="col-5 mx-auto d-flex justify-content-center">
 
         <form method="post">
             <select name="mes" class="select text-center" id="seleccionar">
-                <option value="1">1-Enero</option>
-                <option value="2">2-Febreo</option>
-                <option value="3">3-Marzo</option>
-                <option value="4">4-Abril</option>
-                <option value="5">5-Mayo</option>
-                <option value="6">6-Junio</option>
-                <option value="7">7-Julio</option>
-                <option value="8">8-Agosto</option>
-                <option value="9">9-Septiembre</option>
-                <option value="10">10-Obtubre</option>
-                <option value="11">11-Nobiembre</option>
+                <option value="1">01-Enero</option>
+                <option value="2">02-Febrero</option>
+                <option value="3">03-Marzo</option>
+                <option value="4">04-Abril</option>
+                <option value="5">05-Mayo</option>
+                <option value="6">06-Junio</option>
+                <option value="7">07-Julio</option>
+                <option value="8">08-Agosto</option>
+                <option value="9">09-Septiembre</option>
+                <option value="10">10-Octubre</option>
+                <option value="11">11-Noviembre</option>
                 <option value="12">12-Diciembre</option>
             </select>
-            <button class="btn btn-primary" type="submit" asp-controller="Utilidades" asp-action="Index" style="background-color: #FD5924; height:30px;">
+            <button class="btn btn-primary" type="submit" asp-controller="Utilidades" asp-action="Index" style="background-color: #FD5924; height:35px;">
                 <ion-icon class="search-outline" name="search-outline"></ion-icon>
             </button>
         </form>
@@ -45,7 +45,7 @@
                     <th>
                         <form method="post">
                             <input type="hidden" name="indice" value="@Guardar.Mes">
-                            <input class="btn text-white" type="submit" asp-controller="Utilidades" asp-action="ReadCsv" value="Exportar a CSV" style="background-color: #297E0B; height:30px; width:150px;" />
+                            <input class="btn text-white text-center" type="submit" asp-controller="Utilidades" asp-action="ReadCsv" value="Exportar a CSV" style="background-color: #297E0B; height:35px; width:150px;" />
                         </form>
                     </th>
                 </tr>

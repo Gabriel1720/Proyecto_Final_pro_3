@@ -53,5 +53,10 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
             return File(Encoding.UTF8.GetBytes(csv.ToString()), "text/csv","usuariosInfoNuevos.csv"); 
 
         }
+
+        public IActionResult Details()
+        {
+            return View();
+        }
     }
 }
