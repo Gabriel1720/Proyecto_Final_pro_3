@@ -28,6 +28,12 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
             }
             return View(products);
         }
+         [HttpPost]
+        public async Task<IActionResult> Search(string valor)
+        {
+
+            return RedirectToAction(nameof(Index));
+        }
 
         //Get view
         public IActionResult Create()

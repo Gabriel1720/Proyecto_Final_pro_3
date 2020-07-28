@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Proyecto_final_pro_3.Models
 {
-    //Database first
     public partial class DB_A64A4C_SuperMercadoContext : DbContext
     {
         public DB_A64A4C_SuperMercadoContext()
@@ -21,9 +20,13 @@ namespace Proyecto_final_pro_3.Models
         public virtual DbSet<Compra> Compra { get; set; }
         public virtual DbSet<DetalleOrden> DetalleOrden { get; set; }
         public virtual DbSet<Domicilio> Domicilio { get; set; }
+        public virtual DbSet<Ofertas> Ofertas { get; set; }
         public virtual DbSet<Orden> Orden { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
+        public virtual DbSet<Slider> Slider { get; set; }
+        public virtual DbSet<SliderUser> SliderUser { get; set; }
+        public virtual DbSet<StatusOrden> StatusOrden { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -45,22 +48,18 @@ namespace Proyecto_final_pro_3.Models
                 entity.HasOne(d => d.IdProductoNavigation)
                     .WithMany(p => p.Carrito)
                     .HasForeignKey(d => d.IdProducto)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CARRITO_PRODUCTO");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Carrito)
                     .HasForeignKey(d => d.IdUsuario)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_IdUsuarioCarrito");
+                    .HasConstraintName("FK_CARRITO_USUARIO");
             });
 
             modelBuilder.Entity<Categoria>(entity =>
             {
                 entity.HasKey(e => e.IdCategoria)
                     .HasName("PK_IdCategoria");
-
-                entity.Property(e => e.Nombre).HasMaxLength(50);
             });
 
             modelBuilder.Entity<Compra>(entity =>
@@ -68,21 +67,17 @@ namespace Proyecto_final_pro_3.Models
                 entity.HasKey(e => e.IdCompra)
                     .HasName("PK_IdCompra");
 
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("date")
-                    .HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.Fecha).HasDefaultValueSql("(getdate())");
 
                 entity.HasOne(d => d.IdProductoNavigation)
                     .WithMany(p => p.Compra)
                     .HasForeignKey(d => d.IdProducto)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_COMPRA_PRODUCTO");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Compra)
                     .HasForeignKey(d => d.IdUsuario)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_IdUsuarioCompra");
+                    .HasConstraintName("FK_COMPRA_USUARIO");
             });
 
             modelBuilder.Entity<DetalleOrden>(entity =>
@@ -99,8 +94,7 @@ namespace Proyecto_final_pro_3.Models
                 entity.HasOne(d => d.IdProductoNavigation)
                     .WithMany(p => p.DetalleOrden)
                     .HasForeignKey(d => d.IdProducto)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_IdProductoDeatelleOrden");
+                    .HasConstraintName("FK_DETALLEORDEN_PRODUCTO");
             });
 
             modelBuilder.Entity<Domicilio>(entity =>
@@ -108,17 +102,26 @@ namespace Proyecto_final_pro_3.Models
                 entity.HasKey(e => e.IdDomicilio)
                     .HasName("PK_IdDomicilio");
 
-                entity.Property(e => e.Comentario).HasColumnType("text");
-
-                entity.Property(e => e.Direccion)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
+                entity.Property(e => e.Direccion).IsUnicode(false);
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Domicilio)
                     .HasForeignKey(d => d.IdUsuario)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_IdUsuario");
+                    .HasConstraintName("FK_DOMICILIO_USUARIO");
+            });
+
+            modelBuilder.Entity<Ofertas>(entity =>
+            {
+                entity.HasKey(e => e.IdOfertas)
+                    .HasName("PK_OFERTAS");
+
+                entity.Property(e => e.Descripcion).IsUnicode(false);
+
+                entity.HasOne(d => d.IdProductoNavigation)
+                    .WithMany(p => p.Ofertas)
+                    .HasForeignKey(d => d.IdProducto)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_OFERTAS_PRODUCTO");
             });
 
             modelBuilder.Entity<Orden>(entity =>
@@ -126,18 +129,9 @@ namespace Proyecto_final_pro_3.Models
                 entity.HasKey(e => e.IdOrden)
                     .HasName("PK_IdOrden");
 
-                entity.Property(e => e.Fecha)
-                    .HasColumnType("date")
-                    .HasDefaultValueSql("(getdate())");
+                entity.Property(e => e.Fecha).HasDefaultValueSql("(getdate())");
 
-                entity.Property(e => e.Status)
-                    .HasColumnName("_Status")
-                    .HasMaxLength(30)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Total)
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
+                entity.Property(e => e.Total).IsUnicode(false);
 
                 entity.HasOne(d => d.IdDomicilioNavigation)
                     .WithMany(p => p.Orden)
@@ -145,25 +139,21 @@ namespace Proyecto_final_pro_3.Models
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_IdDomicilio");
 
+                entity.HasOne(d => d.IdStatusOrdenNavigation)
+                    .WithMany(p => p.Orden)
+                    .HasForeignKey(d => d.IdStatusOrden)
+                    .HasConstraintName("FK_ORDEN_STATUSORDEN");
+
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Orden)
                     .HasForeignKey(d => d.IdUsuario)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_IdUsuarioOrden");
+                    .HasConstraintName("FK_ORDEN_USUARIO");
             });
 
             modelBuilder.Entity<Producto>(entity =>
             {
                 entity.HasKey(e => e.IdProducto)
                     .HasName("PK_IdProducto");
-
-                entity.Property(e => e.Descripcion)
-                    .HasColumnName("descripcion")
-                    .HasColumnType("text");
-
-                entity.Property(e => e.Foto).HasColumnType("text");
-
-                entity.Property(e => e.Nombre).HasMaxLength(70);
 
                 entity.HasOne(d => d.IdCategoriaNavigation)
                     .WithMany(p => p.Producto)
@@ -177,27 +167,45 @@ namespace Proyecto_final_pro_3.Models
                 entity.HasKey(e => e.IdRol)
                     .HasName("PK_IdRol");
 
-                entity.Property(e => e.Nombre)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.Nombre).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Slider>(entity =>
+            {
+                entity.HasKey(e => e.IdSlider)
+                    .HasName("PK_SLIDER");
+            });
+
+            modelBuilder.Entity<SliderUser>(entity =>
+            {
+                entity.HasKey(e => e.IdSliderUser)
+                    .HasName("PK_SLIDERUSER");
+
+                entity.HasOne(d => d.IdSliderNavigation)
+                    .WithMany(p => p.SliderUser)
+                    .HasForeignKey(d => d.IdSlider)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_SLIDERUSER_SLIDER");
+
+                entity.HasOne(d => d.IdUserNavigation)
+                    .WithMany(p => p.SliderUser)
+                    .HasForeignKey(d => d.IdUser)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_SLIDERUSER_USER");
+            });
+
+            modelBuilder.Entity<StatusOrden>(entity =>
+            {
+                entity.HasKey(e => e.IdStatusOrden)
+                    .HasName("PK_STATUSORDEN");
+
+                entity.Property(e => e.Nombre).IsUnicode(false);
             });
 
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.HasKey(e => e.IdUsuario)
                     .HasName("PK_IdUsuario");
-
-                entity.Property(e => e.Apellido).HasMaxLength(50);
-
-                entity.Property(e => e.Correo).HasMaxLength(100);
-
-                entity.Property(e => e.FechaNacimiento).HasColumnType("date");
-
-                entity.Property(e => e.Nombre).HasMaxLength(50);
-
-                entity.Property(e => e.Password)
-                    .HasColumnName("_Password")
-                    .HasMaxLength(50);
 
                 entity.HasOne(d => d.IdRolNavigation)
                     .WithMany(p => p.Usuario)
