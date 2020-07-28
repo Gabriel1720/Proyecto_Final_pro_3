@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Proyecto_final_pro_3.Models
 {
@@ -13,10 +14,15 @@ namespace Proyecto_final_pro_3.Models
         }
 
         public int IdProducto { get; set; }
+        [Required(ErrorMessage ="Este campo es obligatorio")]
         public string Nombre { get; set; }
+        [Required(ErrorMessage = "Este campo es obligatorio")]
         public string Descripcion { get; set; }
+        [Required(ErrorMessage = "Este campo es obligatorio")]
         public double? Precio { get; set; }
+        [Required(ErrorMessage = "Este campo es obligatorio")]
         public string Foto { get; set; }
+        [Required(ErrorMessage = "Este campo es obligatorio")]
         public int IdCategoria { get; set; }
         public int? Stock { get; set; }
 

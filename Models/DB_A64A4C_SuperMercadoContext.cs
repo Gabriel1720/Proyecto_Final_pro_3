@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Proyecto_final_pro_3.Models
 {
+    //Database first
     public partial class DB_A64A4C_SuperMercadoContext : DbContext
     {
         public DB_A64A4C_SuperMercadoContext()
