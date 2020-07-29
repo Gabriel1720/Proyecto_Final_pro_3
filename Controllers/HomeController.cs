@@ -46,9 +46,13 @@ namespace Tienda_.Controllers
         public async Task<IActionResult> Categorias(int? id) {
             var listaProductos = await _contex.Producto.Where(producto => producto.IdCategoria == id).ToListAsync();
             var categoria = await _contex.Categoria.Where(x => x.IdCategoria == listaProductos.FirstOrDefault().IdCategoria).FirstOrDefaultAsync();
-            ViewBag.Productos = listaProductos;
-            ViewBag.categoria = categoria.Nombre;
-            ViewBag.cantidad = listaProductos.Count(); 
+          
+            if (categoria != null) {
+                ViewBag.Productos = listaProductos;
+                ViewBag.categoria = categoria.Nombre;
+                ViewBag.cantidad = listaProductos.Count();
+            }
+
             return View();     
         }
 
