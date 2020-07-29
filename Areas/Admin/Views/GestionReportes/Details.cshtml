@@ -1,44 +1,38 @@
 ﻿<div>
     <h2 class="text-center mt-4" style="color: #FD5924;">DETALLE DEL CLIENTE Y SU ORDEN DE COMPRA</h2>
 
-    <div class="col-10 mx-auto border mt-4 p-5" style="height:70vh">
+    <div class="col-10 mx-auto border mt-4 p-5" style="height:80vh; overflow-x:hidden; overflow-y:scroll;">
         <div class="row mt-3">
-            <div class="col-4 col-lg-3" style="color: #FD5924;"><h5>Nombre:</h5></div>
+            <div class="col-4 col-md-3 col-lg-2" style="color: #FD5924;"><h5>Nombre:</h5></div>
             <div class="col-8"><h5 class="">@ViewBag.order.IdUsuarioNavigation.Nombre</h5></div>
         </div>
         <div class="row mt-3">
-            <div class="col-4 col-lg-3" style="color: #FD5924;"><h5>Apellido:</h5></div>
+            <div class="col-4 col-md-3 col-lg-2" style="color: #FD5924;"><h5>Apellido:</h5></div>
             <div class="col-8"><h5 class="">@ViewBag.order.IdUsuarioNavigation.Apellido</h5></div>
         </div>
         <div class="row mt-3">
-            <div class="col-4 col-lg-3" style="color: #FD5924;"><h5>Correo:</h5></div>
+            <div class="col-4 col-md-3 col-lg-2" style="color: #FD5924;"><h5>Correo:</h5></div>
             <div class="col-8"><h5 class="">@ViewBag.order.IdUsuarioNavigation.Correo</h5></div>
         </div>
         <div class="row mt-3">
-            <div class="col-4 col-lg-3" style="color: #FD5924;"><h5>Orden:</h5></div>
+            <div class="col-4 col-md-3 col-lg-2" style="color: #FD5924;"><h5>Orden:</h5></div>
             <div class="col-8"><h5 class="">@ViewBag.order.IdOrden</h5></div>
         </div>
         <div class="col-7 mt-3 pl-0">
             <div class="" style="color: #FD5924;"><h5>Detalles de la Compra:</h5></div>
         </div>
 
-        <div class="col-7 mt-3 pl-0">
+        @foreach (DetalleOrden detalleOrden in ViewBag.Detalle_orden)
+        {
+            <div class="col-12 col-md-10 col-lg-8 col-xl-6 row mx-0 my-2 border my-2 pl-3 pr-0 py-2 ">
+                <p class="col-7 p-0 m-0 h5 font-weight-light">@detalleOrden.IdProductoNavigation.Nombre</p>
+                <p class="col-5 p-0 m-0 h5 font-weight-light">RD$ @detalleOrden.Precio</p>
+            </div>
+        }
 
-            @foreach (DetalleOrden detalleOrden in ViewBag.Detalle_orden)
-            {
-                <div class="row mx-0 my-2 border my-2">
-                    <p class="col-7 pr-0">@detalleOrden.IdProductoNavigation.Nombre</p>
-                    <p class="col-5">RD$ @detalleOrden.IdProductoNavigation.Precio</p>
-                </div>
-            }
-        </div>
-
-
-        <div class="col-7 mt-3 pl-0">
-            <div class="row mx-0 my-2 border my-2">
-                <p class="col-7 pr-0 h5">Total</p>
-                <p class="col-5 h5">RD$ 210</p>
-            </div>        
+        <div class="row col-8 col-md-6 col-xl-4 mx-0 my-3 border my-2 p-2" style="background-color: #EBEBEB;">
+            <p class="col-6 p-0 m-0 h5">Total</p>
+            <p class="col-5 p-0 m-0 h5 font-weight-light">RD$ @ViewBag.Total</p>
         </div>
 
     </div>
