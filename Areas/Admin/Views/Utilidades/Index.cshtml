@@ -60,7 +60,7 @@
                             <td>@usuario.FechaNacimiento</td>
                             <td>@usuario.Correo</td>
                             <td>
-                                <a asp-route-id="@usuario.IdUsuario" class="col-10 text-center padre pl-4 btn" style="background-color: #FD5924; height:30px; width:130px;">
+                                <a asp-controller="Utilidades" asp-action="Details" asp-route-id="@usuario.IdUsuario" class="col-10 text-center padre pl-4 btn" style="background-color: #FD5924; height:30px; width:130px;">
                                     <p class="m-0 d-inline-block text-white">Detalles</p>
                                     <ion-icon class="ml-2 d-inline-block icono text-white" name="eye-outline"></ion-icon>
                                 </a>

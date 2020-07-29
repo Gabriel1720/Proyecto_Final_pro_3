@@ -54,9 +54,10 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
 
         }
 
-        public IActionResult Details()
+        public async Task<IActionResult> Details(int? id)
         {
-            return View();
+            Usuario usuario = await _context.Usuario.FirstOrDefaultAsync(x => x.IdUsuario == id);
+            return View(usuario);
         }
     }
 }

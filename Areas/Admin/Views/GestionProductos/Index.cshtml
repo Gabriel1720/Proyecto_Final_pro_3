@@ -1,38 +1,47 @@
 ﻿@model IEnumerable<Proyecto_final_pro_3.Models.Producto>
 
+    <form asp-action="Search" method="post">
+        <div class="col-9 col-lg-6 mt-4 d-flex py-2 py-md-0 padre mx-auto bg-light pr-0">
+            <ion-icon name="search-outline" class="ml-5 icono"></ion-icon>
+            <input  name="valor" type="text" placeholder="Nombre o Correo" class="fi w-100 ml-2 border-0 rounded-0 bg-light">
+            <input type="submit" class="btn" style="color:#fff; background:#FF561F" />
+        </div>
+    </form>
 
-<table class="table table-hover  table-responsive-sm">
+<table class="table table-hover  table-responsive-sm" style="margin-top:45px; margin-left:20px; margin-right:20px;">
 
     <thead>
         <tr>
             <th>
-                <span style="color:#FF561F; font-size:20px;" >Categoria</span>
+                <span style="color:#FF561F; font-size:20px;">Categoria</span>
             </th>
             <th>
-             <span style="color:#FF561F; font-size:20px;" >Nombre del producto</span>
+                <span style="color:#FF561F; font-size:20px;">Nombre del producto</span>
             </th>
             <th>
-              <span style="color:#FF561F; font-size:20px;" >  @Html.DisplayNameFor(model => model.Precio)</span>
+                <span style="color:#FF561F; font-size:20px;">  @Html.DisplayNameFor(model => model.Precio)</span>
             </th>
         </tr>
     </thead>
     <tbody>
-        @foreach(var ItemProducto in Model)
+        @foreach (var ItemProducto in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(model => ItemProducto.IdCategoriaNavigation.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(model => ItemProducto.Nombre)
-            </td>
-            <td>
-                RD$ @Html.DisplayFor(model => ItemProducto.Precio)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@ItemProducto.IdProducto">Detalles</a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => ItemProducto.IdCategoriaNavigation.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => ItemProducto.Nombre)
+                </td>
+                <td>
+                    RD$ @Html.DisplayFor(model => ItemProducto.Precio)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@ItemProducto.IdProducto">Detalles</a>
+                    <a asp-action="Edit" asp-route-id="@ItemProducto.IdProducto">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@ItemProducto.IdProducto">Eliminar</a>
+                </td>
+            </tr>
         }
 
     </tbody>
