@@ -3,11 +3,18 @@
 <div>
     <h2 class="text-center mt-4" style="color: #FD5924;">LISTADO DE CLIENTES Y SUS ORDENES DE COMPRAS</h2>
     <p></p>
-    <div class="col-9 col-lg-6 mt-4 d-flex py-2 py-md-0 padre mx-auto bg-light pr-0">
+    <form method="post" class="col-9 col-lg-6 mt-4 d-flex py-2 py-md-0 padre mx-auto bg-light pr-0">
         <ion-icon name="search-outline" class="ml-5 icono"></ion-icon>
-        <input type="text" placeholder="Nombre o Correo" class="fi w-100 ml-2 border-0 rounded-0 bg-light">
-        <a class="btn bg-orange text-white border border-white">Buscar</a>
-    </div>
+        @if (!String.IsNullOrEmpty(ViewBag.srt))
+        {
+            <input type="text" placeholder="Nombre o Correo" name="srt" value="@ViewBag.srt" class="fi w-100 ml-2 border-0 rounded-0 bg-light" />
+        }
+        else
+        {
+            <input type="text" placeholder="Nombre o Correo" name="srt" class="fi w-100 ml-2 border-0 rounded-0 bg-light" />
+        }
+        <input type="submit" asp-controller="GestionReportes" asp-action="Index" class="btn bg-orange text-white border border-white" value="Buscar" />
+    </form>
 
     <div class="col-10 mt-4 mx-auto">
         <table class="table table-md-responsive">

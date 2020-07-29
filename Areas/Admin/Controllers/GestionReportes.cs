@@ -13,9 +13,26 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
     {
         DB_A64A4C_SuperMercadoContext _context = new DB_A64A4C_SuperMercadoContext();
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string srt = "")
         {
-            var orden = await _context.Orden.Include(x => x.IdUsuarioNavigation).ToListAsync();
+            IEnumerable<Orden> orden = null;
+
+            if(!String.IsNullOrEmpty(srt))
+            {
+                Guardar.Srt = srt;
+                orden = await _context.Orden.Include(x => x.IdUsuarioNavigation)
+                        .Where(x => x.IdUsuarioNavigation.Nombre == Guardar.Srt || x.IdUsuarioNavigation.Correo == Guardar.Srt)
+                        .ToListAsync();
+
+            }
+            else if (String.IsNullOrEmpty(srt) || String.IsNullOrEmpty(Guardar.Srt))
+            {    
+                orden = await _context.Orden.Include(x => x.IdUsuarioNavigation).ToListAsync();
+                Guardar.Srt = null;
+            }
+
+            //var all = await _context.Orden.Include(x => x.IdUsuarioNavigation).ToListAsync();
+            ViewBag.srt = Guardar.Srt;
             return View(orden); 
         }
 
