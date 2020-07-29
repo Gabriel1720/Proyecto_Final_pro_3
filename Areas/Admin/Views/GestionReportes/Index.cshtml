@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Proyecto_final_pro_3.Models.Orden>
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Orden>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *,ReflectionIT.Mvc.Paging
 
 <div>
     <h2 class="text-center mt-4" style="color: #FD5924;">LISTADO DE CLIENTES Y SUS ORDENES DE COMPRAS</h2>
@@ -43,8 +45,13 @@
                             </a>
                         </td>
                     </tr>
-                }                
+                }
             </tbody>
         </table>
+
+        <nav aria-label="Employee paging" class="" style="width:150px; margin: 0 auto;">
+            @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+        </nav>
+
     </div>
 </div>

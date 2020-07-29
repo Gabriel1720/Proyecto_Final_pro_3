@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Proyecto_final_pro_3.Models;
 using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 
 namespace Proyecto_final_pro_3.Areas.Admin.Controllers
 {
@@ -13,27 +14,27 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
     {
         DB_A64A4C_SuperMercadoContext _context = new DB_A64A4C_SuperMercadoContext();
 
-        public async Task<IActionResult> Index(string srt = "")
+        public async Task<IActionResult> Index(string srt = "", int page = 1)
         {
-            IEnumerable<Orden> orden = null;
+            IOrderedQueryable<Orden> orden = null;    
 
-            if(!String.IsNullOrEmpty(srt))
+            if (!String.IsNullOrEmpty(srt))
             {
                 Guardar.Srt = srt;
-                orden = await _context.Orden.Include(x => x.IdUsuarioNavigation)
-                        .Where(x => x.IdUsuarioNavigation.Nombre == Guardar.Srt || x.IdUsuarioNavigation.Correo == Guardar.Srt)
-                        .ToListAsync();
+                orden = _context.Orden.AsNoTracking().Include(x => x.IdUsuarioNavigation)
+                .Where(x => x.IdUsuarioNavigation.Nombre == Guardar.Srt || x.IdUsuarioNavigation.Correo == Guardar.Srt)
+                .OrderBy(x => x.IdOrden);
 
             }
             else if (String.IsNullOrEmpty(srt) || String.IsNullOrEmpty(Guardar.Srt))
-            {    
-                orden = await _context.Orden.Include(x => x.IdUsuarioNavigation).ToListAsync();
+            {
+                orden = _context.Orden.AsNoTracking().Include(x => x.IdUsuarioNavigation).OrderBy(x => x.IdOrden);
                 Guardar.Srt = null;
-            }
+            }     
 
-            //var all = await _context.Orden.Include(x => x.IdUsuarioNavigation).ToListAsync();
             ViewBag.srt = Guardar.Srt;
-            return View(orden); 
+            var model = await PagingList.CreateAsync(orden, 7, page);            
+            return View(model); 
         }
 
         public async Task<IActionResult> Details(int? id)
