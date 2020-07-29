@@ -23,6 +23,8 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
         {
             ViewBag.order = await _context.Orden.Include(x => x.IdUsuarioNavigation).Include(X => X.DetalleOrden).FirstOrDefaultAsync(x => x.IdOrden == id);
             ViewBag.Detalle_orden = await _context.DetalleOrden.Include(x => x.IdProductoNavigation).Where(x => x.IdOrden == id).ToListAsync();
+            ViewBag.Total = await _context.DetalleOrden.Include(x => x.IdProductoNavigation).Where(x => x.IdOrden == id).SumAsync(x => x.Precio);
+                      
             return View();
         }
     }
