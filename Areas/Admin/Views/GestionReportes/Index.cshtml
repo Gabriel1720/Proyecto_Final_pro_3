@@ -1,4 +1,6 @@
-﻿<div>
+﻿@model IEnumerable<Proyecto_final_pro_3.Models.Orden>
+
+<div>
     <h2 class="text-center mt-4" style="color: #FD5924;">LISTADO DE CLIENTES Y SUS ORDENES DE COMPRAS</h2>
     <p></p>
     <div class="col-9 col-lg-6 mt-4 d-flex py-2 py-md-0 padre mx-auto bg-light pr-0">
@@ -19,42 +21,22 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">Lucas</th>
-                    <td>Martines</td>
-                    <td>Otto@hotmail.com</td>
-                    <td>lechuga</td>
-                    <td>
-                        <a asp-controller="GestionReportes" asp-action="DetalleCompra" class="col-10 text-center padre pl-4 btn" style="background-color: #FD5924; height:30px; width:130px;">
-                            <p class="m-0 d-inline-block text-white">Pedidos</p>
-                            <ion-icon class="ml-2 d-inline-block icono text-white" name="eye-outline"></ion-icon>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Lucas</th>
-                    <td>Martines</td>
-                    <td>Otto@hotmail.com</td>
-                    <td>lechuga</td>
-                    <td>
-                        <a asp-controller="GestionReportes" asp-action="DetalleCompra" class="col-10 text-center padre pl-4 btn" style="background-color: #FD5924; height:30px; width:130px;">
-                            <p href="#" class="m-0 d-inline-block text-white">Pedidos</p>
-                            <ion-icon class="ml-2 d-inline-block icono text-white" name="eye-outline"></ion-icon>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Lucas</th>
-                    <td>Martines</td>
-                    <td>Otto@hotmail.com</td>
-                    <td>lechuga</td>
-                    <td>
-                        <a asp-controller="GestionReportes" asp-action="DetalleCompra" class="col-10 text-center padre pl-4 btn" style="background-color: #FD5924; height:30px; width:130px;">
-                            <p href="#" class="m-0 d-inline-block text-white">Pedidos</p>
-                            <ion-icon class="ml-2 d-inline-block icono text-white" name="eye-outline"></ion-icon>
-                        </a>
-                    </td>
-                </tr>
+
+                @foreach (Orden orden in Model)
+                {
+                    <tr>
+                        <td>@orden.IdUsuarioNavigation.Nombre</td>
+                        <td>@orden.IdUsuarioNavigation.Apellido</td>
+                        <td>@orden.IdUsuarioNavigation.Correo</td>
+                        <td>@orden.IdOrden</td>
+                        <td>
+                            <a asp-controller="GestionReportes" asp-action="Details" asp-route-id="@orden.IdOrden" class="col-10 text-center padre pl-4 btn" style="background-color: #FD5924; height:30px; width:130px;">
+                                <p class="m-0 d-inline-block text-white">Pedidos</p>
+                                <ion-icon class="ml-2 d-inline-block icono text-white" name="eye-outline"></ion-icon>
+                            </a>
+                        </td>
+                    </tr>
+                }                
             </tbody>
         </table>
 
