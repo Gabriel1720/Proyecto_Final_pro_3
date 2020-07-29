@@ -57,11 +57,11 @@ namespace Tienda_.Controllers
                   HttpContext.Session.SetString("userID", userDB.IdUsuario.ToString());
 
                     // opciones de los cookies 
-                    CookieOptions options = new CookieOptions();
-                    options.Expires = DateTime.Now.AddDays(5); 
+                 //    CookieOptions options = new CookieOptions();
+                 //   options.Expires = DateTime.Now.AddDays(5); 
 
                     // establecer los cookies 
-                    Response.Cookies.Append("UserID", userDB.IdUsuario.ToString(), options);
+                //    Response.Cookies.Append("UserID", userDB.IdUsuario.ToString(), options);
 
 
                     if (userDB.IdRol == 1)
@@ -98,7 +98,15 @@ namespace Tienda_.Controllers
         public IActionResult LoggedOut()
         {
             // Response.Cookies.Delete("useID");
-            HttpContext.Session.Clear(); 
+            HttpContext.Session.Clear();
+
+
+            // expiracion de los cookies 
+            CookieOptions options = new CookieOptions();
+            options.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Append("userID",  string.Empty, options); 
+
+
 
             return RedirectToAction("Login"); 
         }
