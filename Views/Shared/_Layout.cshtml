@@ -75,46 +75,24 @@
             </div>
         </nav>
 
-        <section class="collapse " id="collapseCategoria" style="background: #FF6F41;">
-            <div class="border-0 text-muted container py-3">
-                <section class="row">
-                    <div class="col-6 col-sm-3">
-                        <ul class="link link-white link-p-2">
-                            <li><a asp-route-id="19" asp-controller="Home" asp-action="Categorias">Vegetales</a></li>
-                            <li><a asp-route-id="11" asp-controller="Home" asp-action="Categorias">Fruta</a></li>
-                            <li><a href="#">Bebidas</a></li>
-                            <li><a href="#">Alcohol</a></li>
-                            <li><a asp-route-id="14" asp-controller="Home" asp-action="Categorias">Abarrotes</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-sm-3">
-                        <ul class="link link-white link-p-2">
-                            <li><a asp-route-id="15" asp-controller="Home" asp-action="Categorias">Carnes</a></li>
-                            <li><a href="#">Pescados</a></li>
-                            <li><a href="#">Mariscos</a></li>
-                            <li><a asp-route-id="18" asp-controller="Home" asp-action="Categorias">Reposteria</a></li>
-                            <li><a asp-route-id="1" asp-controller="Home" asp-action="Categorias">Panaderia</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-sm-3">
-                        <ul class="link link-white link-p-2">
-                            <li><a asp-route-id="2" asp-controller="Home" asp-action="Categorias">Graneria</a></li>
-                            <li><a asp-route-id="3" asp-controller="Home" asp-action="Categorias">Dulces</a></li>
-                            <li><a asp-route-id="4" asp-controller="Home" asp-action="Categorias">Lacteos</a></li>
-                            <li><a asp-route-id="5" asp-controller="Home" asp-action="Categorias">Deli</a></li>
-                            <li><a asp-route-id="6" asp-controller="Home" asp-action="Categorias">Otos</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-sm-3">
-                        <ul class="link link-white link-p-2">
-                            <li><a asp-route-id="7" asp-controller="Home" asp-action="Categorias">Cuidado personal</a></li>
-                            <li><a href="#">Detergente</a></li>
-                            <li><a asp-route-id="9" asp-controller="Home" asp-action="Categorias">Desechables</a></li>
-                        </ul>
-                    </div>
+        <section class="collapse" id="collapseCategoria" style="background-color: #FF6F41;">
+            <div class="border-top text-muted container py-3">
+                <section class="row pl-5">
+                    @{
+                        DB_A64A4C_SuperMercadoContext _context = new DB_A64A4C_SuperMercadoContext();
+                        var Catego = _context.Categoria.ToList();
+
+                        foreach (Categoria categoria in Catego)
+                        {
+                            <div class="col-6 col-sm-3 py-2">
+                                <a asp-controller="Home" asp-action="Categorias" asp-route-id="@categoria.IdCategoria" class="zoom text-white text-decoration-none">@categoria.Nombre</a>
+                            </div>
+                        }
+
+                    }
                 </section>
             </div>
-        </section>
+        </section>      
 
     </header>
     <div class="container-fluid px-0 mb-5">

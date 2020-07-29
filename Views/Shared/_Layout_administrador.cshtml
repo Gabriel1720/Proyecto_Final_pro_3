@@ -46,12 +46,10 @@
                 <ion-icon class="mr-2 d-inline-block icono" name="build"></ion-icon>
                 <p class="m-0 d-inline-block text-size">Utilidades</p>
             </a>
-
-            <a href="#" class="col-10 text-center sidemenu-option pl-4 btn ajuste">
+            <a asp-controller="CambiarSlider" asp-action="Index" class="col-10 text-center sidemenu-option pl-4 btn ajuste">
                 <ion-icon class="mr-2 d-inline-block icono" name="settings"></ion-icon>
                 <p class="m-0 d-inline-block text-size">Ajustes</p>
             </a>
-
         </div>
 
         <div class="w-100 sidemenu-celular">
@@ -88,7 +86,7 @@
                             <a asp-controller="Utilidades" asp-action="Index" class="nav-link text-white"><ion-icon class="mr-2 d-inline-block" name="build"></ion-icon>Utilidades</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#"><ion-icon class="mr-2 d-inline-block" name="settings"></ion-icon>Ajustes</a>
+                            <a asp-controller="CambiarSlider" asp-action="Index" class="nav-link text-white"><ion-icon class="mr-2 d-inline-block" name="settings"></ion-icon>Ajustes</a>
                         </li>
                     </ul>
                 </div>
