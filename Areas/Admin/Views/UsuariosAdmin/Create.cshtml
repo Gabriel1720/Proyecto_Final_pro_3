@@ -5,44 +5,44 @@
 <div class="overflow-auto">
     <h3 class="text-center mt-4" style="color: #FD5924;">REGISTRAR ADMINISTRADORES</h3>
 
-    <form asp-action="Create" asp-controller="UsuariosAdmin" asp-area="Admin">
-        <div class="mx-auto mt-5 text-center registro shadow-sm">
+    <form asp-action="Create" asp-controller="UsuariosAdmin" asp-area="Admin" style="height:500px;">
+        <div class="mx-auto mt-5 col-md-8  text-center shadow-sm" style="border:1px solid #d3cdcd ;">
             <div class="text-center">
-                <div class="rounded-circle" style="background-color: #FD5924; margin:auto; color: #fff; font-size: 30px; width: 45px; height: 45px;">
+                <div class="rounded-circle" style="background-color: #FD5924; position:relative; bottom:40px; margin:auto; color: #fff; font-size: 30px; width: 45px; height: 45px;">
                     <p>A</p>
                 </div>
             </div>
-            <label class="text-center mx-auto mt-1 mb-4">Nuevo administrador</label>
-            <div class="col-12 col-sm-12 mx-auto mt-3 mb-4">
-                <label>Nombre</label>
+            <h5 class="text-center mb-md-5">Nuevo administrador</h5>
+            <div class="col-12 col-md-8 mx-auto mt-3 mb-4">
+                <label for="Nombre" style="margin-right: 70%;">Nombre</label>
                 <input type="text" asp-for="Nombre" class="form-control input-round" style="background:#fadfd5;">
                 <span asp-validation-for="Nombre"></span>
             </div>
-            <div class="col-12 col-sm-12 mx-auto mt-0 mb-4">
-                <label>Apellido</label>
+            <div class="col-12 col-md-8 mx-auto mt-0 mb-4">
+                <label class="mt-2" style="margin-right: 70%;">Apellido</label>
                 <input type="text" asp-for="Apellido" class="form-control input-round" style="background:#fadfd5;">
                 <span asp-validation-for="Apellido"></span>
             </div>
-            <label>Correo</label>
-            <div class="col-12 col-sm-12 mx-auto mt-0 mb-4">
+            <label class="mt-2" style="margin-right: 45%;">Correo</label>
+            <div class="col-12 col-md-8 mx-auto mt-0 mb-4">
                 <input type="text" asp-for="Correo" class="form-control input-round" style="background:#fadfd5;">
                 <span asp-validation-for="Correo"></span>
             </div>
-            <label>Fecha de nacimiento</label>
-            <div class="col-12 col-sm-12 mx-auto mt-0 mb-4">
+            <label class="mt-2" style="margin-right: 22%;">Fecha de nacimiento</label>
+            <div class="col-12 col-md-8 mx-auto mt-0 mb-4">
                 <input type="date" asp-for="FechaNacimiento" class="form-control input-round" style="background:#fadfd5;">
                 <span asp-validation-for="FechaNacimiento"></span>
             </div>
-            <label>Contraseña</label>
-            <div class="col-12 col-sm-12 mx-auto mt-0 mb-4">
+            <label class="mt-2" style="margin-right: 35%;">Contraseña</label>
+            <div class="col-12 col-md-8 mx-auto mt-0 mb-4">
                 <input type="password" asp-for="Password" class="form-control input-round" style="background:#fadfd5;">
                 <span asp-validation-for="Password"></span>
             </div>
-            <label>Repetir contraseña</label>
-            <div class="col-12 col-sm-12 mx-auto mt-0 mb-4">
+            <label class="mt-2" style="margin-right: 24%;">Repetir contraseña</label>
+            <div class="col-12 col-md-8 mx-auto mt-0 mb-4">
                 <input type="password" class="form-control input-round" style="background:#fadfd5;">
             </div>
-            <div class="col-12 col-sm-6 mx-auto mt-0 mb-5">
+            <div class="col-12 col-md-6 mx-auto mt-0 mb-5">
                 <input type="submit" value="Registrar" class="btn btn-block input-round text-white" style="background-color: #FD5924;">
             </div>
         </div>
