@@ -6,20 +6,19 @@
 
             <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
                 <span style="display:block; color: #FF561F; font-size:19px"><strong>Nombre</strong></span>
-                <span style=" margin: auto;">@Model.Nombre</span>
-
+                <input asp-for="Nombre" id="nombre" class="form-control text-center" type="text" name="nombre" value="@Model.Nombre" style="background-color: rgb(246, 246, 246); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 25%;">
             </div>
             <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
                 <span style="display:block; color: #FF561F; font-size:19px"><strong>Apellido</strong></span>
-                <span style=" margin: auto;">@Model.Apellido</span>
+                <input asp-for="Apellido" id="apellido" class="form-control text-center" type="text" name="apellido" value="@Model.Apellido" style="background-color: rgb(246, 246, 246); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 25%;">
             </div>
             <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
                 <span style="display:block; color: #FF561F; font-size:19px"><strong>Fecha de Nacimiento</strong></span>
-                <span style=" margin: auto;">@Model.FechaNacimiento</span>
+                <input asp-for="FechaNacimiento" id="fechanacimiento" class="form-control text-center" type="text" name="fechanacimiento" value="@Model.FechaNacimiento" style="background-color: rgb(246, 246, 246); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 25%;">
             </div>
-            <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
+            <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75 text-center">
                 <span style="display:block; color: #FF561F; font-size:19px"><strong>Correo / Email</strong></span>
-                <span style=" margin: auto;">@Model.Correo</span>
+                <input asp-for="Correo" id="correo" class="form-control text-center" type="text" name="correo" value="@Model.Correo" style="background-color: rgb(246, 246, 246); border: none; border-radius: 50px; width: 75%; color: #323232; margin-left: 15%;">
             </div>
         </div>
 
