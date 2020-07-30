@@ -20,39 +20,39 @@
             </div>
             <a asp-controller="PerfilAdmin" asp-action="Cuenta" class="col-10 text-center sidemenu-option pl-4 btn">
                 <ion-icon class="mr-2 d-inline-block icono" name="person"></ion-icon>
-                <p href="#" class="m-0 d-inline-block text-size">Perfil</p>
+                <p class="m-0 d-inline-block text-size">Perfil</p>
             </a>
             <a href="#" class="col-10 text-center sidemenu-option pl-4 btn">
                 <ion-icon class="mr-2 d-inline-block icono" name="cart"></ion-icon>
-                <p href="#" class="m-0 d-inline-block text-size">Productos</p>
+                <p class="m-0 d-inline-block text-size">Productos</p>
             </a>
             <a asp-controller="ListaCategorias" asp-action="Index" class="col-10 text-center sidemenu-option pl-4 btn">
                 <ion-icon class="mr-2 d-inline-block icono" name="layers"></ion-icon>
-                <p href="#" class="m-0 d-inline-block text-size">Categorias</p>
+                <p class="m-0 d-inline-block text-size">Categorias</p>
             </a>
             <a href="#" class="col-10 text-center sidemenu-option pl-4 btn">
                 <ion-icon class="mr-2 d-inline-block icono" name="albums"></ion-icon>
-                <p href="#" class="m-0 d-inline-block text-size">Pedidos</p>
+                <p class="m-0 d-inline-block text-size">Pedidos</p>
             </a>
-            <a href="#" class="col-10 text-center sidemenu-option pl-4 btn">
+            <a asp-controller="UsuariosAdmin" asp-action="Index" class="col-10 text-center sidemenu-option pl-4 btn">
                 <ion-icon class="mr-2 d-inline-block icono" name="people"></ion-icon>
-                <p href="#" class="m-0 d-inline-block text-size">Usuarios</p>
+                <p class="m-0 d-inline-block text-size">Usuarios</p>
             </a>
             <a asp-controller="GestionReportes" asp-action="Index" class="col-10 text-center sidemenu-option pl-4 btn">
                 <ion-icon class="mr-2 d-inline-block icono" name="bar-chart"></ion-icon>
-                <p class="m-0 d-inline-block text-size">Reporte</p>
+                <p class="m-0 d-inline-block text-size">Reportes</p>
             </a>
             <a asp-controller="Utilidades" asp-action="Index" class="col-10 text-center sidemenu-option pl-4 btn">
                 <ion-icon class="mr-2 d-inline-block icono" name="build"></ion-icon>
-                <p href="#" class="m-0 d-inline-block text-size">Utilidades</p>
+                <p class="m-0 d-inline-block text-size">Utilidades</p>
             </a>
 
            
-            <a href="#" class="col-10 mt-5 text-center  pl-4 btn text-white">
+          <!--  <a href="#" class="col-10 mt-5 text-center  pl-4 btn text-white"> -->
+            <a asp-controller="CambiarSlider" asp-action="Index" class="col-10 text-center sidemenu-option pl-4 btn ajuste">
                 <ion-icon class="mr-2 d-inline-block icono" name="settings"></ion-icon>
                 <p class="m-0 d-inline-block text-size">Ajustes</p>
             </a>
-
         </div>
 
         <div class="w-100 sidemenu-celular">
@@ -68,25 +68,28 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#"><ion-icon class="mr-2 d-inline-block" name="person"></ion-icon>Perfil</a>
+                            <a asp-controller="PerfilAdmin" asp-action="Cuenta" class="nav-link text-white"><ion-icon class="mr-2 d-inline-block" name="person"></ion-icon>Perfil</a>
                         </li>
                         <li class="nav-item ">
                             <a class="nav-link text-white" href="#"><ion-icon class="mr-2 d-inline-block" name="cart"></ion-icon>Productos</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a asp-controller="ListaCategorias" asp-action="Index" class="nav-link text-white"><ion-icon class="mr-2 d-inline-block" name="cart"></ion-icon>Categorias</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="#"><ion-icon class="mr-2 d-inline-block" name="albums"></ion-icon>Pedidos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#"><ion-icon class="mr-2 d-inline-block" name="people"></ion-icon>Usuarios</a>
+                            <a asp-controller="UsuariosAdmin" asp-action="Index" class="nav-link text-white"><ion-icon class="mr-2 d-inline-block" name="people"></ion-icon>Usuarios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#"><ion-icon class="mr-2 d-inline-block" name="bar-chart"></ion-icon>Reporte</a>
+                            <a asp-controller="GestionReportes" asp-action="Index" class="nav-link text-white"><ion-icon class="mr-2 d-inline-block" name="bar-chart"></ion-icon>Reportes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#"><ion-icon class="mr-2 d-inline-block" name="build"></ion-icon>Utilidades</a>
+                            <a asp-controller="Utilidades" asp-action="Index" class="nav-link text-white"><ion-icon class="mr-2 d-inline-block" name="build"></ion-icon>Utilidades</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#"><ion-icon class="mr-2 d-inline-block" name="settings"></ion-icon>Ajustes</a>
+                            <a asp-controller="CambiarSlider" asp-action="Index" class="nav-link text-white"><ion-icon class="mr-2 d-inline-block" name="settings"></ion-icon>Ajustes</a>
                         </li>
                     </ul>
                 </div>

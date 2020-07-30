@@ -1,0 +1,58 @@
+﻿@{ Layout = "~/Views/Shared/_Layout_administrador.cshtml"; }
+
+
+@model Proyecto_final_pro_3.Models.Usuario
+<div class="overflow-auto">
+    <h3 class="text-center mt-4" style="color: #FD5924;">REGISTRAR ADMINISTRADORES</h3>
+
+    <form asp-action="Create" asp-controller="UsuariosAdmin" asp-area="Admin" style="height:500px;">
+        <div class="mx-auto mt-4 col-md-8  text-center shadow-sm" style="border:1px solid #d3cdcd ;">
+            <div class="text-center">
+                <div class="rounded-circle mt-4" style="background-color: #FD5924; margin: auto; color: #fff; font-size: 30px; width: 50px; height: 50px;">
+                    <p>A</p>
+                </div>
+                <p class="mt-1 mb-4 text-center">Nuevo Administrador</p>
+            </div>
+         
+            <div class="col-12 col-md-8 mx-auto mt-3 mb-4">
+                <label for="Nombre" style="margin-right: 70%;">Nombre</label>
+                <input asp-for="Nombre" id="nombre" class="form-control text-center" type="text" name="nombre" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 80%; color: #323232; margin-left: 5%;">
+                <span asp-validation-for="Nombre"></span>
+            </div>
+            <div class="col-12 col-md-8 mx-auto mt-0 mb-4">
+                <label class="mt-2" style="margin-right: 70%;">Apellido</label>
+                <input asp-for="Apellido" id="apelllido" class="form-control text-center" type="text" name="Apellido" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 80%; color: #323232; margin-left: 5%;">
+                <span asp-validation-for="Apellido"></span>
+            </div>
+            <label class="mt-2" style="margin-right: 33%;">Correo Electronico</label>
+            <div class="col-12 col-md-8 mx-auto mt-0 mb-4">
+                <input asp-for="Correo" id="Correo" class="form-control text-center" type="text" name="Correo" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 80%; color: #323232; margin-left: 5%;">
+                <span asp-validation-for="Correo"></span>
+            </div>
+            <label class="mt-2" style="margin-right: 30%;">Fecha de Nacimiento</label>
+            <div class="col-12 col-md-8 mx-auto mt-0 mb-4">
+                <input asp-for="FechaNacimiento" id="fechanacimiento" class="form-control text-center" type="date" name="fechanacimiento" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 80%; color: #323232; margin-left: 5%;">
+                <span asp-validation-for="FechaNacimiento"></span>
+            </div>
+            <label class="mt-2" style="margin-right: 40%;">Contraseña</label>
+            <div class="col-12 col-md-8 mx-auto mt-0 mb-4">
+                <input asp-for="Password" id="Constraseña" class="form-control text-center" type="password" name="contraseña" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 80%; color: #323232; margin-left: 5%;">
+                <span asp-validation-for="Password"></span>
+            </div>
+            <label class="mt-2" style="margin-right: 30%;">Repetir Contraseña</label>
+            <div class="col-12 col-md-8 mx-auto mt-0 mb-4">
+                <input class="form-control text-center" type="password" name="repetircontraseña" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 80%; color: #323232; margin-left: 5%;">
+            </div>
+            <div class="col-12 col-md-6 mx-auto mt-0 mb-5">
+                <input type="submit" value="Registrar" class="btn btn-block input-round text-white" style="background-color: #FD5924; margin-right: 5%;">
+            </div>
+        </div>
+    </form>
+
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
