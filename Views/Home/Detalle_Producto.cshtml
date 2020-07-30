@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Proyecto_final_pro_3.Models.Carrito
+
+@{
     ViewData["Title"] = "second Page";
 }
 
@@ -17,23 +19,24 @@
             <p class="h5 font-weight-normal">@ViewBag.Producto.Descripcion</p>
             <br />
             <div class="" style="position:relative;">
-                <p class="h5 d-inline-block"><strong>RD$ @ViewBag.Producto.Precio</strong></p>
-                <p class="h5 d-inline-block" style="position:absolute; right:15%;">
+                <p class="h5 d-inline-block"><strong>RD$ @ViewBag.Producto.Precio</strong></p>     
+                <form asp-controller="Home" method="post">
                     <strong>Cantidad: </strong>
-                    <select name="option">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select name="Cantidad">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>
-                </p>
+                     <input type="number"  value="@ViewBag.Producto.IdProducto" name="IdProducto" class="d-none"/>
+                    <br />
+                    <button type="submit" asp-action="Comprar" class="btn border-0  mt-4 mb-5 px-4 py-2 d-inline-block " style="background: #FD5924; color: #fff;">Comprar ahora </button>
+                    <button type="submit" asp-action="addCarrito" class="btn border-0  mt-4 mb-5 px-4  py-2  d-inline-block" style="background: #85E30C; color: #fff; margin-left: 7%;">Añadir al carrito</button>
+                </form>
+            
             </div>
             
-
-            <button class="btn border-0  mt-4 mb-5 p-2 col-5 " style="background: #FD5924; color: #fff;">Comprar ahora</button>
-            <button class="btn border-0  mt-4 mb-5 p-2 col-5 " style="background: #85E30C; color: #fff; margin-left: 7%;">Añadir Carrito</button>
-
         </div>
     </div>
 </div>
@@ -43,7 +46,7 @@
 </div>
 
 <div class="container mt-5 mb-5">
-    <div class="owl-carousel owl-theme">
+    <div class="owl-carousel">
 
         @foreach (Producto producto in ViewBag.Productos)
         {

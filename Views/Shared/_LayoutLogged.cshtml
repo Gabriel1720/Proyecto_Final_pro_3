@@ -37,9 +37,9 @@
                         <li class="nav-item col-lg-2 offset-lg-1 p-0 py-md-0 padre pl-3 pl-lg-0">
                             <a class="link-ir text-decoration-none" asp-controller="Cuenta" asp-action="LoggedOut">Cerrar Sesion</a>
                         </li>
-                          <li class="nav-item col-12 col-lg-1 offset-lg-1 py-2 py-md-0 padre">
-                                <ion-icon name="cart-outline" class="icono"></ion-icon>
-                            </li>  
+                        <li class="nav-item col-12 col-lg-1 offset-lg-1 py-2 py-md-0 padre">
+                             <a asp-action="Carrito" asp-controller="PerfilCliente" asp-area="Cliente" >Carrito</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -74,43 +74,21 @@
             </div>
         </nav>
 
-        <section class="collapse " id="collapseCategoria" style="background: #FF6F41;">
-            <div class="border-0 text-muted container py-3">
-                <section class="row">
-                    <div class="col-6 col-sm-3">
-                        <ul class="link link-white link-p-2">
-                            <li><a href="#">Vegetales</a></li>
-                            <li><a href="#">Fruta</a></li>
-                            <li><a href="#">Bebidas</a></li>
-                            <li><a href="#">Alcohol</a></li>
-                            <li><a href="#">Abarrotes</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-sm-3">
-                        <ul class="link link-white link-p-2">
-                            <li><a href="#">Carnes</a></li>
-                            <li><a href="#">Pescados</a></li>
-                            <li><a href="#">Mariscos</a></li>
-                            <li><a href="#">Reposteria</a></li>
-                            <li><a href="#">Panaderia</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-sm-3">
-                        <ul class="link link-white link-p-2">
-                            <li><a href="#">Graneria</a></li>
-                            <li><a href="#">Dulces</a></li>
-                            <li><a href="#">Lacteos</a></li>
-                            <li><a href="#">Deli</a></li>
-                            <li><a href="#">Otos</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-sm-3">
-                        <ul class="link link-white link-p-2">
-                            <li><a href="#">Cuidado personal</a></li>
-                            <li><a href="#">Detergente</a></li>
-                            <li><a href="#">Desechables</a></li>
-                        </ul>
-                    </div>
+        <section class="collapse" id="collapseCategoria" style="background-color: #FF6F41;">
+            <div class="border-top text-muted container py-3">
+                <section class="row pl-5">
+                    @{
+                        DB_A64A4C_SuperMercadoContext _context = new DB_A64A4C_SuperMercadoContext();
+                        var Catego = _context.Categoria.ToList();
+
+                        foreach (Categoria categoria in Catego)
+                        {
+                            <div class="col-6 col-sm-3 py-2">
+                                <a asp-controller="Home" asp-action="Categorias" asp-route-id="@categoria.IdCategoria" class="zoom text-white text-decoration-none">@categoria.Nombre</a>
+                            </div>
+                        }
+
+                    }
                 </section>
             </div>
         </section>
