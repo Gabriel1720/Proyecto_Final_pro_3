@@ -17,8 +17,12 @@ namespace Proyecto_final_pro_3.Areas.Cliente.Controllers
 
         }
         public IActionResult Index()
+        {            
+            return View();
+        }
+
+        public IActionResult Carrito()
         {
-            
             return View();
         }
     }
