@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Proyecto_final_pro_3.Models;
+using ReflectionIT.Mvc.Paging;
+using SQLitePCL;
 
 namespace Proyecto_final_pro_3.Areas.Admin.Controllers
 {
@@ -16,23 +18,33 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
     public class GestionProductos : Controller
     {
         readonly DB_A64A4C_SuperMercadoContext _context = new DB_A64A4C_SuperMercadoContext();
-        
-        //Get list of Productos
-        public async Task<IActionResult> Index()
-        {
-            //table productos and categoria
-            var products = await _context.Producto.Include(T =>T.IdCategoriaNavigation).ToListAsync();
-            if (products == null)
-            {
-                return NotFound();
-            }
-            return View(products);
-        }
-         [HttpPost]
-        public async Task<IActionResult> Search(string valor)
-        {
 
-            return RedirectToAction(nameof(Index));
+        [HttpGet]
+        //get the specific product
+        public async Task<IActionResult> Index(string valor, int page = 1)
+        {
+            //PagedResult<Producto> result = null;
+            ViewData["ValueSearch"] = valor;
+            List<Producto> productos;
+            if (!String.IsNullOrEmpty(valor))
+            {
+                //Seacrh product
+                productos = await _context.Producto.Include(p => p.IdCategoriaNavigation).
+                    Where(p => p.Nombre.Contains(valor) || p.IdCategoriaNavigation.Nombre.Contains(valor)).
+                    OrderByDescending(P=> P.IdProducto)
+                .AsNoTracking().ToListAsync();
+                //paginator
+                var model = PagingList.Create(productos, 9, page);
+                return View(model);
+            }
+            else
+            {
+                productos = await _context.Producto.Include(t => t.IdCategoriaNavigation).
+                    OrderByDescending(P => P.IdProducto).
+                AsNoTracking().ToListAsync();
+                var model = PagingList.Create(productos, 9, page);
+                return View(model);
+            }
         }
 
         //Get view
@@ -94,7 +106,7 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
         //Edit done by post 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([Bind("Nobre,Descripcion,Precio,Foto,Idcategoria")] Producto producto)
+        public async Task<IActionResult> Edit([Bind("IdProducto,Nobre,Descripcion,Precio,Foto,Idcategoria")] Producto producto)
         {
             if (ModelState.IsValid)
             {
@@ -141,13 +153,9 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public async Task<IActionResult> DeleteCornfirmed(int? id)
+        public async Task<IActionResult> DeleteCornfirmed(int IdProducto)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var producto = await _context.Producto.FindAsync(id);
+            var producto = await _context.Producto.FindAsync(IdProducto);
             if (producto == null)
             {
                 return NotFound();
@@ -156,8 +164,6 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
-        
-
 
         //if curreent user exist, validate that
         private  bool ProductoExists(int id) =>  
