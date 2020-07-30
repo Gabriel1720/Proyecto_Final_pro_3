@@ -18,7 +18,9 @@ namespace Tienda_.Controllers
         public DB_A64A4C_SuperMercadoContext _contex = new DB_A64A4C_SuperMercadoContext();
 
         public async Task<IActionResult> Index()
-        { 
+        {
+            ViewBag.Foto = await _contex.Slider.ToListAsync();
+
             ViewBag.Productos = await _contex.Producto.Where(x => x.Precio >= 0 || x.Precio <= 100).ToListAsync();
             string cookies = Request.Cookies["userID"]; 
 
