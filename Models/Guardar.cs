@@ -9,5 +9,6 @@ namespace Proyecto_final_pro_3.Models
     {
         public static int Mes { get; set; }
         public static string Srt { get; set; }
+        public static string UsuarioSrt { get; set; }
     }
 }
