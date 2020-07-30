@@ -2,6 +2,12 @@
 
 @{
     ViewData["Title"] = "second Page";
+
+    if (ViewBag.userID != null)
+    {
+        Layout = "~/Views/Shared/_LayoutLogged.cshtml";
+
+    }
 }
 
 <div class="container-fluid">

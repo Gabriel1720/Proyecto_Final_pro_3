@@ -4,6 +4,10 @@
 
 
 
+<h2 class="text-center mt-4" style="color: #FD5924;">GESTIÓN DE PRODUCTOS</h2>
+<div class="boton box-shadow text-center" style="margin-left: 7%">
+    <a asp-controller="GestionProductos" asp-action="Create" class="text-center">+</a>
+</div>
 <form asp-action="Index" method="get">
     <div class="col-9 col-lg-6 mt-4 d-flex py-2 py-md-0 padre mx-auto bg-light pr-0">
         <ion-icon name="search-outline" class="ml-5 icono"></ion-icon>
@@ -12,7 +16,7 @@
     </div>
 </form>
 
-<table class="table table-hover  table-responsive-sm" style="margin-top:45px; margin-left:20px; margin-right:20px;">
+<table class="table table-hover  table-responsive-sm" style="margin-top:35px; margin-left:20px; margin-right:20px;">
 
     <thead>
         <tr>
@@ -20,7 +24,7 @@
                 <span style="color:#FF561F; font-size:20px;">Categoria</span>
             </th>
             <th>
-                <span style="color:#FF561F; font-size:20px;">Nombre del producto</span>
+                <span style="color:#FF561F; font-size:20px;">Nombre del Producto</span>
             </th>
             <th>
                 <span style="color:#FF561F; font-size:20px;">Stock</span>
@@ -33,31 +37,31 @@
     <tbody>
         @foreach (var ItemProducto in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(model => ItemProducto.IdCategoriaNavigation.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(model => ItemProducto.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(model => ItemProducto.Stock)
-            </td>
-            <td>
-                RD$ @Html.DisplayFor(model => ItemProducto.Precio)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@ItemProducto.IdProducto">Detalles</a>
-                <a asp-action="Edit" asp-route-id="@ItemProducto.IdProducto">Editar</a>
-                <a asp-action="Delete" asp-route-id="@ItemProducto.IdProducto">Eliminar</a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => ItemProducto.IdCategoriaNavigation.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => ItemProducto.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => ItemProducto.Stock)
+                </td>
+                <td>
+                    RD$ @Html.DisplayFor(model => ItemProducto.Precio)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@ItemProducto.IdProducto" class="btn btn-dark"><ion-icon name="eye-outline"></ion-icon></a>
+                    <a asp-action="Edit" asp-route-id="@ItemProducto.IdProducto" class="btn btn-info"><ion-icon name="create-outline"></ion-icon></a>
+                    <a asp-action="Delete" asp-route-id="@ItemProducto.IdProducto" class="btn btn-danger"><ion-icon name="trash-outline"></ion-icon></a>
+                </td>
+            </tr>
         }
 
     </tbody>
 
 </table>
- 
+
 <nav aria-label="Employee paging" class="" style="width:150px; margin: 0 auto;">
     @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
 </nav>

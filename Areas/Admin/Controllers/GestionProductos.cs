@@ -34,7 +34,7 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
                     OrderByDescending(P=> P.IdProducto)
                 .AsNoTracking().ToListAsync();
                 //paginator
-                var model = PagingList.Create(productos, 9, page);
+                var model = PagingList.Create(productos, 6, page);
                 return View(model);
             }
             else
@@ -42,7 +42,7 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
                 productos = await _context.Producto.Include(t => t.IdCategoriaNavigation).
                     OrderByDescending(P => P.IdProducto).
                 AsNoTracking().ToListAsync();
-                var model = PagingList.Create(productos, 9, page);
+                var model = PagingList.Create(productos, 6, page);
                 return View(model);
             }
         }

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -19,27 +20,40 @@ namespace Tienda_.Controllers
 
         public async Task<IActionResult> Index()
         {
+       
+            ViewBag.Foto = await _contex.Slider.ToListAsync();
+
             ViewBag.Productos = await _contex.Producto.Where(x => x.Precio >= 0 || x.Precio <= 100).ToListAsync();
-            string cookies = Request.Cookies["userID"];
+          //  string cookies = Request.Cookies["userID"];
 
 
-            if (cookies != null) {
+         //   if (cookies != null) {
                 // verificar la session a partir de los cookies 
-                HttpContext.Session.SetString("userID", cookies);
+            //    HttpContext.Session.SetString("userID", cookies);
 
-            }
+           // }
 
             // ViewBag.UserID = Request.Cookies["userID"];
-            ViewBag.UserID = HttpContext.Session.GetString("userID");
+            string session = HttpContext.Session.GetString("userID");
+            ViewBag.UserID = session; 
+
+            if (session != null ) {
+                   
+             
+             }
             return View();
         }
 
         public async Task<IActionResult> Detalle_Producto(int? id)
         {
- 
+
+
             var productoDB = await _contex.Producto.Where(x => x.IdProducto == id).FirstOrDefaultAsync();
             ViewBag.producto = productoDB;
             ViewBag.Productos = await _contex.Producto.Where(x => x.IdCategoria == productoDB.IdCategoria).ToArrayAsync();
+
+            string session = HttpContext.Session.GetString("userID");
+            ViewBag.UserID = session;
 
             return View();
         }
@@ -55,6 +69,9 @@ namespace Tienda_.Controllers
                 ViewBag.categoria = categoria.Nombre;
                 ViewBag.cantidad = listaProductos.Count();
             }
+
+            string session = HttpContext.Session.GetString("userID");
+            ViewBag.UserID = session;
 
             return View();
         }
@@ -95,4 +112,6 @@ namespace Tienda_.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
+
+  
 }
