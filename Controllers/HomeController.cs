@@ -20,11 +20,13 @@ namespace Tienda_.Controllers
         public async Task<IActionResult> Index()
         { 
             ViewBag.Productos = await _contex.Producto.Where(x => x.Precio >= 0 || x.Precio <= 100).ToListAsync();
+            string cookies = Request.Cookies["userID"]; 
 
-            if (Request.Cookies["userID"] != null) {
+
+            if (cookies != null) {
                 // verificar la session a partir de los cookies 
-                HttpContext.Session.SetString("userID", Request.Cookies["userID"]);
-   
+                 HttpContext.Session.SetString("userID", cookies);
+             
             }
 
             // ViewBag.UserID = Request.Cookies["userID"];
