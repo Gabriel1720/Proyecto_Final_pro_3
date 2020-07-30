@@ -1,43 +1,47 @@
 ﻿@model Producto
-<div class="border border-danger rounded mx-auto mt-5 text-center p-4 registro" style="height: 58%;">
+    <div class="border border-danger rounded mx-auto mt-5 text-center p-4 registro" style="height: 58%;">
 
-    <h3 class="text-center" style="color: #FF561F;">Eliminar producto</h3>
+        <h3 class="text-center" style="color: #FF561F;">Eliminar producto</h3>
 
-    <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4">
-        <img src="@Model.Foto" style="width: 50%; height: 50%" />
-    </div>
-    <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
-        <span style="display:block; color: #FF561F; font-size:19px"><strong>Nombre</strong></span>
-        <span style=" margin: auto;">@Html.DisplayFor(model => model.Nombre)</span>
-        @*<input id="Nombre" type="text" class="form-control" placeholder="Nombre de producto" style=" margin: auto; border-radius: 50px; border: none; background-color: rgb(255, 114, 68, 0.1);">*@
-    </div>
-    <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
-        <span style="display:block; color: #FF561F; font-size:19px"><strong>Descripción</strong></span>
-        <span style=" margin: auto;">@Html.DisplayFor(model => model.Descripcion)</span>
-    </div>
-    <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
-        <span style="display:block; color: #FF561F; font-size:19px"><strong>Categoria</strong></span>
-        <span style=" margin: auto;"> @Html.DisplayFor(model => model.IdCategoriaNavigation.Nombre)</span>
-    </div>
-    <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
-        <span style="display:block; color: #FF561F; font-size:19px"><strong>Precio</strong></span>
-        <span style=" margin: auto;">RD$ @Html.DisplayFor(model => model.Precio)</span>
-    </div>
-    <div class="col-8 col-sm-9 col-md-9 mx-auto mt-5">
+        <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4">
+            <img src="@Model.Foto" style="width: 50%; height: 50%" />
+        </div>
+        <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
+            <span style="display:block; color: #FF561F; font-size:19px"><strong>Nombre</strong></span>
+            <span style=" margin: auto;">@Html.DisplayFor(model => model.Nombre)</span>
+            @*<input id="Nombre" type="text" class="form-control" placeholder="Nombre de producto" style=" margin: auto; border-radius: 50px; border: none; background-color: rgb(255, 114, 68, 0.1);">*@
+        </div>
+        <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
+            <span style="display:block; color: #FF561F; font-size:19px"><strong>Descripción</strong></span>
+            <span style=" margin: auto;">@Html.DisplayFor(model => model.Descripcion)</span>
+        </div>
+        <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
+            <span style="display:block; color: #FF561F; font-size:19px"><strong>Categoria</strong></span>
+            <span style=" margin: auto;"> @Html.DisplayFor(model => model.IdCategoriaNavigation.Nombre)</span>
+        </div>
+        <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
+            <span style="display:block; color: #FF561F; font-size:19px"><strong>Stock</strong></span>
+            <span style=" margin: auto;">@Html.DisplayFor(model => model.Stock)</span>
+        </div>
+        <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
+            <span style="display:block; color: #FF561F; font-size:19px"><strong>Precio</strong></span>
+            <span style=" margin: auto;">RD$ @Html.DisplayFor(model => model.Precio)</span>
+        </div>
+        <div class="col-8 col-sm-9 col-md-9 mx-auto mt-5">
 
-        <div class="row">      
-            <div class="col-6 col-sm-6 col-md-6">
-                <a asp-action="Idenx" class="btn w-100" style="background: #0088EA; color: #fff;">Cancelar</a>           
-            </div>
+            <div class="row">
+                <div class="col-6 col-sm-6 col-md-6">
+                    <a asp-action="Idenx" class="btn w-100" style="background: #0088EA; color: #fff;">Cancelar</a>
+                </div>
 
-            <div class="col-6 col-sm-6 col-md-6">
-                <form asp-action="Delete" method="post" > 
-                    <input type="hidden" asp-for="IdProducto" />
-                    <input type="submit" class="btn w-100" value="Eliminar" style="background: #F83535; color: #fff;">
-                </form>
+                <div class="col-6 col-sm-6 col-md-6">
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="IdProducto" />
+                        <input type="submit" class="btn w-100" value="Eliminar" style="background: #F83535; color: #fff;">
+                    </form>
+                </div>
             </div>
         </div>
-        </div>
 
 
-</div>
+    </div>

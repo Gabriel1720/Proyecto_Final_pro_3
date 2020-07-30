@@ -8,8 +8,8 @@
         </div>
         <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
             <span style="display:block; color: #FF561F; font-size:19px"><strong>Nombre</strong></span>
-            <span  style=" margin: auto;">@Html.DisplayFor(model => model.Nombre)</span>
-    @*<input id="Nombre" type="text" class="form-control" placeholder="Nombre de producto" style=" margin: auto; border-radius: 50px; border: none; background-color: rgb(255, 114, 68, 0.1);">*@
+            <span style=" margin: auto;">@Html.DisplayFor(model => model.Nombre)</span>
+            @*<input id="Nombre" type="text" class="form-control" placeholder="Nombre de producto" style=" margin: auto; border-radius: 50px; border: none; background-color: rgb(255, 114, 68, 0.1);">*@
         </div>
         <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
             <span style="display:block; color: #FF561F; font-size:19px"><strong>Descripción</strong></span>
@@ -20,8 +20,16 @@
             <span style=" margin: auto;"> @Html.DisplayFor(model => model.IdCategoriaNavigation.Nombre)</span>
         </div>
         <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
+            <span style="display:block; color: #FF561F; font-size:19px"><strong>Stock</strong></span>
+            <span style=" margin: auto;">@Html.DisplayFor(model => model.Stock)</span>
+        </div>
+        <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
             <span style="display:block; color: #FF561F; font-size:19px"><strong>Precio</strong></span>
             <span style=" margin: auto;">RD$ @Html.DisplayFor(model => model.Precio)</span>
+        </div>
+        <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
+            <span style="display:block; color: #FF561F; font-size:19px"><strong>Categoria</strong></span>
+            <span style=" margin: auto;">RD$ @Html.DisplayFor(model => model.IdCategoriaNavigation.Nombre)</span>
         </div>
         @*<div class="col-8 col-sm-9 col-md-9 mx-auto mt-5">
 
