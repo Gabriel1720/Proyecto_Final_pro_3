@@ -24,7 +24,7 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
         
             var query = _context.Usuario.AsNoTracking().Where(x => x.FechaNacimiento.Value.Month == Guardar.Mes).OrderBy(x => x.IdUsuario);
 
-            var model = await PagingList.CreateAsync(query, 7, page);
+            var model = await PagingList.CreateAsync(query, 2, page);
             ViewBag.Usuario = model;            
             return View(model);      
         
