@@ -94,6 +94,10 @@ body {
     font-size: large;
 }
 
+.zoom:hover {
+    font-size: large;
+}
+
 link-dark,
 .link li a{
     color: #4E4E4E;

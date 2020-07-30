@@ -1,11 +1,22 @@
-﻿<div>
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Orden>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *,ReflectionIT.Mvc.Paging
+
+<div>
     <h2 class="text-center mt-4" style="color: #FD5924;">LISTADO DE CLIENTES Y SUS ORDENES DE COMPRAS</h2>
     <p></p>
-    <div class="col-9 col-lg-6 mt-4 d-flex py-2 py-md-0 padre mx-auto bg-light pr-0">
+    <form method="post" class="col-9 col-lg-6 mt-4 d-flex py-2 py-md-0 padre mx-auto bg-light pr-0">
         <ion-icon name="search-outline" class="ml-5 icono"></ion-icon>
-        <input type="text" placeholder="Nombre o Correo" class="fi w-100 ml-2 border-0 rounded-0 bg-light">
-        <a class="btn bg-orange text-white border border-white">Buscar</a>
-    </div>
+        @if (!String.IsNullOrEmpty(ViewBag.srt))
+        {
+            <input type="text" placeholder="Nombre o Correo" name="srt" value="@ViewBag.srt" class="fi w-100 ml-2 border-0 rounded-0 bg-light" />
+        }
+        else
+        {
+            <input type="text" placeholder="Nombre o Correo" name="srt" class="fi w-100 ml-2 border-0 rounded-0 bg-light" />
+        }
+        <input type="submit" asp-controller="GestionReportes" asp-action="Index" class="btn bg-orange text-white border border-white" value="Buscar" />
+    </form>
 
     <div class="col-10 mt-4 mx-auto">
         <table class="table table-md-responsive">
@@ -19,63 +30,27 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">Lucas</th>
-                    <td>Martines</td>
-                    <td>Otto@hotmail.com</td>
-                    <td>lechuga</td>
-                    <td>
-                        <a asp-controller="GestionReportes" asp-action="DetalleCompra" class="col-10 text-center padre pl-4 btn" style="background-color: #FD5924; height:30px; width:130px;">
-                            <p class="m-0 d-inline-block text-white">Pedidos</p>
-                            <ion-icon class="ml-2 d-inline-block icono text-white" name="eye-outline"></ion-icon>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Lucas</th>
-                    <td>Martines</td>
-                    <td>Otto@hotmail.com</td>
-                    <td>lechuga</td>
-                    <td>
-                        <a asp-controller="GestionReportes" asp-action="DetalleCompra" class="col-10 text-center padre pl-4 btn" style="background-color: #FD5924; height:30px; width:130px;">
-                            <p href="#" class="m-0 d-inline-block text-white">Pedidos</p>
-                            <ion-icon class="ml-2 d-inline-block icono text-white" name="eye-outline"></ion-icon>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">Lucas</th>
-                    <td>Martines</td>
-                    <td>Otto@hotmail.com</td>
-                    <td>lechuga</td>
-                    <td>
-                        <a asp-controller="GestionReportes" asp-action="DetalleCompra" class="col-10 text-center padre pl-4 btn" style="background-color: #FD5924; height:30px; width:130px;">
-                            <p href="#" class="m-0 d-inline-block text-white">Pedidos</p>
-                            <ion-icon class="ml-2 d-inline-block icono text-white" name="eye-outline"></ion-icon>
-                        </a>
-                    </td>
-                </tr>
+
+                @foreach (Orden orden in Model)
+                {
+                    <tr>
+                        <td>@orden.IdUsuarioNavigation.Nombre</td>
+                        <td>@orden.IdUsuarioNavigation.Apellido</td>
+                        <td>@orden.IdUsuarioNavigation.Correo</td>
+                        <td>@orden.IdOrden</td>
+                        <td>
+                            <a asp-controller="GestionReportes" asp-action="Details" asp-route-id="@orden.IdOrden" class="col-10 text-center padre pl-4 btn" style="background-color: #FD5924; height:30px; width:130px;">
+                                <p class="m-0 d-inline-block text-white">Pedidos</p>
+                                <ion-icon class="ml-2 d-inline-block icono text-white" name="eye-outline"></ion-icon>
+                            </a>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
 
-        <nav aria-label="Page navigation example" class="col-4 mx-auto">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#!" aria-label="Previous">
-                        <span aria-hidden="true">«</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#!">1</a></li>
-                <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#!" aria-label="Next">
-                        <span aria-hidden="true">»</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
+        <nav aria-label="Employee paging" class="" style="width:150px; margin: 0 auto;">
+            @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
         </nav>
 
     </div>

@@ -1,0 +1,65 @@
+﻿@{ Layout = "~/Views/Shared/_Layout_administrador.cshtml"; }
+
+@model ReflectionIT.Mvc.Paging.PagingList<Usuario>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *,ReflectionIT.Mvc.Paging
+<div>
+    <h2 class="text-center mt-4" style="color: #FD5924;">ADMINISTRADORES</h2>
+    <div class="boton box-shadow">
+        <a asp-controller="UsuariosAdmin" asp-action="Create">+</a>
+
+    </div>
+    <form method="post" class="col-9 col-lg-6 mt-4 d-flex py-2 py-md-0 padre mx-auto bg-light pr-0">
+        <ion-icon name="search-outline" class="ml-5 icono"></ion-icon>
+        @{
+            if (!String.IsNullOrEmpty(ViewBag.UsuarioSrt))
+            {
+                <input type="text" placeholder="Nombre o Correo" name="srt" value="@ViewBag.UsuarioSrt" class="fi w-100 ml-2 border-0 rounded-0 bg-light">
+            }
+            else
+            {
+                <input type="text" placeholder="Nombre o Correo" name="srt" class="fi w-100 ml-2 border-0 rounded-0 bg-light">
+            }
+        }
+        <input type="submit" asp-controller="UsuariosAdmin" asp-action="Index" value="Buscar" class="btn bg-orange" />
+    </form>
+
+    <div class="col-10 mt-4 mx-auto">
+        <table class="table table-responsive">
+            <thead class="thead-light">
+                <tr>
+                    <th style="color: #FD5924;">Nombre</th>
+                    <th style="color: #FD5924;">Apellido</th>
+                    <th style="color: #FD5924;">Correo/Email</th>
+                    <th style="color: #FD5924;">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Usuario usuario in Model)
+                {
+                    <tr>
+                        <td scope="col">@usuario.Nombre</td>
+                        <td scope="col">@usuario.Apellido</td>
+                        <td scope="col">@usuario.Correo</td>
+                        <td>
+                            <a asp-route-id="@usuario.IdUsuario" asp-controller="UsuariosAdmin" asp-action="Details" asp-area="Admin" class="col-10 text-center padre pl-4 btn" style="background-color: #FD5924; height:30px; width:130px;">
+                                <p href="#" class="m-0 d-inline-block text-white">Detalles</p>
+                                <ion-icon class="ml-2 d-inline-block icono text-white" name="eye-outline"></ion-icon>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <nav aria-label="Employee paging" class="" style="width:150px; margin: 0 auto;">
+            @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+        </nav>
+
+    </div>
+</div>
+
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<script src="https://unpkg.com/ionicons@5.1.2/dist/ionicon"></script>
