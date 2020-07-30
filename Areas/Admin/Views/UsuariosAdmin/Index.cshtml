@@ -5,8 +5,8 @@
 @addTagHelper *,ReflectionIT.Mvc.Paging
 <div>
     <h2 class="text-center mt-4" style="color: #FD5924;">ADMINISTRADORES</h2>
-    <div class="boton box-shadow">
-        <a asp-controller="UsuariosAdmin" asp-action="Create">+</a>
+    <div class="boton box-shadow text-center" style="margin-left: 7%">
+        <a asp-controller="UsuariosAdmin" asp-action="Create" class="text-center">+</a>
 
     </div>
     <form method="post" class="col-9 col-lg-6 mt-4 d-flex py-2 py-md-0 padre mx-auto bg-light pr-0">
@@ -21,11 +21,11 @@
                 <input type="text" placeholder="Nombre o Correo" name="srt" class="fi w-100 ml-2 border-0 rounded-0 bg-light">
             }
         }
-        <input type="submit" asp-controller="UsuariosAdmin" asp-action="Index" value="Buscar" class="btn bg-orange" />
+        <input type="submit" asp-controller="UsuariosAdmin" asp-action="Index" value="Buscar" class="btn bg-orange text-white" />
     </form>
 
     <div class="col-10 mt-4 mx-auto">
-        <table class="table table-responsive">
+        <table class="table table-responsive" style="margin-left: 16%">
             <thead class="thead-light">
                 <tr>
                     <th style="color: #FD5924;">Nombre</th>
@@ -38,12 +38,12 @@
                 @foreach (Usuario usuario in Model)
                 {
                     <tr>
-                        <td scope="col">@usuario.Nombre</td>
-                        <td scope="col">@usuario.Apellido</td>
-                        <td scope="col">@usuario.Correo</td>
+                        <td>@usuario.Nombre</td>
+                        <td>@usuario.Apellido</td>
+                        <td>@usuario.Correo</td>
                         <td>
-                            <a asp-route-id="@usuario.IdUsuario" asp-controller="UsuariosAdmin" asp-action="Details" asp-area="Admin" class="col-10 text-center padre pl-4 btn" style="background-color: #FD5924; height:30px; width:130px;">
-                                <p href="#" class="m-0 d-inline-block text-white">Detalles</p>
+                            <a asp-route-id="@usuario.IdUsuario" asp-controller="UsuariosAdmin" asp-action="Details" asp-area="Admin" class="col-10 text-center padre pl-4 btn" style="background-color: #FD5924; height:30px; width:150px;">
+                                <p class="m-0 d-inline-block text-white">Detalles</p>
                                 <ion-icon class="ml-2 d-inline-block icono text-white" name="eye-outline"></ion-icon>
                             </a>
                         </td>
