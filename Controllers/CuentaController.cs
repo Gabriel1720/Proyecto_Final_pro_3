@@ -92,7 +92,39 @@ namespace Tienda_.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Registrarse(Usuario user)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                using (DB_A64A4C_SuperMercadoContext db = new DB_A64A4C_SuperMercadoContext())
+                {
+                    var oUser = new Usuario();
+                    oUser.Nombre = user.Nombre;
+                    oUser.Apellido = user.Apellido;
+                    oUser.FechaNacimiento = user.FechaNacimiento;
+                    oUser.Correo = user.Correo;
+                    oUser.IdRol = 2;
+                    oUser.Password = user.Password;
+                    String repPass = Request.Form["repPass"];
 
+                    if (repPass == oUser.Password)
+                    {
+                        db.Usuario.Add(oUser);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        return Redirect("/Cuenta/Registrarse");
+                    }
+                }
+                return Redirect("/Cuenta/Login");
+            }
+
+            return View(user);
+          
+        }
         
 
         public IActionResult LoggedOut()
