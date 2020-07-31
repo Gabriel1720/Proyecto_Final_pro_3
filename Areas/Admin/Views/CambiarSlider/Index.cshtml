@@ -5,10 +5,10 @@
 }
 
 <form method="post" enctype="multipart/form-data" class="container">
-    <h2 class="text-center text-orange mt-1">Establecer foto como slider principal</h2>
+    <h2 class="text-center text-orange mt-1">ADMINISTRADOR DE SLIDER PRINCIPAL</h2>
     @* 1 *@
     <div class="row mt-4 ml-2">
-        <div class="w-50 h-50 ">
+        <div class="w-50 h-50">
             @{
                 var base1 = Convert.ToBase64String(lista.ElementAt(0).Foto);
                 var imgSrc1 = string.Format("data:image/gif;base64,{0}", base1);
@@ -25,7 +25,7 @@
 
     @* 2 *@
     <div class="row mt-4 ml-2">
-        <div class="w-50 h-50 ">
+        <div class="w-50 h-50">
             @{
                 var base2 = Convert.ToBase64String(lista.ElementAt(1).Foto);
                 var imgSrc2 = string.Format("data:image/gif;base64,{0}", base2);
@@ -41,7 +41,7 @@
     <hr />
     @* 3 *@
     <div class="row mt-4 ml-2">
-        <div class="w-50 h-50 ">
+        <div class="w-50 h-50">
             @{
                 var base3 = Convert.ToBase64String(lista.ElementAt(2).Foto);
                 var imgSrc3 = string.Format("data:image/gif;base64,{0}", base3);

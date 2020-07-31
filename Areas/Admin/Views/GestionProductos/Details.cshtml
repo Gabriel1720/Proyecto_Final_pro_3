@@ -1,50 +1,43 @@
-﻿@model Producto
-    <div class="border border-danger rounded mx-auto mt-5 text-center p-4 registro" style="height: 58%;">
+﻿@{ Layout = "~/Views/Shared/_Layout_administrador.cshtml"; }
 
-        <h3 class="text-center" style="color: #FF561F;">Detalles del producto</h3>
+@model Producto
 
-        <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4">
-            <img src="@Model.Foto" style="width: 50%; height: 50%" />
-        </div>
-        <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
-            <span style="display:block; color: #FF561F; font-size:19px"><strong>Nombre</strong></span>
-            <span style=" margin: auto;">@Html.DisplayFor(model => model.Nombre)</span>
-            @*<input id="Nombre" type="text" class="form-control" placeholder="Nombre de producto" style=" margin: auto; border-radius: 50px; border: none; background-color: rgb(255, 114, 68, 0.1);">*@
-        </div>
-        <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
-            <span style="display:block; color: #FF561F; font-size:19px"><strong>Descripción</strong></span>
-            <span style=" margin: auto;">@Html.DisplayFor(model => model.Descripcion)</span>
-        </div>
-        <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
-            <span style="display:block; color: #FF561F; font-size:19px"><strong>Categoria</strong></span>
-            <span style=" margin: auto;"> @Html.DisplayFor(model => model.IdCategoriaNavigation.Nombre)</span>
-        </div>
-        <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
-            <span style="display:block; color: #FF561F; font-size:19px"><strong>Stock</strong></span>
-            <span style=" margin: auto;">@Html.DisplayFor(model => model.Stock)</span>
-        </div>
-        <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
-            <span style="display:block; color: #FF561F; font-size:19px"><strong>Precio</strong></span>
-            <span style=" margin: auto;">RD$ @Html.DisplayFor(model => model.Precio)</span>
-        </div>
-        <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
-            <span style="display:block; color: #FF561F; font-size:19px"><strong>Categoria</strong></span>
-            <span style=" margin: auto;">RD$ @Html.DisplayFor(model => model.IdCategoriaNavigation.Nombre)</span>
-        </div>
-        @*<div class="col-8 col-sm-9 col-md-9 mx-auto mt-5">
+@*<div class="overflow-auto">*@
+    <h3 class="text-center mt-4" style="color: #FD5924;">DETALLES DEL PRODUCTO</h3>
 
-            <div class="row">
+    <form style="height:500px;">
+        <div class="mx-auto mt-3 col-md-8  text-center shadow-sm" style="border:1px solid #d3cdcd ;">
 
-                <div class="col-6 col-sm-6 col-md-6">
-                    <button class="btn w-100" style="background: #0088EA; color: #fff;">Editar</button>
+                <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4">
+                    <img src="@Model.Foto" style="width: 25%; height: 25%" />
                 </div>
-
-                <div class="col-6 col-sm-6 col-md-6">
-                    <button class="btn w-100" style="background: #F83535; color: #fff;">Eliminar </button>
+                <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
+                    <span style="display:block; color: #FF561F; font-size:17px"><strong>Nombre</strong></span>
+                    <span style=" margin: auto;">@Html.DisplayFor(model => model.Nombre)</span>
                 </div>
+                <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
+                    <span style="display:block; color: #FF561F; font-size:17px"><strong>Descripción</strong></span>
+                    <span style=" margin: auto;">@Html.DisplayFor(model => model.Descripcion)</span>
+                </div>
+                <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
+                    <span style="display:block; color: #FF561F; font-size:17px"><strong>Categoria</strong></span>
+                    <span style=" margin: auto;"> @Html.DisplayFor(model => model.IdCategoriaNavigation.Nombre)</span>
+                </div>
+                <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
+                    <span style="display:block; color: #FF561F; font-size:17px"><strong>Stock</strong></span>
+                    <span style=" margin: auto;">@Html.DisplayFor(model => model.Stock)</span>
+                </div>
+                <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4 w-75">
+                    <span style="display:block; color: #FF561F; font-size:17px"><strong>Precio</strong></span>
+                    <span style=" margin: auto;">RD$ @Html.DisplayFor(model => model.Precio)</span>
+                </div>
+        </div>
+    </form>
 
-            </div>
-        </div>*@
+@*</div>*@
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 
-
-    </div>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
