@@ -16,7 +16,7 @@ namespace Tienda_.Controllers
 {
     public class HomeController : Controller
     {
-        public DB_A64A4C_SuperMercadoContext _contex = new DB_A64A4C_SuperMercadoContext();
+        public static DB_A64A4C_SuperMercadoContext _contex = new DB_A64A4C_SuperMercadoContext();
 
         public async Task<IActionResult> Index()
         {
@@ -44,19 +44,19 @@ namespace Tienda_.Controllers
             return View();
         }
 
+        [HttpGet]
         public async Task<IActionResult> Detalle_Producto(int? id)
         {
-
-
+ 
             var productoDB = await _contex.Producto.Where(x => x.IdProducto == id).FirstOrDefaultAsync();
             ViewBag.producto = productoDB;
             ViewBag.Productos = await _contex.Producto.Where(x => x.IdCategoria == productoDB.IdCategoria).ToArrayAsync();
 
             string session = HttpContext.Session.GetString("userID");
             ViewBag.UserID = session;
-
             return View();
         }
+
 
 
         [HttpGet]
@@ -78,13 +78,13 @@ namespace Tienda_.Controllers
 
 
 
-        
-        public async Task<IActionResult> addCarrito(Carrito cart) {
-            string idUser = HttpContext.Session.GetString("userID");
-            
-            if (idUser != null) {
 
-                cart.IdUsuario = Convert.ToInt32(idUser);
+        public async Task<IActionResult> addCarrito(Carrito cart)
+        {
+            string session = HttpContext.Session.GetString("userID");
+            if (session != null )
+            {
+                cart.IdUsuario = int.Parse(session);
 
                 // add el los datos a la db 
                 await _contex.Carrito.AddAsync(cart);
@@ -94,14 +94,11 @@ namespace Tienda_.Controllers
 
                 if (guardado > 0)
                 {
-                    return RedirectToAction("Detalle_Producto", "Home", new { id = cart.IdProducto }); 
+                    return RedirectToAction("Detalle_Producto", "Home", new { id = cart.IdProducto });
                 }
-
             }
 
             return RedirectToAction("Login", "Cuenta");
-            
-             
         }
 
  

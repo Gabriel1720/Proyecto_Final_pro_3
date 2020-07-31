@@ -75,6 +75,22 @@
           
         }
 
+        <input id="added" value="@ViewBag.Added" class="d-none" /> 
+     
     </div>
 </div>
+<script>
 
+    var added = document.getElementById("added").value;
+     
+    if (added) {
+        Swal.fire(
+            'Perfecto!',
+            'That thing is still around?',
+            'success'
+        );
+    }
+</script>
+
+
+ 
