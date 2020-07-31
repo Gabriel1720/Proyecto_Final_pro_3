@@ -5,9 +5,10 @@
 }
 
 <form method="post" enctype="multipart/form-data" class="container">
-    <h2 class="text-center text-orange mt-1">ADMINISTRADOR DE SLIDER PRINCIPAL</h2>
+    <h2 class="text-center text-orange mt-3 mb-5">ADMINISTRADOR DE SLIDER PRINCIPAL</h2>
     @* 1 *@
-    <div class="row mt-4 ml-2">
+    <div class="text-center">
+      <div class="row mt-1 ml-2 justify-content-center">
         <div class="w-50 h-50">
             @{
                 var base1 = Convert.ToBase64String(lista.ElementAt(0).Foto);
@@ -17,14 +18,11 @@
 
             <input type="file" name="foto1" class="d-block mt-1 btn col-6 mx-auto" />
         </div>
-       <!-- <div class="mt-3 w-50 h-50">
-            <input class="p-2  form-control" placeholder="En caso de tener url introduzca aqui" type="text" style="width:75%; margin: auto; border-radius: 50px; border: none; background-color: rgb(255, 114, 68, 0.1);" />
-        </div> -->
-    </div>
+     </div>
     <hr />
 
     @* 2 *@
-    <div class="row mt-4 ml-2">
+    <div class="row mt-4 ml-2 justify-content-center">
         <div class="w-50 h-50">
             @{
                 var base2 = Convert.ToBase64String(lista.ElementAt(1).Foto);
@@ -34,13 +32,10 @@
 
             <input type="file" name="foto2" class="d-block mt-1 btn col-6 mx-auto" />
         </div>
-       <!-- <div class="mt-3 w-50 h-50">
-            <input class="p-2  form-control" placeholder="En caso de tener url introduzca aqui" type="text" style="width:75%; margin: auto; border-radius: 50px; border: none; background-color: rgb(255, 114, 68, 0.1);" />
-        </div> -->
     </div>
     <hr />
     @* 3 *@
-    <div class="row mt-4 ml-2">
+    <div class="row mt-4 ml-2 justify-content-center">
         <div class="w-50 h-50">
             @{
                 var base3 = Convert.ToBase64String(lista.ElementAt(2).Foto);
@@ -50,13 +45,14 @@
 
             <input type="file" name="foto3" class="d-block mt-1 btn col-6 mx-auto" />
         </div>
-       <!-- <div class="mt-3 w-50 h-50">
-            <input class="p-2  form-control" placeholder="En caso de tener url introduzca aqui" type="text" style="width:75%; margin: auto; border-radius: 50px; border: none; background-color: rgb(255, 114, 68, 0.1);" />
-        </div> -->
 
     </div>
+
+    </div>
+  
     <button type="submit" asp-controller="CambiarSlider" asp-action="Cambiar" class="rounded-circle float-right mt-1" style=" background-color: #FD5924; border:none; margin: auto; color: #fff; font-size: 30px; width: 55px; height: 55px; ">
-        <ion-icon class="d-inline-block icono text-white" name="folder-outline"></ion-icon>
+        <ion-icon class="d-inline-block icono text-white" name="save-sharp"></ion-icon>
+
     </button>
 
 </form>
