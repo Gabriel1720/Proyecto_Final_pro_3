@@ -84,13 +84,23 @@
 
     var added = document.getElementById("added").value;
      
-    if (added) {
+    if (added =="success") {
         Swal.fire(
             'Perfecto!',
-            'That thing is still around?',
+            'Se agrego el producto a su carrito!',
             'success'
         );
     }
+
+    else if (added =="error") {
+        Swal.fire(
+            'Oop!',
+            'Algo debio haber salido mal.',
+            'error'
+        );
+    }
+
+
 </script>
 
 

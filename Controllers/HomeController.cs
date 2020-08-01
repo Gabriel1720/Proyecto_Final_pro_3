@@ -49,7 +49,11 @@ namespace Tienda_.Controllers
 
             string session = HttpContext.Session.GetString("userID");
             ViewBag.UserID = session;
-            ViewBag.Added = true; 
+
+            if (TempData.ContainsKey("added"))
+            {
+                ViewBag.Added = TempData["added"].ToString();
+            }
             return View();
         }
 
@@ -90,9 +94,11 @@ namespace Tienda_.Controllers
 
                 if (guardado > 0)
                 {
-                     
-                    return RedirectToAction("Carrito", "PerfilCliente", new { id = cart.IdUsuario});
+                    TempData["added"] = "success"; 
+                    return RedirectToAction("Detalle_Producto", "Home", new { id = cart.IdProducto});
                 }
+                TempData["added"] = "error";
+                return RedirectToAction("Detalle_Producto", "Home", new { id = cart.IdProducto });
             }
 
             return RedirectToAction("Login", "Cuenta");
