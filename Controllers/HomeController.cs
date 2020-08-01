@@ -75,9 +75,6 @@ namespace Tienda_.Controllers
 
             return View();
         }
-
-
-
         
         public async Task<IActionResult> addCarrito(Carrito cart) {
             string idUser = HttpContext.Session.GetString("userID");
@@ -101,7 +98,6 @@ namespace Tienda_.Controllers
 
             return RedirectToAction("Login", "Cuenta");
             
-             
         }
         public IActionResult Conctactanos()
         {
@@ -114,11 +110,6 @@ namespace Tienda_.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        public IActionResult Conctactanos()
-        {
-            return View();
         }
     }
 
