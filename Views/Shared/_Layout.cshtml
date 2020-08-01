@@ -64,7 +64,7 @@
                             <ion-icon class="text-white" name="caret-down"></ion-icon>
                         </li>
                         <li class="nav-item ml-sm-auto">
-                            <a class="nav-link text-white pl-2" href="#">Contactanos</a>
+                            <a class="nav-link text-white pl-2" asp-action="Conctactanos">Contáctanos</a>
                         </li>
                         <li class="nav-item ml-sm-auto padre">
                             <ion-icon name="gift-outline" class="icono text-white"></ion-icon>
@@ -118,14 +118,14 @@
                 <div class="col-4">
                     <ul class="link">
                         <li class="font-weight-bold">Cuenta</li>
-                        <li><a asp-controller="Cuenta" asp-action="Login">Iniciar seccion</a></li>
+                        <li><a asp-controller="Cuenta" asp-action="Login">Iniciar sesión</a></li>
                         <li><a asp-controller="Cuenta" asp-action="Registrarse">Registrarse</a></li>
                     </ul>
                 </div>
                 <div class="col-4">
                     <ul class="link link-a">
-                        <li class="font-weight-bold">Contactanos</li>
-                        <li><a href="#">AMERAXpres office</a></li>
+                        <li class="font-weight-bold">Contáctanos</li>
+                        <li><a asp-action="Conctactanos">AMERA Xpress Office</a></li>
                     </ul>
                 </div>
             </section>
