@@ -48,10 +48,12 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav flex-grow-1 row align-conten-center">
-                        <li class="nav-item col-lg-6 col-12 offset-lg-1 rounded border d-flex py-2 py-md-0 padre">
-                            <ion-icon name="search-outline" class="icono"></ion-icon>
-                            <input type="text" placeholder="¿Que articulo desea buscar?" class="fi w-100 ml-2 border-0 rounded-0 bg-light">
-                            <span class="glyphicon glyphicon-plus"></span>
+                        <li class="nav-item col-lg-6 col-12 offset-lg-1 rounded border p-0">
+                            <form method="post" class="d-flex py-2 py-md-0 px-0 padre">
+                                <ion-icon name="search-outline" class="ml-3 icono"></ion-icon>
+                                <input type="text" placeholder="Que articulo desea buscar?" name="producto" class="fi w-100 ml-2 border-0 rounded-0 bg-light" />
+                                <input type="submit" asp-controller="Home" asp-action="BuscarProductos" class="btn bg-orange text-white border border-white" value="Buscar" />
+                            </form>
                         </li>
                         <li class="nav-item col-lg-2 offset-lg-1 p-0 py-md-0 padre pl-3 pl-lg-0">
                             <a class="link-ir text-decoration-none" asp-controller="Cuenta" asp-action="LoggedOut">Cerrar Sesion</a>
@@ -67,6 +69,7 @@
                                   }
                               
                                 </a>
+ 
                         </li>
                     </ul>
                 </div>
@@ -91,7 +94,7 @@
                             <ion-icon class="text-white" name="caret-down"></ion-icon>
                         </li>
                         <li class="nav-item ml-sm-auto">
-                            <a class="nav-link text-white pl-2" href="#">Contactanos</a>
+                            <a class="nav-link text-white pl-2" asp-controller="Home" asp-action="Conctactanos">Contactanos</a>
                         </li>
                         <li class="nav-item ml-sm-auto padre">
                             <ion-icon name="gift-outline" class="icono text-white"></ion-icon>

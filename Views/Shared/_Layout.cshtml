@@ -41,11 +41,13 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav flex-grow-1 row align-conten-center">
-                    <li class="nav-item col-lg-6 col-12 offset-lg-1 rounded border d-flex py-2 py-md-0 padre">
-                        <ion-icon name="search-outline" class="icono"></ion-icon>
-                        <input type="text" placeholder="¿Que articulo desea buscar?" class="fi w-100 ml-2 border-0 rounded-0 bg-light">
-                        <span class="glyphicon glyphicon-plus"></span>
+                <ul class="navbar-nav flex-grow-1 row align-conten-center my-2 my-md-0'">
+                    <li class="nav-item col-lg-6 col-12 offset-lg-1 rounded border p-0">
+                        <form method="post" class="d-flex py-2 py-md-0 px-0 padre">
+                            <ion-icon name="search-outline" class="ml-3 icono"></ion-icon>
+                            <input type="text" placeholder="Que articulo desea buscar?" name="producto" class="fi w-100 ml-2 border-0 rounded-0 bg-light" />
+                            <input type="submit" asp-controller="Home" asp-action="BuscarProductos" class="btn bg-orange text-white border border-white" value="Buscar" />
+                        </form>                            
                     </li>
                     <li class="nav-item col-lg-2 offset-lg-1 p-0 py-md-0 padre pl-3 pl-lg-0">
 
@@ -77,7 +79,8 @@
                             <ion-icon class="text-white" name="caret-down"></ion-icon>
                         </li>
                         <li class="nav-item ml-sm-auto">
-                            <a class="nav-link text-white pl-2"asp-action="Conctactanos" asp-controller="Home">Contactanos</a>
+ 
+                            <a class="nav-link text-white pl-2" asp-controller="Home" asp-action="Conctactanos">Contáctanos</a>
                         </li>
                         <li class="nav-item ml-sm-auto padre">
                             <ion-icon name="gift-outline" class="icono text-white"></ion-icon>
@@ -120,8 +123,8 @@
 
                 <div class="col-4">
                     <ul class="link">
-                        <li class="font-weight-bold">Informacion</li>
-                        <li><a href="#">Inicio</a></li>
+                        <li class="font-weight-bold">Información</li>
+                        <li><a asp-controller="Home" asp-action="Index" >Inicio</a></li>
                         <li><a href="#">Productos</a></li>
                         <li><a href="#">Contactos</a></li>
                         <li><a href="#">Ofertas</a></li>
@@ -131,24 +134,24 @@
                 <div class="col-4">
                     <ul class="link">
                         <li class="font-weight-bold">Cuenta</li>
-                        <li><a asp-controller="Cuenta" asp-action="Login">Iniciar seccion</a></li>
+                        <li><a asp-controller="Cuenta" asp-action="Login">Iniciar sesión</a></li>
                         <li><a asp-controller="Cuenta" asp-action="Registrarse">Registrarse</a></li>
                     </ul>
                 </div>
                 <div class="col-4">
                     <ul class="link link-a">
-                        <li class="font-weight-bold">Contactanos</li>
-                        <li><a href="#">AMERAXpres office</a></li>
+                        <li class="font-weight-bold">Contáctanos</li>
+                        <li><a asp-action="Conctactanos">AMERA Xpress Office</a></li>
                     </ul>
                 </div>
             </section>
         </div>
-        <section style="background: #EBEBEB;">
-            <div class="container mt-5">
+        <section style="background: #EBEBEB;" class="text-center">
+            <div class="container mt-5 justify-content-center">
                 <div class="row align-items-center" style="height: 80px;">
-                    <div class="col-12 col-sm-6">
-                        <span class="d-inline-block ml-sm-5">CopyRight</span>
-                        <span class="d-inline-block ml-sm-3">2020 AmericaXpress.com</span>
+                    <div class="col-12 col-sm-6 text-center">
+                        <span class="d-inline-block ml-sm-5">Copyright ©</span>
+                         <span class="d-inline-block ml-sm-3">2020 AmericaXpress.com. All Rights Reserved</span>
                     </div>
                 </div>
             </div>
