@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Orden>
+
+
+<div id="map"></div>
+
+<script>
+    var makers=[];
+    var car = ["toyota", "honda"]
+
+    @*@foreach(var i in Model)
+    {
+        <text> maker.push({Id: @i.IdOrden}); </text>
+    }
+
+    for(var i = 0; i<maker.length; i++){
+    console.log(maker[i]);
+    }*@
+
+    var map = L.map('map').setView([51.505, -0.09], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    @for (var i = 0; i<Model.Count(); i++)
+        {
+            <Text>
+            var latitud = @Model.ElementAt(i).IdDomicilioNavigation.Latitud.ToString().Replace(",", ".");
+            var longitud = @Model.ElementAt(i).IdDomicilioNavigation.Longitud.ToString().Replace(",", ".");
+            marker = new L.marker([latitud, longitud]).addTo(map)
+                .bindPopup('@Model.ElementAt(i).IdUsuarioNavigation.Nombre');
+
+    console.log('@Model.ElementAt(1).IdDomicilioNavigation.Latitud');
+            </Text>
+    }
+
+</script>
+
+<label>@Model.Count()</label>
+
+
+
