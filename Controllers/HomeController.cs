@@ -77,15 +77,30 @@ namespace Tienda_.Controllers
         }
         
         public async Task<IActionResult> addCarrito(Carrito cart) {
-            string idUser = HttpContext.Session.GetString("userID");
-            
+            string idUser = HttpContext.Session.GetString("userID");            
+
+
             if (idUser != null) {
 
-                cart.IdUsuario = Convert.ToInt32(idUser);
+                int id = Int32.Parse(idUser);
+                var existe = _contex.Carrito.Where(x => x.IdUsuario == id  && x.IdProducto == cart.IdProducto).Count();
 
-                // add el los datos a la db 
-                await _contex.Carrito.AddAsync(cart);
+                if(existe == 1)
+                {
+                    Carrito carrito = await _contex.Carrito.FirstOrDefaultAsync(x => x.IdUsuario == id && x.IdProducto == cart.IdProducto);
+                    carrito.Cantidad += cart.Cantidad;
+                    cart.IdUsuario = Convert.ToInt32(idUser);
 
+                    _contex.Update(carrito);
+                }
+                else
+                {
+                    cart.IdUsuario = Convert.ToInt32(idUser);
+
+                    // add el los datos a la db 
+                    await _contex.Carrito.AddAsync(cart);
+                }
+              
                 // guardar los cambios realizados a la db 
                 int guardado = await _contex.SaveChangesAsync();
 
@@ -100,7 +115,9 @@ namespace Tienda_.Controllers
             
         }
         public IActionResult Conctactanos()
-        {
+        {           
+            string session = HttpContext.Session.GetString("userID");
+            ViewBag.UserID = session;
             return View();
         }
 
