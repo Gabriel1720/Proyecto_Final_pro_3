@@ -218,13 +218,14 @@ link-white,
 }
 
 @media (max-width: 575px) {
-    .sidemenu-pc {
+    .sidemenu-pc, .dis-none-on-small {
         display: none;
     }
 
     .sidemenu-celular {
         display: block;
     }
+ 
 }
 /**/
 

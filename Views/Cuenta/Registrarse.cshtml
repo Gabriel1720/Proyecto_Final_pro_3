@@ -1,29 +1,34 @@
-﻿
+﻿@model Proyecto_final_pro_3.Models.Usuario
 @{
     Layout = "~/Views/Shared/_Layout_top_menu_bar.cshtml";
 }
 
+
+
+@using (Html.BeginForm("Registrarse", "Cuenta", FormMethod.Post))
+{
     <div class="mx-auto mt-5 text-center p-4 registro shadow-sm">
         <h2>Registrarse</h2>
         <div class="col-12 col-sm-9 mx-auto mt-5 mb-4">
-            <input type="text" placeholder="Nombre" class="form-control input-round">
+            @Html.TextBoxFor(d => d.Nombre, "", new { @class = "form-control input-round", @placeholder = "Nombre" })
+        </div>
+        <div class="col-12 col-sm-9 mx-auto mt-2 mb-4">
+            @Html.TextBoxFor(d => d.Apellido, "", new { @class = "form-control input-round", @placeholder = "Apellido" })
+        </div>
+        <div class="col-12 col-sm-9 mx-auto mt-2 mb-4">
+            @Html.TextBoxFor(d => d.FechaNacimiento, "", new { @class = "form-control input-round", @type = "date" })
+        </div>
+        <div class="col-12 col-sm-9 mx-auto mt-2 mb-4">
+            @Html.TextBoxFor(d => d.Correo, "", new { @class = "form-control input-round", @placeholder = "Correo Electronico" })
+        </div>
+        <div class="col-12 col-sm-9 mx-auto mt-2 mb-4">
+            @Html.TextBoxFor(d => d.Password, "", new { @class = "form-control input-round", @placeholder = "Contraseña" })
         </div>
         <div class="col-12 col-sm-9 mx-auto mt-4 mb-4">
-            <input type="text" placeholder="Apellido" class="form-control input-round">
-        </div>
-        <div class="col-12 col-sm-9 mx-auto mt-4 mb-4">
-            <input type="text" placeholder="Fecha de nacimiento" class="form-control input-round">
-        </div>
-        <div class="col-12 col-sm-9 mx-auto mt-4 mb-4">
-            <input type="text" placeholder="Correo electronico" class="form-control input-round">
-        </div>
-        <div class="col-12 col-sm-9 mx-auto mt-4 mb-4">
-            <input type="text" placeholder="Contraseña" class="form-control input-round">
-        </div>
-        <div class="col-12 col-sm-9 mx-auto mt-4 mb-4">
-            <input type="text" placeholder="Repita contraseña" class="form-control input-round">
+            <input type="text" placeholder="Repita contraseña" name="repPass" class="form-control input-round">
         </div>
         <div class="col-12 col-sm-4 mx-auto mt-5">
             <input type="submit" value="Registrarse" class="btn btn-block input-round text-white" style="background-color: #FD5924;">
         </div>
     </div>
+}

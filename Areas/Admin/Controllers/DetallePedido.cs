@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Proyecto_final_pro_3.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class ListaCategorias : Controller
+    public class DetallePedido : Controller
     {
         public IActionResult Index()
         {

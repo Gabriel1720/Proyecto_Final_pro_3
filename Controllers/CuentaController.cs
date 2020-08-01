@@ -57,11 +57,11 @@ namespace Tienda_.Controllers
                   HttpContext.Session.SetString("userID", userDB.IdUsuario.ToString());
 
                     // opciones de los cookies 
-                    CookieOptions options = new CookieOptions();
-                    options.Expires = DateTime.Now.AddDays(5); 
+                 //    CookieOptions options = new CookieOptions();
+                 //   options.Expires = DateTime.Now.AddDays(5); 
 
                     // establecer los cookies 
-                    Response.Cookies.Append("UserID", userDB.IdUsuario.ToString(), options);
+                //    Response.Cookies.Append("UserID", userDB.IdUsuario.ToString(), options);
 
 
                     if (userDB.IdRol == 1)
@@ -92,13 +92,53 @@ namespace Tienda_.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Registrarse(Usuario user)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                using (DB_A64A4C_SuperMercadoContext db = new DB_A64A4C_SuperMercadoContext())
+                {
+                    var oUser = new Usuario();
+                    oUser.Nombre = user.Nombre;
+                    oUser.Apellido = user.Apellido;
+                    oUser.FechaNacimiento = user.FechaNacimiento;
+                    oUser.Correo = user.Correo;
+                    oUser.IdRol = 2;
+                    oUser.Password = user.Password;
+                    String repPass = Request.Form["repPass"];
 
+                    if (repPass == oUser.Password)
+                    {
+                        db.Usuario.Add(oUser);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        return Redirect("/Cuenta/Registrarse");
+                    }
+                }
+                return Redirect("/Cuenta/Login");
+            }
+
+            return View(user);
+          
+        }
         
 
         public IActionResult LoggedOut()
         {
             // Response.Cookies.Delete("useID");
-            HttpContext.Session.Clear(); 
+            HttpContext.Session.Clear();
+
+
+            // expiracion de los cookies 
+            CookieOptions options = new CookieOptions();
+            options.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Append("userID",  string.Empty, options); 
+
+
 
             return RedirectToAction("Login"); 
         }

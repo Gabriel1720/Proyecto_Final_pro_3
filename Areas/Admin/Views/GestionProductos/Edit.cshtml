@@ -1,46 +1,57 @@
-﻿@model Proyecto_final_pro_3.Models.Producto
-<div>
-    <h3 class="mt-3 text-center" style="color: #FF561F;">EDITAR PRODUCTO</h3>
-    @*<h5 class="text-center" style="color: #FF561F; margin-right: 39%;">Agregar produco</h5>*@
-</div>
-<div style=" margin-top:115px">
-    <form asp-action="Edit" method="post">
-        <div class="text-center">
-            <input type="hidden" asp-for="IdProducto" />
-            <div>
-                <label asp-for="Nombre" style="margin-right: 44%;"></label>
-                <input asp-for="Nombre" class="form-control" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 25%;">
-                <span asp-validation-for="Nombre" class="text-danger"></span>
+﻿@{ Layout = "~/Views/Shared/_Layout_administrador.cshtml"; }
+
+@model Proyecto_final_pro_3.Models.Producto
+
+<div class="overflow-auto">
+    <h3 class="text-center mt-4" style="color: #FD5924;">EDITAR PRODUCTO</h3>
+
+    <form asp-action="Edit" asp-controller="GestionProductos" asp-area="Admin" style="height:500px;">
+        <input type="hidden" asp-for="IdProducto" />
+        <div class="mx-auto mt-4 col-md-8  text-center shadow-sm" style="border:1px solid #d3cdcd ;">
+
+            <div class="text-center">
+                <div class="mt-4">
+                    <label asp-for="Nombre" style="margin-right: 44%;"></label>
+                    <input asp-for="Nombre" class="form-control text-center" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 22%;">
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+                <div>
+                    <label asp-for="Descripcion" class="mt-3" style="margin-right: 40%;"></label>
+                    <input asp-for="Descripcion" class="form-control text-center" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 22%;">
+                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </div>
+                <div>
+                    <label asp-for="Precio" class="mt-3" style="margin-right: 45%;"></label>
+                    <input asp-for="Precio" class="form-control text-center" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 22%;">
+                    <span asp-validation-for="Precio" class="text-danger"></span>
+                </div>
+                <div>
+                    <label asp-for="Stock" class="mt-3" style="margin-right: 46%;"></label>
+                    <input asp-for="Stock" class="form-control text-center" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 22%;">
+                    <span asp-validation-for="Stock" class="text-danger"></span>
+                </div>
+                <div>
+                    <label asp-for="IdCategoria" class="mt-3" style="margin-right: 42%;">Categoria</label>
+                    <select asp-for="IdCategoria" class="form-control text-center" asp-items="ViewBag.CategoriaNombre" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 22%;"></select>
+                    <span asp-validation-for="IdCategoria" class="text-danger"></span>
+                </div>
+                <div>
+                    <label asp-for="Foto" class="mt-3" style="margin-right: 42%;">Foto (Url)</label>
+                    <input asp-for="Foto" class="form-control" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 22%;">
+                    <span asp-validation-for="Foto" class="text-danger"></span>
+                </div>
+                <br>
+                <div class="mt-2 mb-4">
+                    <input type="submit" value="GUARDAR" class="btn mr-3" style="width: 23%; background: #FD5924; color: #fff;">
+                </div>
+
             </div>
-            <div>
-                <label asp-for="Descripcion" class="mt-3" style="margin-right: 44%;"></label>
-                <input asp-for="Descripcion" class="form-control" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 25%;">
-                <span asp-validation-for="Descripcion" class="text-danger"></span>
-            </div>
-            <div>
-                <label asp-for="Stock" class="mt-3" style="margin-right: 44%;">Stock</label>
-                <input asp-for="Stock" class="form-control" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 25%;">
-                <span asp-validation-for="Stock" class="text-danger"></span>
-            </div>
-            <div>
-                <label asp-for="Precio" class="mt-3" style="margin-right: 45%;"></label>
-                <input asp-for="Precio" class="form-control" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 25%;">
-                <span asp-validation-for="Precio" class="text-danger"></span>
-            </div>
-            <div>
-                <label asp-for="IdCategoria" class="mt-3" style="margin-right: 45%;">Categoria</label>
-                <select asp-for="IdCategoria" class="form-control" asp-items="ViewBag.CategoriaNombre" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 25%;"></select>
-                <span asp-validation-for="IdCategoria" class="text-danger"></span>
-            </div>
-            <div>
-                <label asp-for="Foto" class="mt-3" style="margin-right: 44%;">Foto (url)</label>
-                <input asp-for="Foto" class="form-control" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; width: 50%; color: #323232; margin-left: 25%;">
-                <span asp-validation-for="Foto" class="text-danger"></span>
-            </div>
-            <br>
-            <div class="mt-4 ">
-                <input type="submit" value="ACEPTAR" class="btn mr-3" style="width: 23%; background: #FD5924; color: #fff;">
-            </div>
-        </div>
     </form>
+
 </div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
