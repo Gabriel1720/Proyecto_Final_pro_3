@@ -103,6 +103,10 @@ namespace Tienda_.Controllers
             
              
         }
+        public IActionResult Conctactanos()
+        {
+            return View();
+        }
 
  
         
