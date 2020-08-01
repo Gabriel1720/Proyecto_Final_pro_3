@@ -12,56 +12,41 @@
 </div>
 <div class="row mt-4">
     <div style="width:39%">
-        <table class="table table-bordered m-4 p-2 w-auto">
-            <thead>
-                <tr>
-                    <td class="list-group-item  text-orange"><strong>Categorias</strong></td>
+        <div style="overflow:auto; width:210px; height:400px;">
+            <table class="table table-bordered m-4 p-2 w-auto">
 
-
-                </tr>
-
-
-            </thead>
-            <tbody>
-
-                @foreach (Categoria categoria in ViewBag.Categoria)
-                {
+                <thead>
                     <tr>
-                        <td>@categoria.Nombre</td>
+                        <td class="list-group-item  text-orange"><strong>Categorias</strong></td>
+
+
                     </tr>
-                }
-            </tbody>
-
-         
 
 
-        </table>
-        <div class="boton box-shadow text-center"  data-toggle="collapse" data-target="#collapseAgreCate" aria-expanded="false" aria-controls="collapseAgreCate" style="margin-left: 2%">
-        <a style="color:#fff">+</a>
+                </thead>
+                <tbody>
 
-    </div>
-    </div>
+                    @foreach (Categoria categoria in ViewBag.Categoria)
+                    {
+                        <tr>
+                            <td>@categoria.Nombre</td>
+                        </tr>
+                    }
+                </tbody>
 
 
-    <div class="collapse mx-auto m-3 w-50" id="collapseAgreCate">
-        <h4 class="text-orange text-center">Agregar Categoria</h4>
-        <form asp-action="Create" asp-controller="ListaCategorias" asp-area="Admin">
 
 
-            <div class="mt-1 ">
-                <input asp-for="Nombre" class="form-control text-center" placeholder="Nombre" type="text" style="width:75%; margin: auto; border-radius: 50px; border: none; background-color: rgb(255, 114, 68, 0.1);" />
-            </div>
+            </table>
+        </div>
+        <div class="boton box-shadow text-center" data-toggle="collapse" data-target="#collapseAgreCate" aria-expanded="false" aria-controls="collapseAgreCate" style="margin-left: 2%">
+            <a asp-action="Create" asp-controller="ListaCategorias" asp-area="Admin" style="color:#fff">+</a>
 
-            <div class="mt-4 ">
-                <input class="form-control text-center" placeholder="Confirmar Nombre" type="text" style=" width:75%; margin: auto; border-radius: 50px; border: none; background-color: rgb(255, 114, 68, 0.1);" />
-            </div>
-
-            <div class="mt-4 text-center">
-                <input class="btn" type="submit" value="Guardar" style="width:40%; margin: auto; border: none;  border-radius: 50px; background-color: #FD5924; color:#fff;" />
-            </div>
-        </form>
+        </div>
     </div>
 
+
+   
 </div>
 
 

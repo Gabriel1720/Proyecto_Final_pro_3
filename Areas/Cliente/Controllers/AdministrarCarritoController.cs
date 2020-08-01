@@ -36,16 +36,32 @@ namespace Proyecto_final_pro_3.Areas.Cliente.Controllers
         }
 
 
-
         public async Task<IActionResult> addCarrito(Carrito cart)
         {
-            string session = HttpContext.Session.GetString("userID");
-            if (session != null)
-            {
-                cart.IdUsuario = int.Parse(session);
+            string idUser = HttpContext.Session.GetString("userID");
 
-                // add el los datos a la db 
-                await _context.Carrito.AddAsync(cart);
+
+            if (idUser != null)
+            {
+
+                int id = Int32.Parse(idUser);
+                var existe = _context.Carrito.Where(x => x.IdUsuario == id && x.IdProducto == cart.IdProducto).Count();
+
+                if (existe == 1)
+                {
+                    Carrito carrito = await _context.Carrito.FirstOrDefaultAsync(x => x.IdUsuario == id && x.IdProducto == cart.IdProducto);
+                    carrito.Cantidad += cart.Cantidad;
+                    cart.IdUsuario = Convert.ToInt32(idUser);
+
+                    _context.Update(carrito);
+                }
+                else
+                {
+                    cart.IdUsuario = Convert.ToInt32(idUser);
+
+                    // add el los datos a la db 
+                    await _context.Carrito.AddAsync(cart);
+                }
 
                 // guardar los cambios realizados a la db 
                 int guardado = await _context.SaveChangesAsync();
@@ -53,13 +69,14 @@ namespace Proyecto_final_pro_3.Areas.Cliente.Controllers
                 if (guardado > 0)
                 {
                     TempData["added"] = "success";
-                    return RedirectToAction("Detalle_Producto", "Home", new { id = cart.IdProducto });
+                    return RedirectToAction("Detalle_Producto", "Home", new { id = cart.IdProducto });                   
                 }
                 TempData["added"] = "error";
                 return RedirectToAction("Detalle_Producto", "Home", new { id = cart.IdProducto });
             }
 
             return RedirectToAction("Login", "Cuenta");
+
         }
 
     }
