@@ -20,8 +20,10 @@ namespace Proyecto_final_pro_3.Areas.Cliente.Controllers
             int id = Int32.Parse(idUser);
             var carrito = await _context.Carrito.Include(x => x.IdProductoNavigation).Where(x => x.IdUsuario == id).ToListAsync();
             ViewBag.Total = await _context.Carrito.Where(x => x.IdUsuario == 47)
-                            .SumAsync(x => x.Cantidad * x.IdProductoNavigation.Precio);         
-            
+                            .SumAsync(x => x.Cantidad * x.IdProductoNavigation.Precio);
+
+            string session = HttpContext.Session.GetString("userID");
+            ViewBag.UserID = session;
             return View(carrito);
         }
 

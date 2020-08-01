@@ -22,7 +22,7 @@
                 <ion-icon class="mr-2 d-inline-block icono" name="person"></ion-icon>
                 <p class="m-0 d-inline-block text-size">Perfil</p>
             </a>
-            <a asp-controller="GestionProductos" asp-action="Index"class="col-10 text-center sidemenu-option pl-4 btn">
+            <a asp-controller="GestionProductos" asp-action="Index" class="col-10 text-center sidemenu-option pl-4 btn">
                 <ion-icon class="mr-2 d-inline-block icono" name="cart"></ion-icon>
                 <p class="m-0 d-inline-block text-size">Productos</p>
             </a>
@@ -46,12 +46,16 @@
                 <ion-icon class="mr-2 d-inline-block icono" name="build"></ion-icon>
                 <p class="m-0 d-inline-block text-size">Utilidades</p>
             </a>
-
-           
-          <!--  <a href="#" class="col-10 mt-5 text-center  pl-4 btn text-white"> -->
-            <a asp-controller="CambiarSlider" asp-action="Index" class="col-10 text-center sidemenu-option pl-4 btn ajuste">
+            <a asp-controller="CambiarSlider" asp-action="Index" class="col-10 text-center sidemenu-option pl-4 btn">
                 <ion-icon class="mr-2 d-inline-block icono" name="settings"></ion-icon>
                 <p class="m-0 d-inline-block text-size">Ajustes</p>
+            </a>
+
+
+            <!--  <a href="#" class="col-10 mt-5 text-center  pl-4 btn text-white"> -->
+            <a asp-controller="Cuenta" asp-action="LoggedOut" class="col-10 text-center sidemenu-option pl-4 btn ajuste">
+                <ion-icon class="mr-2 d-inline-block icono" name="power"></ion-icon>               
+                <p class="m-0 d-inline-block text-size">Cerrar seccion</p>
             </a>
         </div>
 
@@ -90,6 +94,9 @@
                         </li>
                         <li class="nav-item">
                             <a asp-controller="CambiarSlider" asp-action="Index" class="nav-link text-white"><ion-icon class="mr-2 d-inline-block" name="settings"></ion-icon>Ajustes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Cuenta" asp-action="LoggedOut" class="nav-link text-white"><ion-icon class="mr-2 d-inline-block" name="power"></ion-icon>Cerrar seccion</a>
                         </li>
                     </ul>
                 </div>

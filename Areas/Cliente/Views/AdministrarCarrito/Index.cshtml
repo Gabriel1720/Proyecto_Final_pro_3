@@ -1,5 +1,11 @@
 ﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (ViewBag.userID != null)
+    {
+        Layout = "~/Views/Shared/_LayoutLogged.cshtml";
+
+    }
 }
 
 @model IEnumerable<Proyecto_final_pro_3.Models.Carrito>

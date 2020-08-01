@@ -63,7 +63,23 @@
                         <img src="@producto.Foto" class="img-fluid img-center" alt="">
                     </div>
                     <div class="text-center pt-sm-2" style="height: 30%;">
-                        <p>@producto.Nombre</p>
+                        @{
+                            string srt = producto.Nombre;
+                            if (srt.Length >= 38)
+                            {
+                                srt = srt.Substring(0, 33) + "...";
+                                <p>@srt</p>
+                            }
+                            else if (srt.Length <= 22)
+                            {
+                                <p>@producto.Nombre</p>
+                                <br />
+                            }
+                            else
+                            {
+                                <p>@producto.Nombre</p>
+                            }
+                        }
                         <h4>@producto.Precio $</h4>
                         <br />
                     </div>

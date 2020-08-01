@@ -104,7 +104,20 @@ namespace Tienda_.Controllers
             return View();
         }
 
- 
+        public async Task<IActionResult> BuscarProductos(string producto)
+        {
+
+            var listaProductos = await _contex.Producto.Where(x => x.Nombre.Contains(producto)).ToListAsync();
+
+            ViewBag.Productos = listaProductos;
+            ViewBag.categoria = "Resultados de la busqueda";
+            ViewBag.cantidad = listaProductos.Count();
+
+            string session = HttpContext.Session.GetString("userID");
+            ViewBag.UserID = session;
+
+            return View("Categorias");
+        }
         
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
