@@ -76,36 +76,7 @@ namespace Tienda_.Controllers
             return View();
         }
 
-
-
-/*
-        public async Task<IActionResult> addCarrito(Carrito cart)
-        {
-            string session = HttpContext.Session.GetString("userID");
-            if (session != null )
-            {
-                cart.IdUsuario = int.Parse(session);
-
-                // add el los datos a la db 
-                await _contex.Carrito.AddAsync(cart);
-
-                // guardar los cambios realizados a la db 
-                int guardado = await _contex.SaveChangesAsync();
-
-                if (guardado > 0)
-                {
-                    TempData["added"] = "success"; 
-                    return RedirectToAction("Detalle_Producto", "Home", new { id = cart.IdProducto});
-                }
-                TempData["added"] = "error";
-                return RedirectToAction("Detalle_Producto", "Home", new { id = cart.IdProducto });
-            }
-
-            return RedirectToAction("Login", "Cuenta");
-        }
-
  
-        */
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
