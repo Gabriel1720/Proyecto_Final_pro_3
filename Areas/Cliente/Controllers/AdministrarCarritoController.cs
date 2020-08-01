@@ -10,7 +10,7 @@ using Proyecto_final_pro_3.Models;
 namespace Proyecto_final_pro_3.Areas.Cliente.Controllers
 {
     [Area("Cliente")]
-    public class AdministrarCarrito : Controller
+    public class AdministrarCarritoController : Controller
     {
         DB_A64A4C_SuperMercadoContext _context = new DB_A64A4C_SuperMercadoContext();
 
@@ -32,5 +32,33 @@ namespace Proyecto_final_pro_3.Areas.Cliente.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
+
+
+        public async Task<IActionResult> addCarrito(Carrito cart)
+        {
+            string session = HttpContext.Session.GetString("userID");
+            if (session != null)
+            {
+                cart.IdUsuario = int.Parse(session);
+
+                // add el los datos a la db 
+                await _context.Carrito.AddAsync(cart);
+
+                // guardar los cambios realizados a la db 
+                int guardado = await _context.SaveChangesAsync();
+
+                if (guardado > 0)
+                {
+                    TempData["added"] = "success";
+                    return RedirectToAction("Detalle_Producto", "Home", new { id = cart.IdProducto });
+                }
+                TempData["added"] = "error";
+                return RedirectToAction("Detalle_Producto", "Home", new { id = cart.IdProducto });
+            }
+
+            return RedirectToAction("Login", "Cuenta");
+        }
+
     }
 }

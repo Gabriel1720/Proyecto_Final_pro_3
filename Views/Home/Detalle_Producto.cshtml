@@ -25,7 +25,7 @@
             <p class="h5 font-weight-normal">@ViewBag.Producto.Descripcion</p>
             <br />
             <div class="" style="position:relative;">
-                <p class="h5 d-inline-block"><strong>RD$ @ViewBag.Producto.Precio</strong></p>     
+                <p class="h5 d-inline-block"><strong>RD$ @ViewBag.Producto.Precio</strong></p>
                 <form asp-controller="Home" method="post">
                     <strong>Cantidad: </strong>
                     <select name="Cantidad">
@@ -35,14 +35,13 @@
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
-                     <input type="number"  value="@ViewBag.Producto.IdProducto" name="IdProducto" class="d-none"/>
+                    <input type="number" value="@ViewBag.Producto.IdProducto" name="IdProducto" class="d-none" />
                     <br />
-                    <button type="submit" asp-action="Comprar" class="btn border-0  mt-4 mb-5 px-4 py-2 d-inline-block " style="background: #FD5924; color: #fff;">Comprar ahora </button>
-                    <button type="submit" asp-action="addCarrito" class="btn border-0  mt-4 mb-5 px-4  py-2  d-inline-block" style="background: #85E30C; color: #fff; margin-left: 7%;">Añadir al carrito</button>
+                    <button type="button" onclick="ShowMap()" class="btn border-0  mt-4 mb-5 px-4 py-2 d-inline-block " style="background: #FD5924; color: #fff;">Comprar ahora </button>
+                    <button type="submit" asp-action="addCarrito" asp-controller="AdministrarCarrito" asp-area="Cliente" class="btn border-0  mt-4 mb-5 px-4  py-2  d-inline-block" style="background: #85E30C; color: #fff; margin-left: 7%;">Añadir al carrito</button>
                 </form>
-            
             </div>
-            
+
         </div>
     </div>
 </div>
@@ -75,16 +74,18 @@
 
         }
 
-  
-          <input id="added" value="@ViewBag.Added" class="d-none"/>
-
+        <input id="added" value="@ViewBag.Added" class="d-none" />
+        <a asp-action="Comprar" asp-controller="Home"></a>
     </div>
 </div>
+
+  
+
 <script>
 
     var added = document.getElementById("added").value;
-     
-    if (added =="success") {
+
+    if (added == "success") {
         Swal.fire(
             'Perfecto!',
             'Se agrego el producto a su carrito!',
@@ -92,7 +93,7 @@
         );
     }
 
-    else if (added =="error") {
+    else if (added == "error") {
         Swal.fire(
             'Oop!',
             'Algo debio haber salido mal.',
@@ -100,8 +101,72 @@
         );
     }
 
-
 </script>
 
 
+<script>
+    function ShowMap() {
+
+        Swal.fire({
+            title: "<strong> Selecione su hubicacion </strong>",
+            html:
+                "<div id='mapid' style='width:80%; height:300px; margin:auto;'> </div>",
+            showConfirmButton: true,
+            showCancelButton: true,
+            confirmButtonText : 'Continuar con la compra'
+        }).then((result) => {
+            if (result.value) {
+                
+            }
+
+        })
+
+        addMap(); 
+    }
+
+
+    function addMap() {
+        // mostrar mapa leaftlet y optener coordenadas del usuario
+        getLocation(); 
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.watchPosition(showPosition);
+            } else {
+                alert("Geolocation no es soportada por su navegador");
+            }
+        }
+
+        function showPosition(position) {
+            let latitud = position.coords.latitude;
+            let longitud = position.coords.longitude;
+
+            var map = L.map('mapid').setView([latitud, longitud], 14);
+
+
+            L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+                attribution: '',
+                maxZoom: 30,
+                id: 'mapbox/streets-v11',
+                tileSize: 512,
+                zoomOffset: -1,
+            }).addTo(map);
+
+
+            var popup = L.popup();
+
+            function onMapClick(e) {
+                popup
+                    .setLatLng(e.latlng)
+                    .setContent("Su posicion es: " + e.latlng.toString())
+                    .openOn(map);
+            }
+
+            map.on('click', onMapClick);
+        }
  
+    }
+
+ 
+ 
+</script>

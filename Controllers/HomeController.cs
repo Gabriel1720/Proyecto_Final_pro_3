@@ -78,7 +78,7 @@ namespace Tienda_.Controllers
 
 
 
-
+/*
         public async Task<IActionResult> addCarrito(Carrito cart)
         {
             string session = HttpContext.Session.GetString("userID");
@@ -105,7 +105,7 @@ namespace Tienda_.Controllers
         }
 
  
-        
+        */
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
