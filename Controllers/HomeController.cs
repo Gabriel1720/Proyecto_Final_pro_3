@@ -16,7 +16,7 @@ namespace Tienda_.Controllers
 {
     public class HomeController : Controller
     {
-        public static DB_A64A4C_SuperMercadoContext _contex = new DB_A64A4C_SuperMercadoContext();
+        public DB_A64A4C_SuperMercadoContext _contex = new DB_A64A4C_SuperMercadoContext();
 
         public async Task<IActionResult> Index()
         {
@@ -36,24 +36,20 @@ namespace Tienda_.Controllers
             // ViewBag.UserID = Request.Cookies["userID"];
             string session = HttpContext.Session.GetString("userID");
             ViewBag.UserID = session; 
-
-            if (session != null ) {
-                   
-             
-             }
+ 
             return View();
         }
 
         [HttpGet]
         public async Task<IActionResult> Detalle_Producto(int? id)
         {
- 
             var productoDB = await _contex.Producto.Where(x => x.IdProducto == id).FirstOrDefaultAsync();
             ViewBag.producto = productoDB;
             ViewBag.Productos = await _contex.Producto.Where(x => x.IdCategoria == productoDB.IdCategoria).ToArrayAsync();
 
             string session = HttpContext.Session.GetString("userID");
             ViewBag.UserID = session;
+            ViewBag.Added = true; 
             return View();
         }
 
@@ -94,7 +90,8 @@ namespace Tienda_.Controllers
 
                 if (guardado > 0)
                 {
-                    return RedirectToAction("Detalle_Producto", "Home", new { id = cart.IdProducto });
+                     
+                    return RedirectToAction("Carrito", "PerfilCliente", new { id = cart.IdUsuario});
                 }
             }
 
