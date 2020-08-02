@@ -25,7 +25,7 @@
             <p class="h5 font-weight-normal">@ViewBag.Producto.Descripcion</p>
             <br />
             <div class="" style="position:relative;">
-                <p class="h5 d-inline-block"><strong>RD$ @ViewBag.Producto.Precio</strong></p>     
+                <p class="h5 d-inline-block"><strong>RD$ @ViewBag.Producto.Precio</strong></p>
                 <form asp-controller="Home" method="post">
                     <strong>Cantidad: </strong>
                     <select name="Cantidad">
@@ -35,17 +35,16 @@
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
-                     <input type="number"  value="@ViewBag.Producto.IdProducto" name="IdProducto" class="d-none"/>
+                    <input type="number" value="@ViewBag.Producto.IdProducto" name="IdProducto" class="d-none" />
                     <br />
-                    <button type="submit" asp-action="Comprar" class="btn border-0  mt-4 mb-5 px-4 py-2 d-inline-block " style="background: #FD5924; color: #fff;">Comprar ahora </button>
-                    <button type="submit" asp-action="addCarrito" class="btn border-0  mt-4 mb-5 px-4  py-2  d-inline-block" style="background: #85E30C; color: #fff; margin-left: 7%;">Añadir al carrito</button>
+                    <button type="button" onclick="ShowMap()" class="btn border-0  mt-4 mb-5 px-4 py-2 d-inline-block " style="background: #FD5924; color: #fff;">Comprar ahora </button>
+                    <button type="submit" asp-action="addCarrito" asp-controller="AdministrarCarrito" asp-area="Cliente" class="btn border-0  mt-4 mb-5 px-4  py-2  d-inline-block" style="background: #85E30C; color: #fff; margin-left: 7%;">Añadir al carrito</button>
                 </form>
-            
             </div>
-            
         </div>
     </div>
 </div>
+
 
 <div class="padre d-flex align-items-center justify-content-center" style="height:170px;">
     <p class="display-4 text-center" style="color: #FF6F41;">Productos similares</p>
@@ -56,14 +55,30 @@
 
         @foreach (Producto producto in ViewBag.Productos)
         {
-          
+
             <div class="item" style="position: relative;">
                 <div class="px-sm-4 pt-2" style="height: 350px;width:220px ;">
                     <div class="" style="height: 45%;">
                         <img src="@producto.Foto" class="img-fluid img-center" alt="">
                     </div>
                     <div class="text-center pt-sm-2" style="height: 30%;">
-                        <p>@producto.Nombre</p>
+                        @{
+                            string srt = producto.Nombre;
+                            if (srt.Length >= 38)
+                            {
+                                srt = srt.Substring(0, 33) + "...";
+                                <p>@srt</p>
+                            }
+                            else if (srt.Length <= 22)
+                            {
+                                <p>@producto.Nombre</p>
+                                <br />
+                            }
+                            else
+                            {
+                                <p>@producto.Nombre</p>
+                            }
+                        }
                         <h4>@producto.Precio $</h4>
                         <br />
                     </div>
@@ -72,9 +87,38 @@
                     </div>
                 </div>
             </div>
-          
+
         }
+
+        <input id="added" value="@ViewBag.Added" class="d-none" />
+        <input id="total" value="@ViewBag.Producto.Precio" class="d-none" />
 
     </div>
 </div>
 
+<script>
+
+    var added = document.getElementById("added").value;
+
+    if (added == "success") {
+        Swal.fire(
+            'Perfecto!',
+            'Se agrego el producto a su carrito!',
+            'success'
+        );
+    }
+
+    else if (added == "error") {
+        Swal.fire(
+            'Oop!',
+            'Algo debio haber salido mal.',
+            'error'
+        );
+    }
+
+</script>
+ 
+<!-- Include the PayPal JavaScript SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=AXo7HnZBirc_ek1bBKfGxjBtFZs3Ht6OxmwRsumSMzgInM_vJlUJ4J8JTgMJJRkDPMy2_tgqMzQrav8v&currency=USD"></script>
+
+<script src="~/js/ProcesoParaPagar.js"></script>

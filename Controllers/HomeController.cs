@@ -36,18 +36,13 @@ namespace Tienda_.Controllers
             // ViewBag.UserID = Request.Cookies["userID"];
             string session = HttpContext.Session.GetString("userID");
             ViewBag.UserID = session; 
-
-            if (session != null ) {
-                   
-             
-             }
+ 
             return View();
         }
 
+        [HttpGet]
         public async Task<IActionResult> Detalle_Producto(int? id)
         {
-
-
             var productoDB = await _contex.Producto.Where(x => x.IdProducto == id).FirstOrDefaultAsync();
             ViewBag.producto = productoDB;
             ViewBag.Productos = await _contex.Producto.Where(x => x.IdCategoria == productoDB.IdCategoria).ToArrayAsync();
@@ -55,8 +50,13 @@ namespace Tienda_.Controllers
             string session = HttpContext.Session.GetString("userID");
             ViewBag.UserID = session;
 
+            if (TempData.ContainsKey("added"))
+            {
+                ViewBag.Added = TempData["added"].ToString();
+            }
             return View();
         }
+
 
 
         [HttpGet]
@@ -75,37 +75,30 @@ namespace Tienda_.Controllers
 
             return View();
         }
-        
-        public async Task<IActionResult> addCarrito(Carrito cart) {
-            string idUser = HttpContext.Session.GetString("userID");
-            
-            if (idUser != null) {
 
-                cart.IdUsuario = Convert.ToInt32(idUser);
-
-                // add el los datos a la db 
-                await _contex.Carrito.AddAsync(cart);
-
-                // guardar los cambios realizados a la db 
-                int guardado = await _contex.SaveChangesAsync();
-
-                if (guardado > 0)
-                {
-                    return RedirectToAction("Detalle_Producto", "Home", new { id = cart.IdProducto }); 
-                }
-
-            }
-
-            return RedirectToAction("Login", "Cuenta");
-            
-        }
         public IActionResult Conctactanos()
-        {
+        {           
+            string session = HttpContext.Session.GetString("userID");
+            ViewBag.UserID = session;
             return View();
         }
 
- 
+        public async Task<IActionResult> BuscarProductos(string producto)
+        {
+
+            var listaProductos = await _contex.Producto.Where(x => x.Nombre.Contains(producto)).ToListAsync();
+
+            ViewBag.Productos = listaProductos;
+            ViewBag.categoria = "Resultados de la busqueda";
+            ViewBag.cantidad = listaProductos.Count();
+
+            string session = HttpContext.Session.GetString("userID");
+            ViewBag.UserID = session;
+
+            return View("Categorias");
+        }
         
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

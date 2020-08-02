@@ -1,0 +1,30 @@
+﻿@{ Layout = "~/Views/Shared/_Layout_administrador.cshtml"; }
+@model Categoria
+
+<div class="container" style="margin-top:180px; border:1px  solid #d3cdcd;">
+    <div class="row">
+        <div class=" mx-auto m-3  w-50">
+            <h4 class="text-orange text-center">Agregar Categoria</h4>
+            <form asp-action="Create" asp-controller="ListaCategorias" asp-area="Admin">
+
+
+                <div class="mt-1 ">
+                    <input asp-for="Nombre" class="form-control text-center" placeholder="Nombre" type="text" style="width:75%; margin: auto; border-radius: 50px; border: none; background-color: rgb(255, 114, 68, 0.1);" />
+                </div>
+
+                <div class="mt-4 ">
+                    <input class="form-control text-center" placeholder="Confirmar Nombre" type="text" style=" width:75%; margin: auto; border-radius: 50px; border: none; background-color: rgb(255, 114, 68, 0.1);" />
+                </div>
+
+                <div class="mt-4 text-center">
+                    <input class="btn" type="submit" value="Guardar" style="width:40%; margin: auto; border: none;  border-radius: 50px; background-color: #FD5924; color:#fff;" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+<script src="https://unpkg.com/ionicons@5.1.2/dist/ionicon"></script>
+

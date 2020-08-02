@@ -1,6 +1,12 @@
 ﻿
 @{
     ViewData["Title"] = "Contáctanos";
+
+    if (ViewBag.userID != null)
+    {
+        Layout = "~/Views/Shared/_LayoutLogged.cshtml";
+
+    }
 }
 
 <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
@@ -14,70 +20,97 @@
 
 <div class="container">
     <div class="mt-4 mb-3" style="padding: 2%; border: 1px solid rgb(192, 192, 192); ">
-        <div class="container">
-            <div class="row justify-content-center mb-2">
-                <div class="rounded-circle justify-content-center align-content-center" style=" width: 50px; height: 50px; border: 1px solid #808080;">
-                    <ion-icon name="home" class="ml-3 mt-3" style="font-size: 18px"></ion-icon>
+       
+        <div class="col-12 col-sm-9 col-md-7 col-lg-6 mx-auto">
+            <div class="row">
+                <div class="col-3 padre justify-content-end">
+
+                    <div class="rounded-circle padre justify-content-center" style=" width: 50px; height: 50px; border: 1px solid #808080;">
+                        <ion-icon name="home" class="" style="font-size: 18px"></ion-icon>
+                    </div>
+
                 </div>
-                <div class="ml-3">
+                <div class="col-9">
                     <strong>Dirección del SuperMercado</strong>
-                    <p class="mt-2" style="line-height:5px;">Autopista Las Américas, Km. 27, PCSD,</p>
+                    <p class="mt-2" style="line-height:15px;">Autopista Las Américas, Km. 27, PCSD,</p>
                     <p style="line-height:5px;"> La Caleta, Boca Chica.</p>
                 </div>
-
             </div>
-            <div class="row justify-content-center mb-2" style="margin-right: 8%">
-                <div class="rounded-circle" style=" width: 50px; height: 50px; border: 1px solid #808080;">
-                    <ion-icon name="mail-outline" class="ml-3 mt-3" style="font-size: 18px"></ion-icon>
+        </div>
+
+        <div class="col-12 col-sm-9 col-md-7 col-lg-6 mx-auto">
+            <div class="row">
+                <div class="col-3 padre justify-content-end">
+
+                    <div class="rounded-circle padre justify-content-center" style=" width: 50px; height: 50px; border: 1px solid #808080;">
+                        <ion-icon name="mail-outline" class="" style="font-size: 18px"></ion-icon>
+                    </div>
+
                 </div>
-                <div class="ml-3">
+                <div class="col-9">
                     <strong>Correo Electrónico</strong>
                     <p>info@ameraxpress.com</p>
                 </div>
-
             </div>
-            <div class="row justify-content-center mb-2" style="margin-right: 14%">
-                <div class="rounded-circle" style=" width: 50px; height: 50px; border: 1px solid #808080;">
-                    <ion-icon name="call-outline" class="ml-3 mt-3" style="font-size: 18px"></ion-icon>
+        </div>
+
+        <div class="col-12 col-sm-9 col-md-7 col-lg-6 mx-auto">
+            <div class="row">
+                <div class="col-3 padre justify-content-end">
+
+                    <div class="rounded-circle padre justify-content-center" style=" width: 50px; height: 50px; border: 1px solid #808080;">
+                        <ion-icon name="call-outline" class="" style="font-size: 18px"></ion-icon>
+                    </div>
+
                 </div>
-                <div class="ml-3">
+                <div class="col-9">
                     <strong>Teléfono</strong>
                     <p>(809) 738-4852</p>
                 </div>
-
             </div>
+        </div>
 
-                <div class="row justify-content-center mb-2" style="margin-left: 3%">
-                <div class="rounded-circle" style=" width: 50px; height: 50px; border: 1px solid #808080;">
-                    <ion-icon name="time-outline" class="ml-3 mt-3" style="font-size: 18px"></ion-icon>
+        <div class="col-12 col-sm-9 col-md-7 col-lg-6 mx-auto">
+            <div class="row">
+                <div class="col-3 padre justify-content-end">
+
+                    <div class="rounded-circle padre justify-content-center" style=" width: 50px; height: 50px; border: 1px solid #808080;">
+                        <ion-icon name="time-outline" class="" style="font-size: 18px"></ion-icon>
+                    </div>
+
                 </div>
-                <div class="ml-3">
+                <div class="col-9">
                     <strong>Horario</strong>
-                    <p class="mt-2" style="line-height:5px;">Lunes a Domingos de 8:00am a 11:00pm,</p>
-                    <p style="line-height:5px;">Sábados y Domingos de 9:00am a 10:00pm.</p>
-                  </div>
-
+                    <p class="mt-2" style="line-height:15px;">Lunes a Domingos de 8:00am a 11:00pm,</p>
+                    <p style="line-height:15px;">Sábados y Domingos de 9:00am a 10:00pm.</p>
                 </div>
-
-            <div class="row justify-content-center mb-2" style="margin-right: 8%">
-                    <div class="rounded-circle" style=" width: 50px; height: 50px; border: 1px solid #808080;">
-                        <ion-icon name="construct-outline" class="ml-3 mt-3" style="font-size: 18px"></ion-icon>
-                    </div>
-                    <div class="ml-3">
-                        <strong>Software Developers</strong>
-
-                        <p class="mt-2" style="line-height:8px;">Eiron Díaz</p>
-                        <p style="line-height:8px;">Oscar Mora</p>
-                        <p style="line-height:8px;">Felix Ynfante</p>
-                        <p style="line-height:8px;">Erick Morales</p>
-                        <p style="line-height:8px;">Daniel Tejada</p>
-                        <p style="line-height:8px;">Lency Almonte</p>
-                        <p style="line-height:8px;">Gabriel Gerónimo</p>
-                    </div>
-
             </div>
         </div>
 
 
+        <div class="col-12 col-sm-9 col-md-7 col-lg-6 mx-auto">
+            <div class="row">
+                <div class="col-3 d-flex justify-content-end">
+
+                    <div class="rounded-circle padre justify-content-center mt-2" style=" width: 50px; height: 50px; border: 1px solid #808080;">
+                        <ion-icon name="construct-outline" class="" style="font-size: 18px"></ion-icon>
+                    </div>
+
+                </div>
+                <div class="col-9">
+                    <strong>Software Developers</strong>
+                    <p class="mt-2" style="line-height:8px;">Eiron Díaz</p>
+                    <p style="line-height:8px;">Oscar Mora</p>
+                    <p style="line-height:8px;">Felix Ynfante</p>
+                    <p style="line-height:8px;">Erick Morales</p>
+                    <p style="line-height:8px;">Daniel Tejada</p>
+                    <p style="line-height:8px;">Lency Almonte</p>
+                    <p style="line-height:8px;">Gabriel Gerónimo</p>
+                </div>
+            </div>
+        </div>
+
     </div>
-</div>
+
+ </div>
+
