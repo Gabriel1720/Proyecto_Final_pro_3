@@ -1,8 +1,8 @@
 ﻿@model ReflectionIT.Mvc.Paging.PagingList<Orden>
 @*@model IEnumerable<Orden>*@
+    <h3 class="text-center mt-4" style="color: #FD5924;">PEDIDOS</h3>
 
-
-<a class="btn text-white text-center" asp-controller="GestionPedidos" asp-action="GetAllPedidosMap" value="Exportar a CSV" style="background-color: #FF561F; margin-top:30px; margin-left:80%; margin-right:20%; height:35px; width:150px;">Ver en el mapa</a>
+<a class="btn text-white text-center" asp-controller="GestionPedidos" asp-action="GetAllPedidosMap"  style="background-color: #FF561F; margin-top:20px; margin-left:80%; margin-right:20%; height:35px; width:150px;">Ver en el mapa</a>
 <form asp-action="Index" method="get">
     <div class="col-9 col-lg-6 mt-4 d-flex py-2 py-md-0 padre mx-auto bg-light pr-0">
         <ion-icon name="search-outline" class="ml-5 icono"></ion-icon>
@@ -46,9 +46,8 @@
                     @Html.DisplayFor(model => Item.IdStatusOrdenNavigation.Nombre)
                 </td>
                 <td>
-                    @*<a asp-action="Details" asp-route-id="@ItemProducto.IdProducto">Detalles</a>
-                        <a asp-action="Edit" asp-route-id="@ItemProducto.IdProducto">Editar</a>
-                        <a asp-action="Delete" asp-route-id="@ItemProducto.IdProducto">Eliminar</a>*@
+                    <a asp-action="Details" asp-route-id="@Item.IdOrden"  class="btn text-white bg-orange"><ion-icon name="eye-outline"></ion-icon></a>
+                    <a asp-action="Manage" asp-route-id="@Item.IdOrden"  class="btn btn-info"><ion-icon name="create-outline"></ion-icon></a>
                 </td>
             </tr>
         }

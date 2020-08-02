@@ -1,4 +1,6 @@
-﻿<div class="container mt-3 overflow-auto">
+﻿@model IEnumerable<Orden>
+
+<div class="container mt-3 overflow-auto">
     <div class="">
         <a class="text-orange" href="#">Volver a la lista</a>
         <h2 class="text-orange d-inline" style="margin-left: 25%;">DETALLE DEL PEDIDO</h2>
@@ -9,14 +11,13 @@
             <div class="container  w-50">
                 <div class="row">
                     <div class="w-50 text-orange">
-                        <p>Nombre del usuario:</p>
-                        <p>Apellidos:</p>
+                        <p>Nombre:</p>
+                        <p>Apellido:</p>
                         <p>Correo:</p>
-                        <p>Direccion:</p>
-                        <p>Latitud y Longitud:</p>
-                        <p>Fecha:</p>
-                        <p>Estado:</p>
-
+                        <p>Direccio:</p>
+                        <p>Latitud y longitud:</p>
+                        <p>Fecha del pedido:</p>
+                        <p>Estado del pedido:</p>
                     </div>
 
                     @*columna interna 2 atributos*@
