@@ -54,6 +54,7 @@ namespace Tienda_.Controllers
             {
                 ViewBag.Added = TempData["added"].ToString();
             }
+ 
             return View();
         }
 
@@ -97,7 +98,8 @@ namespace Tienda_.Controllers
 
             return View("Categorias");
         }
-        
+
+ 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
