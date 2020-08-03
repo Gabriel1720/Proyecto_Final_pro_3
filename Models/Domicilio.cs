@@ -16,11 +16,11 @@ namespace Proyecto_final_pro_3.Models
         public int IdDomicilio { get; set; }
         public double? Longitud { get; set; }
         public double? Latitud { get; set; }
-        [StringLength(100)]
-        public string Direccion { get; set; }
         [Column(TypeName = "text")]
         public string Comentario { get; set; }
         public int IdUsuario { get; set; }
+        [StringLength(15)]
+        public string Telefono { get; set; }
 
         [ForeignKey(nameof(IdUsuario))]
         [InverseProperty(nameof(Usuario.Domicilio))]
