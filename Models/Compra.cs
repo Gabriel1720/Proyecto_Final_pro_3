@@ -14,6 +14,7 @@ namespace Proyecto_final_pro_3.Models
         public int? Cantidad { get; set; }
         public int IdUsuario { get; set; }
         public int IdProducto { get; set; }
+        public int IdOrden { get; set;  }
 
         [ForeignKey(nameof(IdProducto))]
         [InverseProperty(nameof(Producto.Compra))]
@@ -21,5 +22,8 @@ namespace Proyecto_final_pro_3.Models
         [ForeignKey(nameof(IdUsuario))]
         [InverseProperty(nameof(Usuario.Compra))]
         public virtual Usuario IdUsuarioNavigation { get; set; }
+        [ForeignKey(nameof(IdOrden))]
+        [InverseProperty(nameof(Usuario.Compra))]
+        public virtual Usuario IdOrden { get; set; }
     }
 }

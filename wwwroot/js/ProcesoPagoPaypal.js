@@ -175,7 +175,8 @@ function PaypalPay() {
                     showConfirmButton: true,
                     confirmButtonText: 'Finalizar compra',
                     preConfirm: () => {
-                        conpraAprovada(); 
+                        var id = model.Id; //if you want to pass an Id parameter
+                        window.location.href = '@Url.Action("Comprado", "")/' + id;
                     }
                 });
             });
@@ -187,5 +188,5 @@ function PaypalPay() {
 
 function compraAprovada() {
     var id = model.Id; //if you want to pass an Id parameter
-    window.location.href = '@Url.Action("Comprado", "Home")/' + id;
+    window.location.href = '@Url.Action("Comprado", "")/' + id;
 } 

@@ -99,6 +99,14 @@ namespace Tienda_.Controllers
             return View("Categorias");
         }
 
+
+
+        public async Task<IActionResult> Comprado(IEquatable<Producto> compra) {
+             
+            return View(); 
+                 
+        }
+
  
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

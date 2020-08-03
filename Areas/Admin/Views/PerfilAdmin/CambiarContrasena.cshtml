@@ -1,32 +1,35 @@
-﻿<div class="border border-danger rounded mx-auto mt-5 text-center p-4 registro" style="height: 58%;">
-
-    <h3 class="text-center" style="color: #FF561F;">Contraseña</h3>
-    <h6 class="text-center mt-2">Cambiar contraseña del administrador</h6>
+﻿
+<h3 class="text-center mt-5 mb-2" style="color: #FF561F;">ACTUALIZAR CONTRASEÑA</h3>
+<h6 class="text-center mb-4">DATOS DE ACCESO DEL ADMINISTRADOR</h6>
+<div class="border border-secondary rounded mx-auto mt-2 text-center p-4 registro" style="height: 58%;">
 
     <form method="post" asp-controller="PerfilAdmin" asp-action="CambiarPassword">
-        <div class="col-11 col-sm-11 col-md-11 mx-auto mt-5 mb-4">
+        <div class="col-11 col-sm-11 col-md-11 mx-auto mt-3 mb-4">
             @if (ViewBag.error_campos != null)
             {
                 <label class="text-danger">@ViewBag.error_campos</label>
             }
-            <input name="contrasena_actual" type="password" class="form-control" placeholder="Contraseña actual" style="width: 70%; margin: auto; border-radius: 50px; border: none; background-color: rgb(255, 114, 68, 0.1);">
+            <label for="Contraseña" style="margin-right: 35%;">Contraseña Actual</label>
+            <input name="contrasena_actual" type="password" class="form-control text-center" style="width: 70%; margin: auto; border-radius: 50px; border: none; background-color: rgb(255, 114, 68, 0.1);">
             @if (ViewBag.error_usuario != null)
             {
                 <label class="text-danger">@ViewBag.error_usuario</label>
             }
         </div>
-        <div class="col-11  mx-auto mt-5 mb-4">
-            <input name="nueva_contrasena" type="password" class="form-control" placeholder="Nueva contraseña" style="width: 70%; margin: auto; border-radius: 50px; border: none; background-color: rgb(255, 114, 68, 0.1);">
+        <div class="col-11  mx-auto mt-4 mb-4">
+            <label for="nuevaContraseña" style="margin-right: 35%;">Nueva Contraseña</label>
+            <input name="nueva_contrasena" type="password" class="form-control text-capitalize" style="width: 70%; margin: auto; border-radius: 50px; border: none; background-color: rgb(255, 114, 68, 0.1);">
         </div>
         <div class="col-11 mx-auto mt-4 mb-4">
-            <input name="confirmar_contrasena" type="password" class="form-control" placeholder="Confirmar contraseña" style="width: 70%; margin: auto; border-radius: 50px; border: none; background-color: rgb(255, 114, 68, 0.1);">
+            <label for="confirmarContraseña" style="margin-right: 28%;">Confirmar Contraseña</label>
+            <input name="confirmar_contrasena" type="password" class="form-control text-center" style="width: 70%; margin: auto; border-radius: 50px; border: none; background-color: rgb(255, 114, 68, 0.1);">
             @if (ViewBag.error_contrasena != null)
             {
                 <label class="text-danger">@ViewBag.error_contrasena</label>
             }
         </div>
-        <div class="col-4 col-sm-7 col-md-5 mx-auto mt-5">
-            <input type="submit" value="Aceptar" class="btn btn-block input-round text-white" style="background-color: #FD5924;">
+        <div class="col-4 col-sm-7 col-md-5 mx-auto mt-4 mb-2">
+            <input type="submit" value="Guardar Contraseña" class="btn btn-block input-round text-white" style="background-color: #FD5924;">
         </div>
     </form>
 </div>
