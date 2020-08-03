@@ -18,19 +18,31 @@ namespace Proyecto_final_pro_3.Areas.Cliente.Controllers
         {
             string idUser = HttpContext.Session.GetString("userID");
             int id = Int32.Parse(idUser);
-            var carrito = await _context.Carrito.Include(x => x.IdProductoNavigation).Where(x => x.IdUsuario == id).ToListAsync();
-            ViewBag.Total = await _context.Carrito.Where(x => x.IdUsuario == 47)
-                            .SumAsync(x => x.Cantidad * x.IdProductoNavigation.Precio);
+            var carrito = await _context.Carrito.Include(x => x.IdProductoNavigation).Where(x => x.IdUsuario == id).ToListAsync();         
 
-            var totalProducto = await _context.Carrito.Where(x => x.IdUsuario == 47).ToListAsync();
-
-            double descuento = 0;
-            foreach(Carrito car in totalProducto)
+            var ofertas = await _context.Ofertas.ToListAsync();
+            double? TotalDescuento = 0;
+            double? SubTotal = 0;
+            double? TotalPagar = 0;
+            foreach (var itemCarrito in carrito)
             {
-                descuento += Convert.ToDouble(_context.Ofertas.Where(x => x.IdProducto == car.IdProducto).Sum(x => car.IdProductoNavigation.Precio - x.Precio));
+                SubTotal = SubTotal + itemCarrito.IdProductoNavigation.Precio * itemCarrito.Cantidad;
+                foreach (var itemOferta in ofertas)
+                {
+                    if (itemCarrito.IdProducto == itemOferta.IdProducto)
+                    {
+                        if (itemOferta.Precio >= 0)
+                        {
+                            TotalDescuento = TotalDescuento + itemOferta.Precio * itemCarrito.Cantidad;
+                        }
+                    }
+                }
             }
+            TotalPagar = SubTotal - TotalDescuento;
 
-            
+            ViewBag.Descuento = TotalDescuento;
+            ViewBag.SubTotal = SubTotal;
+            ViewBag.Total = TotalPagar;
 
             string session = HttpContext.Session.GetString("userID");
             ViewBag.UserID = session;
