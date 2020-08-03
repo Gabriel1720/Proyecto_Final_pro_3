@@ -15,10 +15,9 @@
             <Text>
             var latitud = @Model.ElementAt(i).IdDomicilioNavigation.Latitud.ToString().Replace(",", ".");
             var longitud = @Model.ElementAt(i).IdDomicilioNavigation.Longitud.ToString().Replace(",", ".");
-            marker = new L.marker([latitud, longitud]).addTo(map)
-                .bindPopup('@Model.ElementAt(i).IdUsuarioNavigation.Nombre');
-
-    console.log('@Model.ElementAt(1).IdDomicilioNavigation.Latitud');
+            marker = new L.marker([latitud, longitud]).addTo(map);
+               @* .bindPopup('@Model.ElementAt(i).IdUsuarioNavigation.Nombre');
+    console.log('@Model.ElementAt(1).IdDomicilioNavigation.Latitud');*@
             </Text>
     }
 

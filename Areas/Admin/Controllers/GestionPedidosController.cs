@@ -29,15 +29,14 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
             if (!String.IsNullOrEmpty(PedidoBuscar))
             {
                 Guardar.PedidoBucar = PedidoBuscar;
-                pedidos = await SearhPedido(PedidoBuscar);
-                model = PagingList.Create(pedidos, 5, page);               
+                pedidos = await SearhPedido(PedidoBuscar);                            
             }
             else
             {
                 Guardar.PedidoBucar = "";
-                pedidos = await GetAllPedidos();
-                model = PagingList.Create(pedidos, 5, page);
+                pedidos = await GetAllPedidos();               
             }
+            model = PagingList.Create(pedidos, 5, page);
             if (pedidos == null)
             {
                 return NotFound();
@@ -55,6 +54,7 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            ViewData["Status"] = new SelectList(_context.StatusOrden, "IdStatusOrden", "Nombre");
             return View(pedidos);
         }
 

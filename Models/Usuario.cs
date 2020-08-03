@@ -19,21 +19,16 @@ namespace Proyecto_final_pro_3.Models
         [Key]
         public int IdUsuario { get; set; }
         [StringLength(50)]
-        [Required(ErrorMessage = "Debe ingresar un nombre.")]
         public string Nombre { get; set; }
         [StringLength(50)]
-        [Required(ErrorMessage = "Debe ingresar un apellido.")]
         public string Apellido { get; set; }
         [Column(TypeName = "date")]
-        [Required(ErrorMessage = "Debe ingresar un fecha de nacimiento.")]
         public DateTime? FechaNacimiento { get; set; }
         [StringLength(100)]
-        [EmailAddress(ErrorMessage = "Ingrese un correo electronico valido.")]
         public string Correo { get; set; }
         public int IdRol { get; set; }
         [Column("_Password")]
         [StringLength(50)]
-        [Required(ErrorMessage = "Debe ingresar una contraseña.")]
         public string Password { get; set; }
 
         [ForeignKey(nameof(IdRol))]
