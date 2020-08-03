@@ -69,6 +69,11 @@ namespace Proyecto_final_pro_3.Models
 
                 entity.Property(e => e.Fecha).HasDefaultValueSql("(getdate())");
 
+                entity.HasOne(d => d.IdOrdenNavigation)
+                    .WithMany(p => p.Compra)
+                    .HasForeignKey(d => d.IdOrden)
+                    .HasConstraintName("FK_compra_orden");
+
                 entity.HasOne(d => d.IdProductoNavigation)
                     .WithMany(p => p.Compra)
                     .HasForeignKey(d => d.IdProducto)
@@ -102,7 +107,7 @@ namespace Proyecto_final_pro_3.Models
                 entity.HasKey(e => e.IdDomicilio)
                     .HasName("PK_IdDomicilio");
 
-                entity.Property(e => e.Direccion).IsUnicode(false);
+                entity.Property(e => e.Telefono).IsUnicode(false);
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Domicilio)

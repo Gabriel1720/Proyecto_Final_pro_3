@@ -84,5 +84,10 @@ namespace Proyecto_final_pro_3.Areas.Cliente.Controllers
                 return View("CambiarContraseña", usuario);
             }                   
         }
+
+        public IActionResult Ordenes()
+        {
+            return View();
+        }
     }
 }
