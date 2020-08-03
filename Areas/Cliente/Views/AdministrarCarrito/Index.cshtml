@@ -7,9 +7,10 @@
 
     }
 }
+ 
 
 @model IEnumerable<Proyecto_final_pro_3.Models.Carrito>
-<div class="row">
+<div class="row mx-0">
 
     <p class="col-11 h4 pl-5 mt-3">Mi carrito de compra</p>
 
@@ -17,7 +18,7 @@
 
         @foreach (Carrito carrito in Model)
         {
-            <div class="row border py-4 pl-0" style="margin-top: 3%; margin-left: 4%; position: relative;">
+            <div class="row shadow-sm py-4 pl-0" style="margin-top: 3%; margin-left: 4%; position: relative;">
 
                 <a asp-controller="AdministrarCarrito" asp-action="Delete" asp-route-id="@carrito.IdCarrito" class="bg-danger p-0 btn text-white"
                    style="position: absolute; right: -15px; width:30px; height: 30px; top: -10px;">
@@ -40,6 +41,12 @@
 
                 </div>
             </div>
+
+            if (carrito == null) {
+               <img src="https://image.freepik.com/free-vector/shopping-supermarket-cart-illustration_212216-20.jpg" width="400" class="mx-auto img-fluid img-center" /> 
+             
+            }
+
         }
 
     </div>
@@ -55,13 +62,17 @@
                 <hr class="col-10">
                 <p class="col-5 h5">Total</p>
                 <p class="col-6 h5 p-0">RD$ @ViewBag.Total</p>
-
+                <input id="total" value="@ViewBag.Total" class="d-none" />
                 <a href="#" class="btn col-11 mx-auto mt-4 text-white" style="background-color: #323232; height: 7%; border-radius: 10px;">Hacer pedido</a>
                 <p class="col-12 h6 text-center mt-3">o</p>
                 <p class="col-12" style="font-size: small;">Pagar RD$120.00 con paypal</p>
-                <a class="btn col-11 mx-auto text-white" asp-route-id="5" style="background-color: #FDC80E; height: 7%; border-radius: 10px;">PayPal</a>
+                <button class="btn bg-warning rounded mx-auto px-5 py-2" onclick="ShowMap()"><img src="~/iconos/Paypal.png" width="90" /></button>
 
             </div>
         </div>
     </div>
 </div>
+<!-- Include the PayPal JavaScript SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=AXo7HnZBirc_ek1bBKfGxjBtFZs3Ht6OxmwRsumSMzgInM_vJlUJ4J8JTgMJJRkDPMy2_tgqMzQrav8v&currency=USD"></script>
+
+<script src="~/js/ProcesoParaPagar.js"></script>

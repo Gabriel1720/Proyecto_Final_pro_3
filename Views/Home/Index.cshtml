@@ -1,14 +1,15 @@
 ﻿@model Proyecto_final_pro_3.Models.Usuario
 
 @{
-   ViewData["Title"] = "Home Page";
-  if (ViewBag.userID != null) {
-      Layout = "~/Views/Shared/_LayoutLogged.cshtml";
+    ViewData["Title"] = "Home Page";
+    if (ViewBag.userID != null)
+    {
+        Layout = "~/Views/Shared/_LayoutLogged.cshtml";
 
     }
     List<Slider> lista = ViewBag.Foto;
 }
- 
+
 <div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
@@ -26,10 +27,10 @@
             <img src="@imgSrc2" class="d-block w-100" alt="..." style="max-height:500px;">
         </div>
         <div class="carousel-item">
-                @{
+            @{
                 var base3 = Convert.ToBase64String(lista.ElementAt(2).Foto);
                 var imgSrc3 = string.Format("data:image/gif;base64,{0}", base3);
-            }           
+            }
             <img src="@imgSrc3" class="d-block w-100" alt="..." style="max-height:500px;">
         </div>
     </div>
@@ -149,3 +150,4 @@
         </div>
     </div>
 </div>
+ 

@@ -22,10 +22,10 @@
             @Html.TextBoxFor(d => d.Correo, "", new { @class = "form-control input-round", @placeholder = "Correo Electronico" })
         </div>
         <div class="col-12 col-sm-9 mx-auto mt-2 mb-4">
-            @Html.TextBoxFor(d => d.Password, "", new { @class = "form-control input-round", @placeholder = "Contraseña" })
+            @Html.TextBoxFor(d => d.Password, "", new { @class = "form-control input-round", Type="password", @placeholder = "Contraseña" })
         </div>
         <div class="col-12 col-sm-9 mx-auto mt-4 mb-4">
-            <input type="text" placeholder="Repita contraseña" name="repPass" class="form-control input-round">
+            <input type="password" placeholder="Repita contraseña" name="repPass" class="form-control input-round">
         </div>
         <div class="col-12 col-sm-4 mx-auto mt-5">
             <input type="submit" value="Registrarse" class="btn btn-block input-round text-white" style="background-color: #FD5924;">

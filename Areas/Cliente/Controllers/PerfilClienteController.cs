@@ -25,5 +25,10 @@ namespace Proyecto_final_pro_3.Areas.Cliente.Controllers
         {
             return View();
         }
+
+        public IActionResult CambiarContraseña()
+        {
+            return View();
+        }
     }
 }
