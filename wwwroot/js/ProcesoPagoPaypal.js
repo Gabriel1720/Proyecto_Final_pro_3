@@ -175,8 +175,7 @@ function PaypalPay() {
                     showConfirmButton: true,
                     confirmButtonText: 'Finalizar compra',
                     preConfirm: () => {
-                        var id = model.Id; //if you want to pass an Id parameter
-                        window.location.href = '@Url.Action("Comprado", "")/' + id;
+                        compraAprovada(); 
                     }
                 });
             });
@@ -187,6 +186,24 @@ function PaypalPay() {
 
 
 function compraAprovada() {
-    var id = model.Id; //if you want to pass an Id parameter
-    window.location.href = '@Url.Action("Comprado", "")/' + id;
+     $.ajax({
+            type: "POST",
+            url: "Default.aspx/Sumar",
+            data: '{Valor1: ' + num1 + ', Valor2: ' + num2 + '}',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: resultado,
+            error: errores
+       });
 } 
+
+function resultado(msg) {
+    //msg.d tiene el resultado devuelto por el método
+    $('#num3').val(msg.d);
+}
+
+function errores(msg) {
+    //msg.responseText tiene el mensaje de error enviado por el servidor
+    alert('Error: ' + msg.responseText);
+}
+

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -101,14 +102,17 @@ namespace Tienda_.Controllers
 
 
 
-        public async Task<IActionResult> Comprado(IEquatable<Producto> compra) {
-             
-            return View(); 
+        public async  Task<IActionResult> Comprado(IEnumerable<CompraProductos> compra) {
+
+            foreach (var p in compra)
+            {
+             int affeted = await _contex.Database.ExecuteSqlRawAsync($"comprar {p.IdUser}, {p.cantidad}, {p.IdProducto}, {p.total}, {p.precio}, {p.latitud}, {p.longitud}, {p.comentario}, {p.telefono}");
+            }
+            return RedirectToAction("Index"); 
                  
         }
 
  
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -1,0 +1,66 @@
+﻿@model ReflectionIT.Mvc.Paging.PagingList<Orden>
+@*@model IEnumerable<Orden>*@
+    <h3 class="text-center mt-4" style="color: #FD5924;">PEDIDOS</h3>
+
+<a class="btn text-white text-center" asp-controller="GestionPedidos" asp-action="GetAllPedidosMap"  style="background-color: #FF561F; margin-top:20px; margin-left:80%; margin-right:20%; height:35px; width:150px;">Ver en el mapa</a>
+<form asp-action="Index" method="get">
+    <div class="col-9 col-lg-6 mt-4 d-flex py-2 py-md-0 padre mx-auto bg-light pr-0">
+        <ion-icon name="search-outline" class="ml-5 icono"></ion-icon>
+        <input id="PedidoBuscar" name="PedidoBuscar" value="@Guardar.PedidoBucar" placeholder="Categoria o nombre del producto" type="text" class="fi w-100 ml-2 border-0 rounded-0 bg-light">
+        <input type="submit" value="Buscar" class="btn" style="color:#fff; background:#FF561F" />
+    </div>
+</form>
+
+<table class="table table-hover  table-responsive-sm" style="margin-top:45px; margin-left:20px; margin-right:20px;">
+
+    <thead>
+        <tr>
+            <th>
+                <span style="color:#FF561F; font-size:20px;">Correo</span>
+            </th>
+            <th>
+                <span style="color:#FF561F; font-size:20px;">Nombre</span>
+            </th>
+            <th>
+                <span style="color:#FF561F; font-size:20px;">Latidus y longitud</span>
+            </th>
+            <th>
+                <span style="color:#FF561F; font-size:20px;">Status</span>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => Item.IdUsuarioNavigation.Correo)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => Item.IdUsuarioNavigation.Nombre)
+                </td>
+                <td>
+                    <span>@Html.DisplayFor(model => Item.IdDomicilioNavigation.Latitud) </span> <span>@Html.DisplayFor(model => Item.IdDomicilioNavigation.Longitud)</span>
+                </td>
+                <td>
+                    @Html.DisplayFor(model => Item.IdStatusOrdenNavigation.Nombre)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@Item.IdOrden"  class="btn text-white bg-orange"><ion-icon name="eye-outline"></ion-icon></a>
+                    <a asp-action="Manage" asp-route-id="@Item.IdOrden"  class="btn btn-info"><ion-icon name="create-outline"></ion-icon></a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+<script>
+    var elemento = document.getElementById('PedidoBuscar').value;
+    @Guardar.PedidoBucar = elemento;
+</script>
+
+
+<nav aria-label="Employee paging" class="" style="width:150px; margin: 0 auto;">
+    @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model })
+</nav>

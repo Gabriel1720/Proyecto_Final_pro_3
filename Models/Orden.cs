@@ -9,6 +9,7 @@ namespace Proyecto_final_pro_3.Models
     {
         public Orden()
         {
+            Compra = new HashSet<Compra>();
             DetalleOrden = new HashSet<DetalleOrden>();
         }
 
@@ -31,6 +32,8 @@ namespace Proyecto_final_pro_3.Models
         [ForeignKey(nameof(IdUsuario))]
         [InverseProperty(nameof(Usuario.Orden))]
         public virtual Usuario IdUsuarioNavigation { get; set; }
+        [InverseProperty("IdOrdenNavigation")]
+        public virtual ICollection<Compra> Compra { get; set; }
         [InverseProperty("IdOrdenNavigation")]
         public virtual ICollection<DetalleOrden> DetalleOrden { get; set; }
     }
