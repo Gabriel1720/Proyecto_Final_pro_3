@@ -22,6 +22,16 @@ namespace Proyecto_final_pro_3.Areas.Cliente.Controllers
             ViewBag.Total = await _context.Carrito.Where(x => x.IdUsuario == 47)
                             .SumAsync(x => x.Cantidad * x.IdProductoNavigation.Precio);
 
+            var totalProducto = await _context.Carrito.Where(x => x.IdUsuario == 47).ToListAsync();
+
+            double descuento = 0;
+            foreach(Carrito car in totalProducto)
+            {
+                descuento += Convert.ToDouble(_context.Ofertas.Where(x => x.IdProducto == car.IdProducto).Sum(x => car.IdProductoNavigation.Precio - x.Precio));
+            }
+
+            
+
             string session = HttpContext.Session.GetString("userID");
             ViewBag.UserID = session;
             return View(carrito);
