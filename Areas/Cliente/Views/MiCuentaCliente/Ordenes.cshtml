@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Proyecto_final_pro_3.Models.Pedidos>
     <div>
         <h2 class="text-center mt-4" style="color: #FD5924;">MIS ÓRDENES</h2>
 
@@ -6,15 +6,32 @@
             <table class="table table-responsive" style="margin-left: 16%">
                 <thead class="thead-light">
                     <tr>
-                        <th style="color: #FD5924;">Pedido</th>
-                        <th style="color: #FD5924;">Compra</th>
-                        <th style="color: #FD5924;">Entrega</th>
-                        <th style="color: #FD5924;">Estatus</th>
+                        <th style="color: #FD5924;">Fecha</th>
+                        <th style="color: #FD5924;">Latitud y Longitud</th>
+                        <th style="color: #FD5924;">Estado</th>
                         <th style="color: #FD5924;">Monto </th>
                         <th style="color: #FD5924;">Opciones</th>
                     </tr>
+
                 </thead>
 
+                <tbody>
+                    @foreach (var pedidos in Model) 
+                    {
+                        <tr>
+                            <td>@pedidos.Fecha</td>
+                            <td>@pedidos.latlong</td>
+                            <td>@pedidos.Estado</td>
+                            <td>@pedidos.Monto</td>
+                            <td>
+                                <a asp-route-id="@pedidos.Id" asp-controller="" asp-action="" asp-area="" class="col-10 text-center padre pl-4 btn" style="background-color: #FD5924; height:30px; width:150px;">
+                                    <p class="m-0 d-inline-block text-white">Detalles</p>
+                                    <ion-icon class="ml-2 d-inline-block icono text-white" name="eye-outline"></ion-icon>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
 
             </table>
 
