@@ -26,16 +26,16 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
                     Guardar.Srt = null;
                 } else if (srt != "0")
                 {
-                    Guardar.Srt = srt;
+                    Guardar.Srt = srt.Trim();
                     orden = _context.Orden.AsNoTracking().Include(x => x.IdUsuarioNavigation)
-                    .Where(x => x.IdUsuarioNavigation.Nombre == Guardar.Srt || x.IdUsuarioNavigation.Correo == Guardar.Srt)
+                    .Where(x => x.IdUsuarioNavigation.Nombre.Contains(Guardar.Srt) || x.IdUsuarioNavigation.Correo.Contains(Guardar.Srt))
                     .OrderBy(x => x.IdOrden);
                 }                          
             }
             else if (!String.IsNullOrEmpty(Guardar.Srt))
             {
                 orden = _context.Orden.AsNoTracking().Include(x => x.IdUsuarioNavigation)
-                .Where(x => x.IdUsuarioNavigation.Nombre == Guardar.Srt || x.IdUsuarioNavigation.Correo == Guardar.Srt)
+                .Where(x => x.IdUsuarioNavigation.Nombre.Contains(Guardar.Srt) || x.IdUsuarioNavigation.Correo.Contains(Guardar.Srt))
                 .OrderBy(x => x.IdOrden);
             }
             else if (srt == "0")

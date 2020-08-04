@@ -100,7 +100,19 @@ namespace Tienda_.Controllers
             return View("Categorias");
         }
 
+        public async Task<IActionResult> Ofertas()
+        {
+            var listaProductos = await _contex.Ofertas.Include(x => x.IdProductoNavigation)
+                                .Where(x => x.FechaInicio.Value.Date <= DateTime.Now.Date && x.FechaFin >= DateTime.Now.Date).ToListAsync();
 
+            ViewBag.Productos = listaProductos;
+            ViewBag.categoria = "Productos en oferta";
+            ViewBag.cantidad = listaProductos.Count();
+
+            string session = HttpContext.Session.GetString("userID");
+            ViewBag.UserID = session;
+            return View();
+        }
 
         public async Task<IActionResult> Comprado(string telefono, string comentario, string lat, string lon) {
            
