@@ -36,7 +36,7 @@
                 <ion-icon class="mr-2 d-inline-block icono" name="layers"></ion-icon>
                 <p class="m-0 d-inline-block text-size">Categorias</p>
             </a>
-            <a href="#" class="col-10 text-center sidemenu-option pl-4 btn">
+            <a asp-controller="GestionPedidos" asp-action="Index" class="col-10 text-center sidemenu-option pl-4 btn">
                 <ion-icon class="mr-2 d-inline-block icono" name="albums"></ion-icon>
                 <p class="m-0 d-inline-block text-size">Pedidos</p>
             </a>
@@ -87,7 +87,7 @@
                             <a asp-controller="ListaCategorias" asp-action="Index" class="nav-link text-white"><ion-icon class="mr-2 d-inline-block" name="cart"></ion-icon>Categorias</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#"><ion-icon class="mr-2 d-inline-block" name="albums"></ion-icon>Pedidos</a>
+                            <a class="nav-link text-white" asp-controller="GestionPedidos" asp-action="Index"><ion-icon class="mr-2 d-inline-block" name="albums"></ion-icon>Pedidos</a>
                         </li>
                         <li class="nav-item">
                             <a asp-controller="UsuariosAdmin" asp-action="Index" class="nav-link text-white"><ion-icon class="mr-2 d-inline-block" name="people"></ion-icon>Usuarios</a>

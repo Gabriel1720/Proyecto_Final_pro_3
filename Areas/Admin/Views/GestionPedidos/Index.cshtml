@@ -1,12 +1,11 @@
 ﻿@model ReflectionIT.Mvc.Paging.PagingList<Orden>
 @*@model IEnumerable<Orden>*@
-    <h3 class="text-center mt-4" style="color: #FD5924;">PEDIDOS</h3>
-
-<a class="btn text-white text-center" asp-controller="GestionPedidos" asp-action="GetAllPedidosMap"  style="background-color: #FF561F; margin-top:20px; margin-left:80%; margin-right:20%; height:35px; width:150px;">Ver en el mapa</a>
+    <h3 class="text-center mt-4" style="color: #FD5924;">GESTIÓN DE PEDIDOS</h3>
+<a class="btn text-white text-center" asp-controller="GestionPedidos" asp-action="GetAllPedidosMap"  style="background-color: #FF561F; margin-left:80%; margin-right:20%; width:175px; align-content:center;">Ver en el Mapa <ion-icon name="map" class="text-center"></ion-icon></a>
 <form asp-action="Index" method="get">
-    <div class="col-9 col-lg-6 mt-4 d-flex py-2 py-md-0 padre mx-auto bg-light pr-0">
+    <div class="col-9 col-lg-6 mt-3 d-flex py-2 py-md-0 padre mx-auto bg-light pr-0">
         <ion-icon name="search-outline" class="ml-5 icono"></ion-icon>
-        <input id="PedidoBuscar" name="PedidoBuscar" value="@Guardar.PedidoBucar" placeholder="Categoria o nombre del producto" type="text" class="fi w-100 ml-2 border-0 rounded-0 bg-light">
+        <input id="PedidoBuscar" name="PedidoBuscar" value="@Guardar.PedidoBucar" placeholder="Nombre o Correo Electrónico" type="text" class="fi w-100 ml-2 border-0 rounded-0 bg-light">
         <input type="submit" value="Buscar" class="btn" style="color:#fff; background:#FF561F" />
     </div>
 </form>
@@ -16,16 +15,16 @@
     <thead>
         <tr>
             <th>
-                <span style="color:#FF561F; font-size:20px;">Correo</span>
+                <span style="color:#FF561F; font-size:18px;">Correo</span>
             </th>
             <th>
-                <span style="color:#FF561F; font-size:20px;">Nombre</span>
+                <span style="color:#FF561F; font-size:18px;">Nombre</span>
             </th>
             <th>
-                <span style="color:#FF561F; font-size:20px;">Latidus y longitud</span>
+                <span style="color:#FF561F; font-size:18px;">Latitud y Longitud</span>
             </th>
             <th>
-                <span style="color:#FF561F; font-size:20px;">Status</span>
+                <span style="color:#FF561F; font-size:18px;">Status</span>
             </th>
         </tr>
     </thead>
@@ -46,8 +45,8 @@
                     @Html.DisplayFor(model => Item.IdStatusOrdenNavigation.Nombre)
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@Item.IdOrden"  class="btn text-white bg-orange"><ion-icon name="eye-outline"></ion-icon></a>
-                    <a asp-action="Manage" asp-route-id="@Item.IdOrden"  class="btn btn-info"><ion-icon name="create-outline"></ion-icon></a>
+                    <a asp-action="Details" asp-route-id="@Item.IdOrden"  class="btn text-white bg-orange"><ion-icon name="eye"></ion-icon></a>
+                    <a asp-action="Manage" asp-route-id="@Item.IdOrden"  class="btn btn-info"><ion-icon name="pencil"></ion-icon></a>
                 </td>
             </tr>
         }

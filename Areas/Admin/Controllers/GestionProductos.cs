@@ -13,7 +13,6 @@ using SQLitePCL;
 
 namespace Proyecto_final_pro_3.Areas.Admin.Controllers
 {
-    //Worked by Daniel Tejada
     [Area("Admin")]
     public class GestionProductos : Controller
     {
@@ -57,7 +56,7 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
         //Post Products
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdProducto,Nombre,Descripcion,Precio,Foto,IdCategoria")] Producto producto)
+        public async Task<IActionResult> Create([Bind("IdProducto,Nombre,Descripcion,Precio,Stock,Foto,IdCategoria")] Producto producto)
         {
             if (ModelState.IsValid)
             {
@@ -99,14 +98,14 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoriaNombre"] = new SelectList(_context.Categoria,"IdCategoria","Nombre", producto.IdCategoria);
+            ViewData["CategoriaNombre"] = new SelectList(_context.Categoria,"IdCategoria","Nombre");
             return View(producto);
         }
 
         //Edit done by post 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([Bind("IdProducto,Nobre,Descripcion,Precio,Foto,Idcategoria")] Producto producto)
+        public async Task<IActionResult> Edit([Bind("IdProducto,Nombre,Descripcion,Precio,Stock,Foto,IdCategoria")] Producto producto)
         {
             if (ModelState.IsValid)
             {

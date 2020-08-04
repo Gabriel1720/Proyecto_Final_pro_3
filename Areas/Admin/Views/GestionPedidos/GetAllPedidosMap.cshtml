@@ -1,19 +1,21 @@
-﻿@model IEnumerable<Orden>
+﻿@{ Layout = "~/Views/Shared/_Layout_administrador.cshtml"; }
+@model IEnumerable<Orden>
 @if (!Model.Any())
 {
-    <h2 class="text-center mt-4" style="color: #FD5924; margin-top:20px;">Lo sentimos, no hay pedidos con ese status</h2>
-    <div class="container mt-3 overflow-auto" style="margin-top:20px">
-        <a class="text-orange" asp-action="Index">-Volver a la lista</a>
+
+    <h2 class="text-center mt-4" style="color: #FD5924; margin-top:20px;">Lo sentimos, no hay pedidos con ese status.</h2>
+    <div class="container overflow-auto">
+        <a class="text-orange" style="font-size: 20px; margin-left: 10%" asp-action="Index"><ion-icon name="chevron-back"></ion-icon></a>
     </div>
-    <div style="margin-left:66%; margin-top:35px;">
+    <div style="margin-left:70%; margin-top:35px;">
         <form method="get">
             <div>
-                <label for="status" class="mt-3">Status: </label>
+                <label for="status">Status: </label>
                 <select name="IdStatusOrden" id="status" class="select text-center" style="padding-right:20px" asp-items="@ViewBag.Status">
                     <option value="0">todos</option>
                 </select>
-                <button class="btn bg-orange" type="submit" style="color:#fff;">
-                    Filtrar <ion-icon class="search-outline text-white" name="search-outline"></ion-icon>
+                <button class="btn bg-orange" type="submit" style="color:#fff; height: auto;">
+                    <ion-icon class="search-outline text-white" name="search-outline"></ion-icon>
                 </button>
             </div>
         </form>
@@ -21,30 +23,28 @@
 }
 else
 {
+
     <h3 class="text-center mt-4" style="color: #FD5924;">MAPA PEDIDOS</h3>
-    <div class="container mt-3 overflow-auto" style="margin-top:20px">
-        <a class="text-orange" asp-action="Index">-Volver a la lista</a>
-    </div>
-    <div style="margin-left:66%">
+    <a class="text-orange" style="font-size: 20px; margin-left: 10%" asp-action="Index"><ion-icon name="chevron-back"></ion-icon></a>
+    <div style="margin-left:70%">
         <form method="get">
-            <div>
-                <label for="status" class="mt-3">Status: </label>
-                <select name="IdStatusOrden" id="status" class="select text-center" style="padding-right:20px" asp-items="@ViewBag.Status">
-                    <option value="0">todos</option>
-                </select>
-                <button class="btn bg-orange" type="submit" style="color:#fff;">
-                    Filtrar <ion-icon class="search-outline text-white" name="search-outline"></ion-icon>
-                </button>
-            </div>
+            <label for="status">Status: </label>
+            <select name="IdStatusOrden" id="status" class="select text-center" style="padding-right:20px" asp-items="@ViewBag.Status">
+                <option value="0">todos</option>
+            </select>
+            <button class="btn bg-orange" type="submit" style="color:#fff; height: 35px; width: auto;">
+                <ion-icon class="search-outline text-white" name="search-outline"></ion-icon>
+            </button>
         </form>
     </div>
 
-    <div id="map"></div>
+
+    <div id="map" class="map"></div>
 
     <script>
 
     var map = L.map('map').setView([@Model.ElementAt(0).IdDomicilioNavigation.Latitud.ToString().Replace(",", "."),
-        @Model.ElementAt(0).IdDomicilioNavigation.Longitud.ToString().Replace(",", ".")], 5);
+        @Model.ElementAt(0).IdDomicilioNavigation.Longitud.ToString().Replace(",", ".")], 8);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
@@ -63,5 +63,6 @@ else
     </script>
 }
 
-
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
 
