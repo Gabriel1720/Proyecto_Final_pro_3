@@ -13,7 +13,6 @@ using SQLitePCL;
 
 namespace Proyecto_final_pro_3.Areas.Admin.Controllers
 {
-    //Worked by Daniel Tejada
     [Area("Admin")]
     public class GestionProductos : Controller
     {

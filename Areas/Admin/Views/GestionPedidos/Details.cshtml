@@ -6,26 +6,26 @@
 
 <div class="container mt-3 overflow-auto">
     <div class="" style="margin-top:10px">
-        <a class="text-orange" href="#">Volver a la lista</a>
+        <a class="text-orange" asp-action="Index">Volver a la lista</a>
         <h2 class="text-orange d-inline" style="margin-left: 25%;">DETALLE DEL PEDIDO</h2>
     </div>
-    <div class="mt-4" style="padding: 2%; border: 1px solid rgb(255, 11, 65, 0.3); border-radius:10px;">
+    <div class="mt-4" style="padding: 2%; border: 1px solid rgb(128, 128, 128); border-radius:10px;">
 
         <div class="row">
             <div class="container  w-50">
                 <div class="row">
-                    <div class="w-50 text-orange">
-                        <p>Nombre:</p>
-                        <p>Apellido:</p>
-                        <p>Correo:</p>
-                        <p>Direccio del pedido:</p>
-                        <p>Latitud y longitud:</p>
-                        <p>Fecha del pedido:</p>
-                        <p>Estado del pedido:</p>
+                    <div class="w-50 text-orange ml-2">
+                        <p class="font-weight-bold">Nombre:</p>
+                        <p class="font-weight-bold">Apellido:</p>
+                        <p class="font-weight-bold">Correo Electrónico:</p>
+                        <p class="font-weight-bold">Dirección del Pedido:</p>
+                        <p class="font-weight-bold">Latitud y Longitud:</p>
+                        <p class="font-weight-bold">Fecha del Pedido:</p>
+                        <p class="font-weight-bold">Estado del Pedido:</p>
 
                     </div>
                     @*columna interna 2 atributos*@
-                <div class="w-50">
+                <div class="w-25">
                     <p>
                         @Html.DisplayFor(model => model.IdUsuarioNavigation.Nombre)
                     </p>
@@ -49,7 +49,7 @@
 
                 </div>
                 <div class="container text-center ">
-                    <h6 class="text-orange" style="margin-right: 20%;">Destino especifico</h6>
+                    <h6 class="text-orange font-weight-normal" style="margin-right: 20%;">Destino Específico</h6>
                     <div id="mapDetalle" style="width:420px; height:190px; margin-right: 20%;"></div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
 
 
             <div class=" w-50">
-                <h5 class="text-orange">Lista de productos</h5>
+                <h5 class="text-orange text-center">Lista de Productos</h5>
                 <table class="table">
                     <thead>
                         <tr class="text-orange">
