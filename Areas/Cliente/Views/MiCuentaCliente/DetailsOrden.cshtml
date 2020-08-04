@@ -4,11 +4,17 @@
     var totalDetalleOrden = ViewBag.detalleOrdenTotal;
     var totalDescuento = ViewBag.TotalDescuento;
 }
-
-    <div class="container mt-3 overflow-auto" style="margin-bottom:40%">
+@if (Model == null && !detalleOrden.Any())
+{
+    <div style="margin-top:5%; margin-bottom:12%;">
+        <h2 class="text-orange d-inline text-center" style="margin-left: 30%;">NO TIENE ORDENES...</h2>
+    </div>
+}
+else
+{
+    <div class="container mt-3 overflow-auto" style="margin-bottom:10%">
         <div class="" style="margin-top:10px">
-            <a class="text-orange" style="font-size: 20px" asp-action="Index"><ion-icon name="chevron-back"></ion-icon></a>
-            <h2 class="text-orange d-inline text-center" style="margin-left: 30%;">DETALLES DEL PEDIDO</h2>
+            <h2 class="text-orange d-inline text-center" style="margin-left: 30%;">DETALLES DE LA ORDEN</h2>
         </div>
         <form style="height:500px;">
             <div class="mt-4" style="padding: 2%; border: 1px solid rgb(128, 128, 128); border-radius:10px;">
@@ -16,10 +22,8 @@
                     <div class="container w-auto">
                         <div class="row">
                             <div class="w-50 text-orange ml-1">
-                                <p class="font-weight-bold">Nombre:</p>
-                                <p class="font-weight-bold">Apellido:</p>
+
                                 <p class="font-weight-bold">Teléfono :</p>
-                                <p class="font-weight-bold">Correo Electrónico:</p>
                                 <p class="font-weight-bold">Comentario:</p>
                                 <p class="font-weight-bold">Latitud y Longitud:</p>
                                 <p class="font-weight-bold">Fecha del Pedido:</p>
@@ -28,12 +32,8 @@
                             </div>
                             @*columna interna 2 atributos*@
                             <div class="w-auto">
-                                <p>
-                                    @Html.DisplayFor(model => model.IdUsuarioNavigation.Nombre)
-                                </p>
-                                <p>
-                                    @Html.DisplayFor(model => model.IdUsuarioNavigation.Apellido)
-                                </p>
+
+
                                 @if (Model.IdDomicilioNavigation.Telefono == null)
                                 {
                                     <p>Ninguno</p>
@@ -44,9 +44,7 @@
                                         @Html.DisplayFor(model => model.IdDomicilioNavigation.Telefono)
                                     </p>
                                 }
-                                <p>
-                                    @Html.DisplayFor(model => model.IdUsuarioNavigation.Correo)
-                                <p />
+
                                 @if (Model.IdDomicilioNavigation.Comentario == null)
                                 {
                                     <p>Ninguno</p>
@@ -119,14 +117,15 @@
         </form>
     </div>
 
-<script>
+    <script>
     var latitud = @Model.IdDomicilioNavigation.Latitud.ToString().Replace(",", ".");
     var longitud =@Model.IdDomicilioNavigation.Longitud.ToString().Replace(",", ".");
     var map = L.map('mapDetalle').setView([latitud, longitud], 10);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-            marker = new L.marker([latitud, longitud]).addTo(map)
-                .bindPopup('@Model.IdUsuarioNavigation.Nombre' +
-                    ' @Model.IdUsuarioNavigation.Apellido');
-</script>
+    marker = new L.marker([latitud, longitud]).addTo(map);
+                @*.bindPopup('@Model.IdUsuarioNavigation.Nombre' +
+                    ' @Model.IdUsuarioNavigation.Apellido');*@
+    </script>
+}

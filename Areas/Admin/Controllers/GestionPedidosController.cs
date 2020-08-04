@@ -79,17 +79,29 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
             var detalleOrden = await _context.DetalleOrden.Where(d => d.IdOrden == id).
                 Include(d=> d.IdProductoNavigation).
                 ToListAsync();
+            var ofertas = await _context.Ofertas.ToListAsync();
+
             if (pedido == null || detalleOrden == null)
             {
                 return NotFound();
             }
+
             double? total = 0;
-            //Total purchase
-            foreach (var i in detalleOrden)
+            double? totalDescuento = 0;
+            foreach(var itemDetalle in detalleOrden)
             {
-                total = total + i.Precio * i.Cantidad;
-            }
-            ViewData["detalleOrdenTotal"] = total;
+                foreach(var itemOfertas  in ofertas)
+                {
+                    if (itemDetalle.IdProducto == itemOfertas.IdProducto)
+                    {
+                        if (itemOfertas.Precio >= 0)
+                        {
+                            totalDescuento = totalDescuento + itemOfertas.Precio * itemDetalle.Cantidad;
+                        }
+                    }
+                }
+            }         
+            ViewData["TotalDescuento"] = totalDescuento;
             ViewData["detalleOrden"] = detalleOrden;
             return View(pedido);
         }
