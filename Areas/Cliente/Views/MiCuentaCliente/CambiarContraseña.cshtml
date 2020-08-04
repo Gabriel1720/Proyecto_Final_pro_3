@@ -1,16 +1,23 @@
 ﻿
 @{
     ViewData["Title"] = "Actualizar Contraseña";
+
+    if (ViewBag.userID != null)
+    {
+        Layout = "~/Views/Shared/_LayoutLogged.cshtml";
+
+    }
 }
 
+@model Proyecto_final_pro_3.Models.Usuario;
 
 <h3 class="text-center mt-5 mb-4" style="color: #FF561F;">ACTUALIZAR CONTRASEÑA</h3>
-<div class="border border-secondary rounded mx-auto mt-2 text-center p-4 registro" style="height: 58%;">
+<form method="post" class="border border-secondary rounded mx-auto mt-2 text-center p-4 registro" style="height: 58%;">
     <h6 class="text-center mb-4 mt-3">DATOS DE ACCESO</h6>
     <div class="col-11 col-sm-11 col-md-11 mx-auto mt-3 mb-4">
 
         <label for="Correo" style="margin-right: 35%;">Correo Electrónico</label>
-        <input name="Correo" type="email" class="form-control text-center" style="width: 60%; margin: auto; border-radius: 50px; border: none; background-color: rgb(246, 246, 246);">
+        <input name="Correo" type="email" value="@Model.Correo" class="form-control text-center" style="width: 60%; margin: auto; border-radius: 50px; border: none; background-color: rgb(246, 246, 246);">
     </div>
     <div class="col-11 col-sm-11 col-md-11 mx-auto mt-3 mb-4">
 
@@ -25,8 +32,21 @@
         <label for="confirmarContraseña" style="margin-right: 28%;">Confirmar Contraseña</label>
         <input name="confirmar_contrasena" type="password" class="form-control text-center" style="width: 60%; margin: auto; border-radius: 50px; border: none; background-color: rgb(255, 114, 68, 0.1);">
     </div>
-    <div class="col-4 col-sm-7 col-md-5 mx-auto mt-4 mb-2">
-        <input type="submit" value="Guardar Contraseña" class="btn btn-block input-round text-white" style="background-color: #FD5924;">
+    <div>
+        @if (!String.IsNullOrEmpty(ViewBag.Error1))
+        {
+            <p class="text-danger">@ViewBag.Error1</p>
+        }
+        else if (!String.IsNullOrEmpty(ViewBag.Error2))
+        {
+            <p class="text-danger">@ViewBag.Error2</p>
+        }
     </div>
-</div>
 
+    <input id="added" value="@ViewBag.Added" class="d-none" />
+
+    <input type="hidden" name="id" value="@Model.IdUsuario" />
+    <div class="col-4 col-sm-7 col-md-5 mx-auto mt-4 mb-2">
+        <input type="submit" asp-controller="MiCuentaCliente" asp-action="EditPassword" class="btn btn-block input-round text-white" style="background-color: #FD5924;">
+    </div>
+</form>

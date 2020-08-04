@@ -17,8 +17,9 @@
                     <div class="w-50 text-orange">
                         <p>Nombre:</p>
                         <p>Apellido:</p>
+                        <p>Telefono:</p>
                         <p>Correo:</p>
-                        <p>Direccio del pedido:</p>
+                        <p>Comentario:</p>
                         <p>Latitud y longitud:</p>
                         <p>Fecha del pedido:</p>
                         <p>Estado del pedido:</p>
@@ -32,13 +33,34 @@
                     <p>
                         @Html.DisplayFor(model => model.IdUsuarioNavigation.Apellido)
                     </p>
+                    @if (Model.IdDomicilioNavigation.Telefono == null)
+                    {
+                        <p>Ninguno</p>
+                    }
+                    else
+                    {
+                        <p>
+                            @Html.DisplayFor(model => model.IdDomicilioNavigation.Telefono)
+                        </p>
+                    }
                     <p>
                         @Html.DisplayFor(model => model.IdUsuarioNavigation.Correo)
                     <p />
+                    @if (Model.IdDomicilioNavigation.Comentario == null)
+                    {
+                        <p>Ninguno</p>
+                    }
+                    else
+                    {
+                    <p>
+                        @Html.DisplayFor(model => model.IdDomicilioNavigation.Comentario)
+                    </p>
+                    }
+
                     <p>
                         <span>@Html.DisplayFor(model => model.IdDomicilioNavigation.Latitud) </span>
                         <span> @Html.DisplayFor(model => model.IdDomicilioNavigation.Longitud)</span>
-                    <p/>
+                    <p />
                     <p>
                         @Html.DisplayFor(model => model.Fecha)
                     </p>
@@ -92,10 +114,11 @@
 <script>
     var latitud = @Model.IdDomicilioNavigation.Latitud.ToString().Replace(",", ".");
     var longitud =@Model.IdDomicilioNavigation.Longitud.ToString().Replace(",", ".");
-    var map = L.map('mapDetalle').setView([latitud, -longitud], 3);
+    var map = L.map('mapDetalle').setView([latitud, longitud], 3);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
             marker = new L.marker([latitud, longitud]).addTo(map)
-                .bindPopup('@Model.IdUsuarioNavigation.Nombre');
+                .bindPopup('@Model.IdUsuarioNavigation.Nombre' + 
+                    ' @Model.IdUsuarioNavigation.Apellido');
 </script>

@@ -46,15 +46,25 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllPedidosMap()
+        public async Task<IActionResult> GetAllPedidosMap(int IdStatusOrden = 0)
         {
-            List<Orden> pedidos = await GetAllPedidos();
+            List<Orden> pedidos = new List<Orden>();
+            if (IdStatusOrden != 0)
+            {
+                pedidos =await GetAllPedidosByStatusId(IdStatusOrden);
+                ViewData["Status"] = new SelectList(_context.StatusOrden, "IdStatusOrden", "Nombre" ,IdStatusOrden);
+            }
+            else
+            {
+               pedidos = await GetAllPedidos();
+                ViewData["Status"] = new SelectList(_context.StatusOrden, "IdStatusOrden", "Nombre");
+            }
            
             if(pedidos == null)
             {
                 return NotFound();
             }
-            ViewData["Status"] = new SelectList(_context.StatusOrden, "IdStatusOrden", "Nombre");
+            
             return View(pedidos);
         }
 
@@ -65,7 +75,7 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var pedido = await FindFirstOrden(id);
+            var pedido = await FindFirstPedido(id);
             var detalleOrden = await _context.DetalleOrden.Where(d => d.IdOrden == id).
                 Include(d=> d.IdProductoNavigation).
                 ToListAsync();
@@ -91,7 +101,7 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var pedido = await FindFirstOrden(id);
+            var pedido = await FindFirstPedido(id);
             if(pedido == null)
             {
                 return NotFound();
@@ -117,7 +127,7 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
 
         //-----------------------------------------Query section------------------------------------------------------------------
 
-
+        
         private async Task<List<Orden>> SearhPedido(string PedidoBuscar)
         {
             List<Orden> pedidos;
@@ -142,7 +152,16 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
             return pedidos;
         }
 
-        private async Task<Orden> FindFirstOrden(int? id)
+        private async Task<List<Orden>> GetAllPedidosByStatusId(int id)
+        {
+            var pedidos = await _context.Orden.Include(o => o.IdDomicilioNavigation).
+                Include(o => o.IdStatusOrdenNavigation).Where(o => o.IdStatusOrden == id).
+                ToListAsync();
+            return pedidos;
+
+        }
+
+        private async Task<Orden> FindFirstPedido(int? id)
         {
             var pedido = await _context.Orden.Include(o => o.IdStatusOrdenNavigation).
                  Include(o => o.IdDomicilioNavigation).Include(o => o.IdUsuarioNavigation).

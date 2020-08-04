@@ -1,17 +1,56 @@
 ﻿@model IEnumerable<Orden>
+@if (!Model.Any())
+{
+    <h2 class="text-center mt-4" style="color: #FD5924; margin-top:20px;">Lo sentimos, no hay pedidos con ese status</h2>
+    <div class="container mt-3 overflow-auto" style="margin-top:20px">
+        <a class="text-orange" asp-action="Index">-Volver a la lista</a>
+    </div>
+    <div style="margin-left:66%; margin-top:35px;">
+        <form method="get">
+            <div>
+                <label for="status" class="mt-3">Status: </label>
+                <select name="IdStatusOrden" id="status" class="select text-center" style="padding-right:20px" asp-items="@ViewBag.Status">
+                    <option value="0">todos</option>
+                </select>
+                <button class="btn bg-orange" type="submit" style="color:#fff;">
+                    Filtrar <ion-icon class="search-outline text-white" name="search-outline"></ion-icon>
+                </button>
+            </div>
+        </form>
+    </div>
+}
+else
+{
+    <h3 class="text-center mt-4" style="color: #FD5924;">MAPA PEDIDOS</h3>
+    <div class="container mt-3 overflow-auto" style="margin-top:20px">
+        <a class="text-orange" asp-action="Index">-Volver a la lista</a>
+    </div>
+    <div style="margin-left:66%">
+        <form method="get">
+            <div>
+                <label for="status" class="mt-3">Status: </label>
+                <select name="IdStatusOrden" id="status" class="select text-center" style="padding-right:20px" asp-items="@ViewBag.Status">
+                    <option value="0">todos</option>
+                </select>
+                <button class="btn bg-orange" type="submit" style="color:#fff;">
+                    Filtrar <ion-icon class="search-outline text-white" name="search-outline"></ion-icon>
+                </button>
+            </div>
+        </form>
+    </div>
 
+    <div id="map"></div>
 
-<div id="map"></div>
+    <script>
 
-<script>
-
-    var map = L.map('map').setView([51.505, -0.09], 3);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    var map = L.map('map').setView([@Model.ElementAt(0).IdDomicilioNavigation.Latitud.ToString().Replace(",", "."),
+        @Model.ElementAt(0).IdDomicilioNavigation.Longitud.ToString().Replace(",", ".")], 5);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    @for (var i = 0; i<Model.Count(); i++)
-        {
+    @for (var i = 0; i < Model.Count(); i++)
+    {
             <Text>
             var latitud = @Model.ElementAt(i).IdDomicilioNavigation.Latitud.ToString().Replace(",", ".");
             var longitud = @Model.ElementAt(i).IdDomicilioNavigation.Longitud.ToString().Replace(",", ".");
@@ -21,9 +60,8 @@
             </Text>
     }
 
-</script>
-
-<label>@Model.Count()</label>
+    </script>
+}
 
 
 
