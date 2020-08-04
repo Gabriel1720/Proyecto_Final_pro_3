@@ -14,19 +14,31 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
     {
         DB_A64A4C_SuperMercadoContext _context = new DB_A64A4C_SuperMercadoContext();
 
-        public async Task<IActionResult> Index(string srt = "", int page = 1)
+        public async Task<IActionResult> Index(string srt = "0", int page = 1)
         {
             IOrderedQueryable<Orden> orden = null;    
 
-            if (!String.IsNullOrEmpty(srt))
+            if (srt != "0")
             {
-                Guardar.Srt = srt;
+                if (String.IsNullOrEmpty(srt))
+                {
+                    orden = _context.Orden.AsNoTracking().Include(x => x.IdUsuarioNavigation).OrderBy(x => x.IdOrden);
+                    Guardar.Srt = null;
+                } else if (srt != "0")
+                {
+                    Guardar.Srt = srt;
+                    orden = _context.Orden.AsNoTracking().Include(x => x.IdUsuarioNavigation)
+                    .Where(x => x.IdUsuarioNavigation.Nombre == Guardar.Srt || x.IdUsuarioNavigation.Correo == Guardar.Srt)
+                    .OrderBy(x => x.IdOrden);
+                }                          
+            }
+            else if (!String.IsNullOrEmpty(Guardar.Srt))
+            {
                 orden = _context.Orden.AsNoTracking().Include(x => x.IdUsuarioNavigation)
                 .Where(x => x.IdUsuarioNavigation.Nombre == Guardar.Srt || x.IdUsuarioNavigation.Correo == Guardar.Srt)
                 .OrderBy(x => x.IdOrden);
-
             }
-            else if (String.IsNullOrEmpty(srt) || String.IsNullOrEmpty(Guardar.Srt))
+            else if (srt == "0")
             {
                 orden = _context.Orden.AsNoTracking().Include(x => x.IdUsuarioNavigation).OrderBy(x => x.IdOrden);
                 Guardar.Srt = null;
