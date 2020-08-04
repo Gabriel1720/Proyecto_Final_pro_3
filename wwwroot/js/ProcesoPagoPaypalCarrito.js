@@ -189,7 +189,7 @@ function PaypalPay() {
                     preConfirm: () => {
                         goToComprado.click();
                     },
-                   allowOutsideClick: () => !Swal.isLoading()
+                   allowOutsideClick: false 
                });
  
             });

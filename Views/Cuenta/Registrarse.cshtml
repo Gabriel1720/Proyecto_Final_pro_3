@@ -7,7 +7,7 @@
 
 @using (Html.BeginForm("Registrarse", "Cuenta", FormMethod.Post))
 {
-    <div class="mx-auto mt-5 text-center p-4 registro shadow-sm">
+    <div class="mx-auto text-center p-4 registro ">
         <h2>Registrarse</h2>
         <div class="col-12 col-sm-9 mx-auto mt-5 mb-4">
             @Html.TextBoxFor(d => d.Nombre, "", new { @class = "form-control input-round", @placeholder = "Nombre" })

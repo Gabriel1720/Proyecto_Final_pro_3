@@ -161,7 +161,7 @@ function showPosition(position) {
  * */
 
 function PaypalPay() {
-    var precio = document.getElementById("total").value;
+    var precio = document.getElementById("total").value * cantidadInput.value;
   
 
     // Render the PayPal button into #paypal-button-container
@@ -175,7 +175,7 @@ function PaypalPay() {
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: precio * cantidad.value
+                        value: precio  
                     }
                 }]
             });
@@ -193,8 +193,8 @@ function PaypalPay() {
                     confirmButtonText: 'Finalizar compra',
                     preConfirm: () => {
                         goToComprado.click();
-                    },
-                   allowOutsideClick: () => !Swal.isLoading()
+                   },
+                   allowOutsideClick: false
                });
  
             });
