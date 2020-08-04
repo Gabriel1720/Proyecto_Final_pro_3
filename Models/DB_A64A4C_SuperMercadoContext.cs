@@ -224,7 +224,6 @@ namespace Proyecto_final_pro_3.Models
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
-        public DbSet<Proyecto_final_pro_3.Models.CompraProductos> CompraProductos { get; set; }
+ 
     }
 }

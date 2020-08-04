@@ -103,9 +103,9 @@ namespace Tienda_.Controllers
 
 
         public async Task<IActionResult> Comprado(string telefono, string comentario, string lat, string lon) {
+           
+                int userID = int.Parse(HttpContext.Session.GetString("userID"));
 
-              int userID = int.Parse(HttpContext.Session.GetString("userID"));
-         
                 var carrito = await _contex.Carrito.Include(x => x.IdProductoNavigation).Where(x => x.IdUsuario == userID).ToListAsync();
 
                 var ofertas = await _contex.Ofertas.ToListAsync();
@@ -129,16 +129,18 @@ namespace Tienda_.Controllers
                 TotalPagar = SubTotal - TotalDescuento;
 
 
-            foreach (var p in carrito) {
-  
-                int affeted = await _contex.Database.ExecuteSqlRawAsync($"comprar {userID}, {p.Cantidad}, {p.IdProducto}, {TotalPagar}, {p.IdProductoNavigation.Precio}, {lat}, {lon}, {comentario}, {telefono}");
+                foreach (var p in carrito)
+                {
 
-                
-             }
+                    await _contex.Database.ExecuteSqlRawAsync($"comprar {userID}, {p.Cantidad}, {p.IdProducto}, {TotalPagar}, {p.IdProductoNavigation.Precio}, {float.Parse(lat)}, {float.Parse(lon)}, {comentario}, {telefono}");
 
-            return RedirectToAction("index", "AdministrarCarrito", new { area = "Cliente"}); 
-             
-         }
+                }
+
+                return RedirectToAction("index", "AdministrarCarrito", new { area = "Cliente" });
+
+            }
+ 
+    
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

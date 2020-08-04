@@ -184,12 +184,17 @@ function PaypalPay() {
                     title: 'Transacion realizada',
                     icon: 'success',
                     text: 'Muchas gracias ' + details.payer.name.given_name,
-                    showConfirmButton: true,
-                    confirmButtonText: 'Finalizar compra',
-                    preConfirm: () => {
-                        goToComprado.click(); 
-                    }
+                    showConfirmButton: false
                 });
+
+              //  confirmButtonText: 'Finalizar compra',
+               //     preConfirm: () => {
+               //         goToComprado.click();
+                //    }
+
+
+                goToComprado.click(); 
+
             });
         }
     }).render('#paypal-button-container');

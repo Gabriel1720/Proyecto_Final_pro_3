@@ -63,6 +63,9 @@
                 <p class="col-5 h5">Total</p>
                 <p class="col-6 h5 p-0">RD$ @ViewBag.Total</p>
                 <input id="total" value="@ViewBag.Total" class="d-none" />
+                <br />
+                <br />
+                <br />
                 <button class="btn bg-warning rounded mx-auto px-5 py-2" onclick="StartCompra()"><img src="~/iconos/Paypal.png" width="90" /></button>
             </div>
         </div>
@@ -70,7 +73,7 @@
 </div>
 
 
-<form asp-action="Comprado" asp-controller='Home'>
+<form asp-action="Comprado" asp-controller='Home' class="d-none">
     <input type="text" name="telefono"  id="telefono" />
     <input type="text" name="comentario" id="comentario" />
     <input type="text" name="lat" id="lat" />
