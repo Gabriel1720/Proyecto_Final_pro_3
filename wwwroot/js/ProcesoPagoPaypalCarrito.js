@@ -1,11 +1,11 @@
 var popup,  lat, lon,  telefono, comentario;    
 
  
-goToCompradoBtn = document.getElementById("goToComprado");
-telefonoInput = document.getElementById("telefono");
-comentarioInput = document.getElementById("comentario");
-latInput = document.getElementById("lat");
-lonInput = document.getElementById("lon");
+var goToCompradoBtn = document.getElementById("goToComprado");
+var telefonoInput = document.getElementById("telefono");
+var comentarioInput = document.getElementById("comentario");
+var latInput = document.getElementById("lat");
+var lonInput = document.getElementById("lon");
 
  
 function StartCompra() {
@@ -83,7 +83,7 @@ function PaypalButton(tel, comment) {
             title: 'Realizar pago de la compra',
             html: 
                 '<div id="paypal-button-container"></div>',
-            showConfirmButton:false,
+            showConfirmButton: false,
             showCancelButton: true,
             cancelButtonText: 'Cancelar',         
         });
@@ -186,7 +186,6 @@ function PaypalPay() {
                     text: 'Muchas gracias ' + details.payer.name.given_name,
                     showConfirmButton: true,
                     confirmButtonText: 'Finalizar compra',
-                    showLoaderOnConfirm: true,
                     preConfirm: () => {
                         goToComprado.click();
                     },
