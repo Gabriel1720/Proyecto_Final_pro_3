@@ -114,7 +114,7 @@ namespace Proyecto_final_pro_3.Areas.Cliente.Controllers
                       }).ToListAsync();
             }
 
-            ViewBag.idUser = id; 
+            ViewBag.userID = id; 
 
             return View(lst);
         }
