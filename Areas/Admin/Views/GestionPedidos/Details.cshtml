@@ -1,124 +1,127 @@
 ﻿@model Orden
-@{ 
+@{
     var detalleOrden = (List<DetalleOrden>)ViewBag.detalleOrden;
     var totalDetalleOrden = ViewBag.detalleOrdenTotal;
 }
 
-<div class="container mt-3 overflow-auto">
-    <div class="" style="margin-top:10px">
-        <a class="text-orange" href="#">Volver a la lista</a>
-        <h2 class="text-orange d-inline" style="margin-left: 25%;">DETALLE DEL PEDIDO</h2>
-    </div>
-    <div class="mt-4" style="padding: 2%; border: 1px solid rgb(255, 11, 65, 0.3); border-radius:10px;">
+    <div class="container mt-3 overflow-auto">
+        <div class="" style="margin-top:10px">
+            <a class="text-orange" style="font-size: 20px" asp-action="Index"><ion-icon name="chevron-back"></ion-icon></a>
+            <h2 class="text-orange d-inline text-center" style="margin-left: 30%;">DETALLES DEL PEDIDO</h2>
+        </div>
+        <form style="height:500px;">
+            <div class="mt-4" style="padding: 2%; border: 1px solid rgb(128, 128, 128); border-radius:10px;">
 
-        <div class="row">
-            <div class="container  w-50">
                 <div class="row">
-                    <div class="w-50 text-orange">
-                        <p>Nombre:</p>
-                        <p>Apellido:</p>
-                        <p>Telefono:</p>
-                        <p>Correo:</p>
-                        <p>Comentario:</p>
-                        <p>Latitud y longitud:</p>
-                        <p>Fecha del pedido:</p>
-                        <p>Estado del pedido:</p>
+                    <div class="container w-auto">
+                        <div class="row">
+                            <div class="w-50 text-orange ml-1">
+                                <p class="font-weight-bold">Nombre:</p>
+                                <p class="font-weight-bold">Apellido:</p>
+                                <p class="font-weight-bold">Teléfono :</p>
+                                <p class="font-weight-bold">Correo Electrónico:</p>
+                                <p class="font-weight-bold">Comentario:</p>
+                                <p class="font-weight-bold">Latitud y Longitud:</p>
+                                <p class="font-weight-bold">Fecha del Pedido:</p>
+                                <p class="font-weight-bold">Estado del Pedido:</p>
+
+                            </div>
+                            @*columna interna 2 atributos*@
+                            <div class="w-auto">
+                                <p>
+                                    @Html.DisplayFor(model => model.IdUsuarioNavigation.Nombre)
+                                </p>
+                                <p>
+                                    @Html.DisplayFor(model => model.IdUsuarioNavigation.Apellido)
+                                </p>
+                                @if (Model.IdDomicilioNavigation.Telefono == null)
+                                {
+                                    <p>Ninguno</p>
+                                }
+                                else
+                                {
+                                    <p>
+                                        @Html.DisplayFor(model => model.IdDomicilioNavigation.Telefono)
+                                    </p>
+                                }
+                                <p>
+                                    @Html.DisplayFor(model => model.IdUsuarioNavigation.Correo)
+                                <p />
+                                @if (Model.IdDomicilioNavigation.Comentario == null)
+                                {
+                                    <p>Ninguno</p>
+                                }
+                                else
+                                {
+                                    <p>
+                                        @Html.DisplayFor(model => model.IdDomicilioNavigation.Comentario)
+                                    </p>
+                                }
+
+                                <p>
+                                    <span>@Html.DisplayFor(model => model.IdDomicilioNavigation.Latitud) </span>
+                                    <span> @Html.DisplayFor(model => model.IdDomicilioNavigation.Longitud)</span>
+                                <p />
+                                <p>
+                                    @Html.DisplayFor(model => model.Fecha)
+                                </p>
+                                <p>
+                                    @Html.DisplayFor(model => model.IdStatusOrdenNavigation.Nombre)
+                                </p>
+                            </div>
+
+                        </div>
+                        <div class="container text-center ">
+                            <h6 class="text-orange mt-3" style="margin-right: 20%;">Destino Específico</h6>
+                            <div id="mapDetalle" style="width:420px; height:190px; margin-right: 20%;"></div>
+                        </div>
+                    </div>
+
+
+
+                    <div class=" w-50">
+                        <h5 class="text-orange text-center">Lista de Productos</h5>
+                        <table class="table">
+                            <thead>
+                                <tr class="text-orange">
+                                    <th>Nombre Producto</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var i in detalleOrden)
+                                {
+                                    <tr>
+                                        <td>@i.IdProductoNavigation.Nombre</td>
+                                        <td>RD$ @i.Precio</td>
+                                        <td class="text-center">@i.Cantidad</td>
+                                    </tr>
+                                }
+                                <tr style="background: #F2F2F2">
+                                    <td><strong>Total: </strong></td>
+                                    <td>RD$ @totalDetalleOrden</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
 
                     </div>
-                    @*columna interna 2 atributos*@
-                <div class="w-50">
-                    <p>
-                        @Html.DisplayFor(model => model.IdUsuarioNavigation.Nombre)
-                    </p>
-                    <p>
-                        @Html.DisplayFor(model => model.IdUsuarioNavigation.Apellido)
-                    </p>
-                    @if (Model.IdDomicilioNavigation.Telefono == null)
-                    {
-                        <p>Ninguno</p>
-                    }
-                    else
-                    {
-                        <p>
-                            @Html.DisplayFor(model => model.IdDomicilioNavigation.Telefono)
-                        </p>
-                    }
-                    <p>
-                        @Html.DisplayFor(model => model.IdUsuarioNavigation.Correo)
-                    <p />
-                    @if (Model.IdDomicilioNavigation.Comentario == null)
-                    {
-                        <p>Ninguno</p>
-                    }
-                    else
-                    {
-                    <p>
-                        @Html.DisplayFor(model => model.IdDomicilioNavigation.Comentario)
-                    </p>
-                    }
 
-                    <p>
-                        <span>@Html.DisplayFor(model => model.IdDomicilioNavigation.Latitud) </span>
-                        <span> @Html.DisplayFor(model => model.IdDomicilioNavigation.Longitud)</span>
-                    <p />
-                    <p>
-                        @Html.DisplayFor(model => model.Fecha)
-                    </p>
-                    <p>
-                        @Html.DisplayFor(model => model.IdStatusOrdenNavigation.Nombre)
-                    </p>
-                </div>
-
-                </div>
-                <div class="container text-center ">
-                    <h6 class="text-orange" style="margin-right: 20%;">Destino especifico</h6>
-                    <div id="mapDetalle" style="width:420px; height:190px; margin-right: 20%;"></div>
                 </div>
             </div>
-
-
-
-            <div class=" w-50">
-                <h5 class="text-orange">Lista de productos</h5>
-                <table class="table">
-                    <thead>
-                        <tr class="text-orange">
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var i in detalleOrden) {
-                        <tr>
-                            <td>@i.IdProductoNavigation.Nombre</td>
-                            <td>RD$ @i.Precio</td>
-                            <td>@i.Cantidad</td>
-                        </tr>
-                        }
-                        <tr style="background: #F2F2F2">
-                            <td><strong>Total: </strong></td>
-                            <td>RD$ @totalDetalleOrden</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </div>
-
-        </div>
+        </form>
     </div>
-</div>
 
 <script>
     var latitud = @Model.IdDomicilioNavigation.Latitud.ToString().Replace(",", ".");
     var longitud =@Model.IdDomicilioNavigation.Longitud.ToString().Replace(",", ".");
-    var map = L.map('mapDetalle').setView([latitud, longitud], 3);
+    var map = L.map('mapDetalle').setView([latitud, longitud], 10);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
             marker = new L.marker([latitud, longitud]).addTo(map)
-                .bindPopup('@Model.IdUsuarioNavigation.Nombre' + 
+                .bindPopup('@Model.IdUsuarioNavigation.Nombre' +
                     ' @Model.IdUsuarioNavigation.Apellido');
 </script>
