@@ -19,16 +19,30 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
         {
 
         }
-        public async Task<IActionResult> Index(string srt = "", int page = 1)
+        public async Task<IActionResult> Index(string srt = "0", int page = 1)
         {
             IOrderedQueryable<Usuario> usuarios = null;
-            if (!String.IsNullOrEmpty(srt))
+
+            if (srt != "0")
             {
-                Guardar.UsuarioSrt = srt;
-                usuarios = CT.Usuario.AsNoTracking().Where(x => x.IdRol == 1)
-                           .Where(x => x.Nombre == Guardar.UsuarioSrt || x.Correo == Guardar.UsuarioSrt).OrderBy(x => x.IdUsuario);                
+                if (String.IsNullOrEmpty(srt))
+                {
+                    usuarios = CT.Usuario.AsNoTracking().Where(x => x.IdRol == 1).OrderBy(x => x.IdUsuario);
+                    Guardar.UsuarioSrt = null;
+                }
+                else if (srt != "0")
+                {
+                    Guardar.UsuarioSrt = srt.Trim();
+                    usuarios = CT.Usuario.AsNoTracking().Where(x => x.IdRol == 1)
+                               .Where(x => x.Nombre.Contains(Guardar.UsuarioSrt) || x.Correo.Contains(Guardar.UsuarioSrt)).OrderBy(x => x.IdUsuario);
+                }
             }
-            else if(String.IsNullOrEmpty(srt) || String.IsNullOrEmpty(Guardar.UsuarioSrt))
+            else if (!String.IsNullOrEmpty(Guardar.UsuarioSrt))
+            {               
+                usuarios = CT.Usuario.AsNoTracking().Where(x => x.IdRol == 1)
+                           .Where(x => x.Nombre.Contains(Guardar.UsuarioSrt) || x.Correo.Contains(Guardar.Srt)).OrderBy(x => x.IdUsuario);
+            }
+            else if (srt == "0")
             {
                 usuarios = CT.Usuario.AsNoTracking().Where(x => x.IdRol == 1).OrderBy(x => x.IdUsuario);
                 Guardar.UsuarioSrt = null;
