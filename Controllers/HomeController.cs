@@ -102,11 +102,24 @@ namespace Tienda_.Controllers
 
 
 
-        public async Task<IActionResult> Comprado(string telefono, string comentario, string lat, string lon) {
-           
-                int userID = int.Parse(HttpContext.Session.GetString("userID"));
+        public async Task<IActionResult> Comprado(string telefono, string comentario, string lat, string lon, string  id, string cantidad) {
+            
+            // get the logged user id 
+            int userID = int.Parse(HttpContext.Session.GetString("userID"));
 
-                var carrito = await _contex.Carrito.Include(x => x.IdProductoNavigation).Where(x => x.IdUsuario == userID).ToListAsync();
+            // si el id del producto se encuentra entonces comprar ese producto 
+            if (id != null)
+            {
+                var p = await _contex.Producto.Where(x => x.IdProducto == int.Parse(id)).FirstOrDefaultAsync();   
+                await _contex.Database.ExecuteSqlRawAsync($"comprarProducto {userID}, {int.Parse(cantidad)}, {p.IdProducto}, {p.Precio}, {p.Precio}, {float.Parse(lat)}, {float.Parse(lon)}, '{comentario}', '{telefono}'");
+              
+                return RedirectToAction("Detalle_Producto", "Home", new { id = p.IdProducto });
+            }
+
+            // si el id del carrito es numo entonces debe realizar este proceso
+            // comprar lo procutos del carrito del cliente 
+
+            var carrito = await _contex.Carrito.Include(x => x.IdProductoNavigation).Where(x => x.IdUsuario == userID).ToListAsync();
 
                 var ofertas = await _contex.Ofertas.ToListAsync();
                 double? TotalDescuento = 0;
@@ -130,9 +143,10 @@ namespace Tienda_.Controllers
 
 
                 foreach (var p in carrito)
-                {
-
-                    await _contex.Database.ExecuteSqlRawAsync($"comprar {userID}, {p.Cantidad}, {p.IdProducto}, {TotalPagar}, {p.IdProductoNavigation.Precio}, {float.Parse(lat)}, {float.Parse(lon)}, {comentario}, {telefono}");
+                { 
+       
+                    
+                    await _contex.Database.ExecuteSqlRawAsync($"comprarCarrito {userID}, {p.Cantidad}, {p.IdProducto}, {TotalPagar}, {p.IdProductoNavigation.Precio}, {float.Parse(lat)}, {float.Parse(lon)}, '{comentario}', '{telefono}'");
 
                 }
 

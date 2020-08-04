@@ -1,13 +1,18 @@
 var popup,  lat, lon,  telefono, comentario;    
 
- 
-goToCompradoBtn = document.getElementById("goToComprado");
-telefonoInput = document.getElementById("telefono");
-comentarioInput = document.getElementById("comentario");
-latInput = document.getElementById("lat");
-lonInput = document.getElementById("lon");
+var goToCompradoBtn = document.getElementById("goToComprado");
+var telefonoInput = document.getElementById("telefono");
+var comentarioInput = document.getElementById("comentario");
+var latInput = document.getElementById("lat");
+var lonInput = document.getElementById("lon");
+var cantidad = document.getElementById("cantidad");
+var cantidadInput = document.getElementById("cantidadInput");
 
+cantidad.onchange = function () {
+    cantidadInput.value = cantidad.value; 
+}
  
+
 function StartCompra() {
 
   Swal.fire({
@@ -83,7 +88,7 @@ function PaypalButton(tel, comment) {
             title: 'Realizar pago de la compra',
             html: 
                 '<div id="paypal-button-container"></div>',
-            showConfirmButton:false,
+            showConfirmButton: false,
             showCancelButton: true,
             cancelButtonText: 'Cancelar',         
         });
@@ -97,7 +102,7 @@ function PaypalButton(tel, comment) {
     comentarioInput.value = comment;
     latInput.value = lat;
     lonInput.value = lon;
-
+    cantidadInput.value = cantidad.value; 
  
 }
 
@@ -156,7 +161,7 @@ function showPosition(position) {
  * */
 
 function PaypalPay() {
-    var precio = document.getElementById("total").value;
+    var precio = document.getElementById("total").value * cantidadInput.value;
   
 
     // Render the PayPal button into #paypal-button-container
@@ -170,7 +175,7 @@ function PaypalPay() {
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: precio
+                        value: precio  
                     }
                 }]
             });
@@ -180,21 +185,18 @@ function PaypalPay() {
         onApprove: function (data, actions) {
             return actions.order.capture().then(function (details) {
                 // Show a success message to the buyer
-                Swal.fire({
+               Swal.fire({
                     title: 'Transacion realizada',
                     icon: 'success',
                     text: 'Muchas gracias ' + details.payer.name.given_name,
-                    showConfirmButton: false
-                });
-
-              //  confirmButtonText: 'Finalizar compra',
-               //     preConfirm: () => {
-               //         goToComprado.click();
-                //    }
-
-
-                goToComprado.click(); 
-
+                    showConfirmButton: true,
+                    confirmButtonText: 'Finalizar compra',
+                    preConfirm: () => {
+                        goToComprado.click();
+                   },
+                   allowOutsideClick: false
+               });
+ 
             });
         }
     }).render('#paypal-button-container');
@@ -202,4 +204,28 @@ function PaypalPay() {
 }
 
 
+/*
+
+function SendCompra(details) {
+    goToComprado.click(); 
+
+
+    window.onload = function () {
+        Swal.fire({
+            title: 'Finalizando Tranzacion!',
+            text: 'Muchas gracias ' + details.payer.name.given_name,
+            timer: 1000,
+            timerProgressBar: true
+        }).then((result) => {
+         
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('I was closed by the timer')
+            }
+        })
  
+    }
+
+
+}
+
+*/
