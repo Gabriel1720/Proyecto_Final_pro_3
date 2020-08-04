@@ -45,7 +45,7 @@
 </div>
 
 <div class="padre d-flex align-items-center justify-content-center" style="height:170px;">
-    <p class="display-4 text-center" style="color: #FF6F41;">Ofertas</p>
+    <p class="display-4 text-center" style="color: #FF6F41;">Productos</p>
 </div>
 
 <div class="container mt-5 mb-5">
@@ -56,9 +56,9 @@
             if (producto.Precio >= 0 && producto.Precio <= 50)
             {
                 <div class="item" style="position:relative;">
-                    <div style="position: absolute; width: 80px;">
+                  <!--  <div style="position: absolute; width: 80px;">
                         <img src="~/imagen/oferta2.png" class="img-fluid img-center" alt="">
-                    </div>
+                    </div> -->
                     <div class="px-sm-4 pt-2" style="height: 350px;width:220px ;">
                         <div class="" style="height: 45%;">
                             <img src="@producto.Foto" class="img-fluid img-center" alt="">
@@ -99,7 +99,7 @@
 
         @foreach (Producto producto in ViewBag.Productos)
         {
-            if (producto.Precio >= 51 && producto.Precio <= 100)
+            if (producto.Precio >= 51 && producto.Precio <= 60)
             {
                 <div class="item" style="position:relative;">
                     @*<div style="position: absolute; width: 80px;">
