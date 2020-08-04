@@ -161,7 +161,7 @@ function showPosition(position) {
  * */
 
 function PaypalPay() {
-    var precio = document.getElementById("total").value * cantidadInput.value;
+    var precio = document.getElementById("precio").value * cantidad.value;
   
 
     // Render the PayPal button into #paypal-button-container
