@@ -66,6 +66,9 @@ namespace Tienda_.Controllers
             var listaProductos = await _contex.Producto.Where(producto => producto.IdCategoria == id).ToListAsync();
             var categoria = await _contex.Categoria.Where(x => x.IdCategoria == listaProductos.FirstOrDefault().IdCategoria).FirstOrDefaultAsync();
 
+            var listaCategoria = await _contex.Categoria.ToListAsync();
+            ViewBag.Categorias = listaCategoria;
+
             if (categoria != null) {
                 ViewBag.Productos = listaProductos;
                 ViewBag.categoria = categoria.Nombre;
@@ -104,6 +107,9 @@ namespace Tienda_.Controllers
         {
             var listaProductos = await _contex.Ofertas.Include(x => x.IdProductoNavigation)
                                 .Where(x => x.FechaInicio.Value.Date <= DateTime.Now.Date && x.FechaFin >= DateTime.Now.Date).ToListAsync();
+
+            var listaCategoria = await _contex.Categoria.ToListAsync();
+            ViewBag.Categorias = listaCategoria;
 
             ViewBag.Productos = listaProductos;
             ViewBag.categoria = "Productos en oferta";
