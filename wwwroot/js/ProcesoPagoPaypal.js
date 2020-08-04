@@ -180,21 +180,19 @@ function PaypalPay() {
         onApprove: function (data, actions) {
             return actions.order.capture().then(function (details) {
                 // Show a success message to the buyer
-                Swal.fire({
+               Swal.fire({
                     title: 'Transacion realizada',
                     icon: 'success',
                     text: 'Muchas gracias ' + details.payer.name.given_name,
-                    showConfirmButton: false
-                });
-
-              //  confirmButtonText: 'Finalizar compra',
-               //     preConfirm: () => {
-               //         goToComprado.click();
-                //    }
-
-
-                goToComprado.click(); 
-
+                    showConfirmButton: true,
+                    confirmButtonText: 'Finalizar compra',
+                    showLoaderOnConfirm: true,
+                    preConfirm: () => {
+                        goToComprado.click();
+                    },
+                   allowOutsideClick: () => !Swal.isLoading()
+               });
+ 
             });
         }
     }).render('#paypal-button-container');
@@ -202,4 +200,28 @@ function PaypalPay() {
 }
 
 
+/*
+
+function SendCompra(details) {
+    goToComprado.click(); 
+
+
+    window.onload = function () {
+        Swal.fire({
+            title: 'Finalizando Tranzacion!',
+            text: 'Muchas gracias ' + details.payer.name.given_name,
+            timer: 1000,
+            timerProgressBar: true
+        }).then((result) => {
+         
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log('I was closed by the timer')
+            }
+        })
  
+    }
+
+
+}
+
+*/

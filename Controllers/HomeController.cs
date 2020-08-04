@@ -130,9 +130,10 @@ namespace Tienda_.Controllers
 
 
                 foreach (var p in carrito)
-                {
-
-                    await _contex.Database.ExecuteSqlRawAsync($"comprar {userID}, {p.Cantidad}, {p.IdProducto}, {TotalPagar}, {p.IdProductoNavigation.Precio}, {float.Parse(lat)}, {float.Parse(lon)}, {comentario}, {telefono}");
+                { 
+       
+                    
+                    await _contex.Database.ExecuteSqlRawAsync($"comprar {userID}, {p.Cantidad}, {p.IdProducto}, {TotalPagar}, {p.IdProductoNavigation.Precio}, {float.Parse(lat)}, {float.Parse(lon)}, '{comentario}', '{telefono}'");
 
                 }
 
