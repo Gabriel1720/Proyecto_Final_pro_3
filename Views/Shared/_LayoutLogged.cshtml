@@ -97,7 +97,7 @@
 
                     <ul class="navbar-nav flex-grow-1 row">
                         <li class="nav-item ml-sm-auto">
-                            <a class="nav-link text-white pl-2" asp-action="Index" >Inicio</a>
+                            <a class="nav-link text-white pl-2" asp-action="Index" asp-controller="Home" >Inicio</a>
                         </li>
                         <li class="nav-item ml-sm-auto">
                             <a class="nav-link text-white pl-2" href="#">Producto</a>
@@ -109,11 +109,11 @@
                             <ion-icon class="text-white" name="caret-down"></ion-icon>
                         </li>
                         <li class="nav-item ml-sm-auto">
-                            <a class="nav-link text-white pl-2" asp-controller="Home" asp-action="Conctactanos">Contactanos</a>
+                            <a class="nav-link text-white pl-2"  asp-action="Conctactanos" asp-controller="Home" >Contactanos</a>
                         </li>
                         <li class="nav-item ml-sm-auto padre">
                             <ion-icon name="gift-outline" class="icono text-white"></ion-icon>
-                            <a asp-controller="Home" asp-action="Ofertas" class="nav-link text-white pl-2">Ofertas</a>
+                            <a  asp-action="Ofertas" asp-controller="Home" class="nav-link text-white pl-2">Ofertas</a>
                         </li>
                     </ul>
                 </div>
