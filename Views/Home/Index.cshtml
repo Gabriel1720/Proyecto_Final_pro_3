@@ -17,21 +17,21 @@
                 var base1 = Convert.ToBase64String(lista.ElementAt(0).Foto);
                 var imgSrc1 = string.Format("data:image/gif;base64,{0}", base1);
             }
-            <img src="@imgSrc1" class="d-block w-100" alt="..." style="max-height:500px;">
+            <img src="@imgSrc1" class="d-block w-100" alt="..." style="max-height:600px;">
         </div>
         <div class="carousel-item">
             @{
                 var base2 = Convert.ToBase64String(lista.ElementAt(1).Foto);
                 var imgSrc2 = string.Format("data:image/gif;base64,{0}", base2);
             }
-            <img src="@imgSrc2" class="d-block w-100" alt="..." style="max-height:500px;">
+            <img src="@imgSrc2" class="d-block w-100" alt="..." style="max-height:600px;">
         </div>
         <div class="carousel-item">
             @{
                 var base3 = Convert.ToBase64String(lista.ElementAt(2).Foto);
                 var imgSrc3 = string.Format("data:image/gif;base64,{0}", base3);
             }
-            <img src="@imgSrc3" class="d-block w-100" alt="..." style="max-height:500px;">
+            <img src="@imgSrc3" class="d-block w-100" alt="..." style="max-height:600px;">
         </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">

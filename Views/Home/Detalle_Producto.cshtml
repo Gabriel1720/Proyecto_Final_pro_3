@@ -1,5 +1,4 @@
-﻿@model Proyecto_final_pro_3.Models.Carrito
-
+﻿
 @{
     ViewData["Title"] = "second Page";
 
@@ -8,6 +7,7 @@
         Layout = "~/Views/Shared/_LayoutLogged.cshtml";
 
     }
+ 
 }
 
 <div class="container-fluid">
@@ -24,49 +24,58 @@
             <br />
             <p class="h5 font-weight-normal">@ViewBag.Producto.Descripcion</p>
             <br />
+
             @if (@ViewBag.Producto.Stock > 0)
             {
-        <div class="" style="position:relative;">
+                <div class="" style="position:relative;">
 
-            @if (@ViewBag.Producto.Stock <= 10)
-            {
-                <div>
-                    <p class="h5 d-inline-block text-danger">@ViewBag.Producto.Stock unidades disponible</p>
-                </div>                
-            }
-            else
-            {
-                <p class="h5 font-weight-bold" style="color: #74B947;">Disponible</p>
-            }
+                    @if (@ViewBag.Producto.Stock <= 10)
+                    {
+                        <div>
+                            <p class="h5 d-inline-block text-danger">@ViewBag.Producto.Stock unidades disponible</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <p class="h5 font-weight-bold" style="color: #74B947;">Disponible</p>
+                    }
 
-            <p class="h5 d-inline-block"><strong>RD$ @ViewBag.Producto.Precio</strong></p>
-            <form asp-controller="Home" method="post">
-                <strong>Cantidad: </strong>
-                <select name="Cantidad">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-                <input type="number" value="@ViewBag.Producto.IdProducto" name="IdProducto" class="d-none" />
-                <br />
-                <button type="button" onclick="ShowMap()" class="btn border-0  mt-4 mb-5 px-4 py-2 d-inline-block " style="background: #FD5924; color: #fff;">Comprar ahora </button>
-                <button type="submit" asp-action="addCarrito" asp-controller="AdministrarCarrito" asp-area="Cliente" class="btn border-0  mt-4 mb-5 px-4  py-2  d-inline-block" style="background: #85E30C; color: #fff; margin-left: 7%;">Añadir al carrito</button>
-            </form>
-        </div>
+                    <p class="h5 d-inline-block"><strong>RD$ @ViewBag.Producto.Precio</strong></p>
+                    <form asp-controller="Home" method="post">
+                        <strong>Cantidad: </strong>
+                        <select name="Cantidad">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <input type="number" value="@ViewBag.Producto.IdProducto" name="IdProducto" class="d-none" />
+                        <br />
+                        @{ //if (ViewBag.userID != null)
+//    {
+                            <button type="button" onclick="StartCompra()" class="btn border-0  mt-4 mb-5 px-4 py-2 d-inline-block " style="background: #FD5924; color: #fff;">Comprar ahora </button>
+                                //   }
+                                //   else
+                                //   {
+                                //       <a asp-action="Login" asp-controller="Cuenta" class="btn border-0  mt-4 mb-5 px-4 py-2 d-inline-block " style="background: #FD5924; color: #fff;">Comprar ahora </a>
+
+                                //    }
+                            }
+                        <button type="submit" asp-action="addCarrito" asp-controller="AdministrarCarrito" asp-area="Cliente" class="btn border-0  mt-4 mb-5 px-4  py-2  d-inline-block" style="background: #85E30C; color: #fff; margin-left: 7%;">Añadir al carrito</button>
+                    </form>
+                </div>
             }
             else
             {
                 <p class="text-danger font-weight-bold h6">Agotado</p>
             }
-
         </div>
     </div>
 </div>
 
-
 <div class="padre d-flex align-items-center justify-content-center mt-3" style="height:170px;">
+
     <p class="display-4 text-center" style="color: #FF6F41;">Productos similares</p>
 </div>
 
@@ -116,6 +125,8 @@
     </div>
 </div>
 
+<a id="goToComprado" asp-action='Comprado' asp-controller='Home' asp-route-id="@Model" class='btn btn-primary text-white text-center mt-2 p-2 d-none'>Finalizar Compra</a>
+
 <script>
 
     var added = document.getElementById("added").value;
@@ -137,8 +148,11 @@
     }
 
 </script>
- 
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.2.min.js" type="text/javascript"></script>
+
+
 <!-- Include the PayPal JavaScript SDK -->
 <script src="https://www.paypal.com/sdk/js?client-id=AXo7HnZBirc_ek1bBKfGxjBtFZs3Ht6OxmwRsumSMzgInM_vJlUJ4J8JTgMJJRkDPMy2_tgqMzQrav8v&currency=USD"></script>
 
-<script src="~/js/ProcesoParaPagar.js"></script>
+<script src="~/js/ProcesoPagoPaypal.js"></script>

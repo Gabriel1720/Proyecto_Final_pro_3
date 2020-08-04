@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Proyecto_final_pro_3.Models;
 
 namespace Proyecto_final_pro_3.Models
 {
@@ -223,5 +224,6 @@ namespace Proyecto_final_pro_3.Models
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+ 
     }
 }
