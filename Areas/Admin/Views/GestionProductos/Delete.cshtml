@@ -5,7 +5,7 @@
 <div class="overflow-auto">
     <h3 class="text-center mt-4" style="color: #FD5924;">ELIMINAR PRODUCTO</h3>
 
-    <form style="height:500px;">
+    <form style="height:500px;" asp-action="Delete">
         <div class="mx-auto mt-3 col-md-8  text-center shadow-sm" style="border:1px solid #d3cdcd ;">
 
             <div class="col-8 col-sm-11 col-md-11 mx-auto mt-4 mb-4">
@@ -38,11 +38,9 @@
                         <a asp-action="Idenx" class="btn w-100" style="background: #0088EA; color: #fff;">Cancelar</a>
                     </div>
 
-                    <div class="col-6 col-sm-6 col-md-6">
-                        <form asp-action="Delete">
+                    <div class="col-6 col-sm-6 col-md-6">             
                             <input type="hidden" asp-for="IdProducto" />
                             <input type="submit" class="btn w-100" value="Eliminar" style="background: #F83535; color: #fff;">
-                        </form>
                     </div>
                 </div>
             </div>
