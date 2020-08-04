@@ -66,7 +66,7 @@
 </div>
 
 
-<div class="padre d-flex align-items-center justify-content-center" style="height:170px;">
+<div class="padre d-flex align-items-center justify-content-center mt-3" style="height:170px;">
     <p class="display-4 text-center" style="color: #FF6F41;">Productos similares</p>
 </div>
 
@@ -81,7 +81,7 @@
                     <div class="" style="height: 45%;">
                         <img src="@producto.Foto" class="img-fluid img-center" alt="">
                     </div>
-                    <div class="text-center pt-sm-2" style="height: 30%;">
+                    <div class="text-center pt-sm-2 mt-2" style="height: 30%;">
                         @{
                             string srt = producto.Nombre;
                             if (srt.Length >= 38)
@@ -99,7 +99,7 @@
                                 <p>@producto.Nombre</p>
                             }
                         }
-                        <h4>@producto.Precio $</h4>
+                        <h4>RD$ @producto.Precio</h4>
                         <br />
                     </div>
                     <div class="m-auto" style="height: 25%;">
