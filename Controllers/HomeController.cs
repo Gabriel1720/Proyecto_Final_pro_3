@@ -102,17 +102,45 @@ namespace Tienda_.Controllers
 
 
 
-        public async  Task<IActionResult> Comprado(IEnumerable<CompraProductos> compra) {
+        public async Task<IActionResult> Comprado(string telefono, string comentario, string lat, string lon) {
 
-            foreach (var p in compra)
-            {
-             int affeted = await _contex.Database.ExecuteSqlRawAsync($"comprar {p.IdUser}, {p.cantidad}, {p.IdProducto}, {p.total}, {p.precio}, {p.latitud}, {p.longitud}, {p.comentario}, {p.telefono}");
-            }
-            return RedirectToAction("Index"); 
-                 
-        }
+              int userID = int.Parse(HttpContext.Session.GetString("userID"));
+         
+                var carrito = await _contex.Carrito.Include(x => x.IdProductoNavigation).Where(x => x.IdUsuario == userID).ToListAsync();
 
- 
+                var ofertas = await _contex.Ofertas.ToListAsync();
+                double? TotalDescuento = 0;
+                double? SubTotal = 0;
+                double? TotalPagar = 0;
+                foreach (var itemCarrito in carrito)
+                {
+                    SubTotal = SubTotal + itemCarrito.IdProductoNavigation.Precio * itemCarrito.Cantidad;
+                    foreach (var itemOferta in ofertas)
+                    {
+                        if (itemCarrito.IdProducto == itemOferta.IdProducto)
+                        {
+                            if (itemOferta.Precio >= 0)
+                            {
+                                TotalDescuento = TotalDescuento + itemOferta.Precio * itemCarrito.Cantidad;
+                            }
+                        }
+                    }
+                }
+                TotalPagar = SubTotal - TotalDescuento;
+
+
+            foreach (var p in carrito) {
+  
+                int affeted = await _contex.Database.ExecuteSqlRawAsync($"comprar {userID}, {p.Cantidad}, {p.IdProducto}, {TotalPagar}, {p.IdProductoNavigation.Precio}, {lat}, {lon}, {comentario}, {telefono}");
+
+                
+             }
+
+            return RedirectToAction("index", "AdministrarCarrito", new { area = "Cliente"}); 
+             
+         }
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
