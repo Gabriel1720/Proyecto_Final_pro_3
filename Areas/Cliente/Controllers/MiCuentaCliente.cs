@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Proyecto_final_pro_3.Models;
 
 namespace Proyecto_final_pro_3.Areas.Cliente.Controllers
@@ -88,14 +89,18 @@ namespace Proyecto_final_pro_3.Areas.Cliente.Controllers
         public async Task<IActionResult> Ordenes()
         {
             string idUser = HttpContext.Session.GetString("userID");
-            int id = Int32.Parse(idUser);
+            if (idUser == null)
+            {
+                return RedirectToAction("Login", "Cuenta");
+            }
 
+            int id = Int32.Parse(idUser);       
+            //int id = 2;
             //var usuario = await CT.Orden.Where(x => x.IdUsuario == id).ToListAsync();
-
             List<Pedidos> lst;
             using (DB_A64A4C_SuperMercadoContext CT = new DB_A64A4C_SuperMercadoContext()) 
             {
-                lst = (from o in CT.Orden
+                lst = await (from o in CT.Orden
                        join e in CT.StatusOrden on o.IdStatusOrden equals e.IdStatusOrden
                       join d in CT.Domicilio on o.IdDomicilio equals d.IdDomicilio
                       where o.IdUsuario == id
@@ -106,10 +111,46 @@ namespace Proyecto_final_pro_3.Areas.Cliente.Controllers
                           latlong = d.Latitud.ToString() + " " + d.Longitud.ToString(),
                           Estado = e.Nombre,
                           Monto = o.Total,
-                      }).ToList();
+                      }).ToListAsync();
             }
 
             return View(lst);
+        }
+
+
+        [HttpGet]
+        public async Task <IActionResult> DetailsOrden(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+            var orden = await _context.Orden.Include(o => o.IdDomicilioNavigation).
+                Include(o => o.IdStatusOrdenNavigation).FirstOrDefaultAsync(o=> o.IdOrden==id);
+
+            var detalleOrden = await _context.DetalleOrden.Where(d => d.IdOrden == id).
+               Include(d => d.IdProductoNavigation).
+               ToListAsync();
+
+            var ofertas = await _context.Ofertas.ToListAsync();
+
+            double? totalDescuento = 0;
+            foreach (var itemDetalle in detalleOrden)
+            {
+                foreach (var itemOfertas in ofertas)
+                {
+                    if (itemDetalle.IdProducto == itemOfertas.IdProducto)
+                    {
+                        if (itemOfertas.Precio >= 0)
+                        {
+                            totalDescuento = totalDescuento + itemOfertas.Precio * itemDetalle.Cantidad;
+                        }
+                    }
+                }
+            }
+            ViewData["TotalDescuento"] = totalDescuento;
+            ViewData["detalleOrden"] = detalleOrden;
+            return View(orden);
         }
     }
 }
