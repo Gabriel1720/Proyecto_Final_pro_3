@@ -19,5 +19,6 @@
     <WebStackScaffolding_DbContextTypeFullName>Proyecto_final_pro_3.Models.DB_A64A4C_SuperMercadoContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
+    <NameOfLastUsedPublishProfile>FTPProfile</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>
