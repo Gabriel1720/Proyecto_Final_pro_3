@@ -1,0 +1,73 @@
+﻿
+@{
+
+    ViewData["Title"] = "Busqueda producto";
+
+    if (ViewBag.userID != null)
+    {
+        Layout = "~/Views/Shared/_LayoutLogged.cshtml";
+
+    }
+
+}
+ 
+
+<div class="container-fluid p-4">
+    <div class="row my-4">
+    
+        <div class="col-sm-12 col-md-10 p-0 mx-sm-auto mr-0" style="clear:both;">
+            <div class="row mb-4  m-0 p-0">
+                <div class="col-11 p-0 m-0">
+                    <h2 class="text-uppercase">@ViewBag.categoria</h2>
+                    <hr style="border-width: 1px; border-color:#FD5924;" />
+
+                    <p class="float-right"> <img src="~/iconos/etiqueta.png" width="24" /> @ViewBag.cantidad Articulos </p>
+
+                </div>
+            </div>
+            <div class="row mx-0">
+
+
+                @foreach (var producto in ViewBag.productos)
+                {
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="px-sm-4 pt-2" style="height: 350px;width:220px ;">
+                            <div style="height: 45%;">
+                                <img src="@producto.Foto" class="img-fluid img-center" alt="">
+                            </div>
+                            <div class="text-center pt-sm-2" style="height: 30%;">
+                                @{
+                                    string srt = producto.Nombre;
+                                    if (srt.Length >= 38)
+                                    {
+                                        srt = srt.Substring(0, 33) + "...";
+                                        <p>@srt</p>
+                                    }
+                                    else if (srt.Length <= 22)
+                                    {
+                                        <p>@producto.Nombre</p>
+                                        <br />
+                                    }
+                                    else
+                                    {
+                                        <p>@producto.Nombre</p>
+                                    }
+                                }
+                                <h5>RD$ @producto.Precio</h5>
+                                <br />
+                            </div>
+                            <div class="m-auto" style="height: 25%;">
+                                <a class="btn btn-outline-oscuro btn-block btn-sm" asp-route-id="@producto.IdProducto" asp-controller="Home" asp-action="Detalle_Producto">Comprar ahora</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                }
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

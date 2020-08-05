@@ -8,7 +8,7 @@
 @model Proyecto_final_pro_3.Models.Usuario;
 
 <h3 class="mt-4 mb-3 text-center" style="color: #FF561F;">MI CUENTA</h3>
-<form method="post" class="border border-secondary rounded mx-auto text-center p-4 registro" style="height: 58%;">
+<form method="post" class="mx-auto text-center p-4 registro" style="height: 58%;">
 
 
     <div class="col-11 col-sm-11 col-md-11 mx-auto mt-2 mb-2">
@@ -30,7 +30,7 @@
     </div>
     <input type="hidden" name="idUser" value="@Model.IdUsuario"/>
     <div class="col-4 col-sm-7 col-md-5 mx-auto mt-4">
-        <input type="submit" asp-controller="MiCuentaCliente" asp-action="Edit" class="btn btn-block input-round text-white" style="background-color: #FD5924;">
+        <input type="submit" value="Guardar Cambios" asp-controller="MiCuentaCliente" asp-action="Edit" class="btn btn-block input-round text-white" style="background-color: #FD5924;">
     </div>
 
 </form>

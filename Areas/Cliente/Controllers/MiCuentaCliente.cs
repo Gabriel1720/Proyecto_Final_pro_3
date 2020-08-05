@@ -152,6 +152,7 @@ namespace Proyecto_final_pro_3.Areas.Cliente.Controllers
             }
             ViewData["TotalDescuento"] = totalDescuento;
             ViewData["detalleOrden"] = detalleOrden;
+            ViewBag.userID = HttpContext.Session.GetString("userID"); 
             return View(orden);
         }
     }

@@ -3,6 +3,14 @@
     var detalleOrden = (List<DetalleOrden>)ViewBag.detalleOrden;
     var totalDetalleOrden = ViewBag.detalleOrdenTotal;
     var totalDescuento = ViewBag.TotalDescuento;
+
+
+    if (ViewBag.userID != null)
+    {
+        Layout = "~/Views/Shared/_LayoutLogged.cshtml";
+
+    }
+
 }
 @if (Model == null && !detalleOrden.Any())
 {
@@ -17,7 +25,7 @@ else
             <h2 class="text-orange d-inline text-center" style="margin-left: 30%;">DETALLES DE LA ORDEN</h2>
         </div>
         <form style="height:500px;">
-            <div class="mt-4" style="padding: 2%; border: 1px solid rgb(128, 128, 128); border-radius:10px;">
+            <div class="mt-4 p-2 border-0">
                 <div class="row">
                     <div class="container w-auto">
                         <div class="row">

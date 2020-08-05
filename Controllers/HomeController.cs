@@ -66,9 +66,6 @@ namespace Tienda_.Controllers
             var listaProductos = await _contex.Producto.Where(producto => producto.IdCategoria == id).ToListAsync();
             var categoria = await _contex.Categoria.Where(x => x.IdCategoria == listaProductos.FirstOrDefault().IdCategoria).FirstOrDefaultAsync();
 
-            var listaCategoria = await _contex.Categoria.ToListAsync();
-            ViewBag.Categorias = listaCategoria;
-
             if (categoria != null) {
                 ViewBag.Productos = listaProductos;
                 ViewBag.categoria = categoria.Nombre;
@@ -88,7 +85,10 @@ namespace Tienda_.Controllers
             return View();
         }
 
-        public async Task<IActionResult> BuscarProductos(string producto)
+
+
+     
+        public async Task<IActionResult> Busqueda_Producto(string producto)
         {
 
             var listaProductos = await _contex.Producto.Where(x => x.Nombre.Contains(producto)).ToListAsync();
@@ -100,16 +100,14 @@ namespace Tienda_.Controllers
             string session = HttpContext.Session.GetString("userID");
             ViewBag.UserID = session;
 
-            return View("Categorias");
+            return View();
+
         }
 
         public async Task<IActionResult> Ofertas()
         {
             var listaProductos = await _contex.Ofertas.Include(x => x.IdProductoNavigation)
                                 .Where(x => x.FechaInicio.Value.Date <= DateTime.Now.Date && x.FechaFin >= DateTime.Now.Date).ToListAsync();
-
-            var listaCategoria = await _contex.Categoria.ToListAsync();
-            ViewBag.Categorias = listaCategoria;
 
             ViewBag.Productos = listaProductos;
             ViewBag.categoria = "Productos en oferta";
@@ -157,6 +155,7 @@ namespace Tienda_.Controllers
                         }
                     }
                 }
+
                 TotalPagar = SubTotal - TotalDescuento;
 
 
@@ -171,6 +170,12 @@ namespace Tienda_.Controllers
                 return RedirectToAction("index", "AdministrarCarrito", new { area = "Cliente" });
 
             }
+
+
+
+
+
+          
  
     
 
