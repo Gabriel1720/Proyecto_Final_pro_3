@@ -80,17 +80,16 @@
 </div>
 
 <div class="container mt-5 mb-5">
-    <div class="owl-carousel">
+    <div class="owl-carousel owl-theme">
 
         @foreach (Producto producto in ViewBag.Productos)
-        {
-
-            <div class="item" style="position: relative;">
+        {            
+            <div class="item" style="position:relative;">               
                 <div class="px-sm-4 pt-2" style="height: 350px;width:220px ;">
                     <div class="" style="height: 45%;">
                         <img src="@producto.Foto" class="img-fluid img-center" alt="">
                     </div>
-                    <div class="text-center pt-sm-2 mt-2" style="height: 30%;">
+                    <div class="text-center pt-sm-2" style="height: 30%;">
                         @{
                             string srt = producto.Nombre;
                             if (srt.Length >= 38)
@@ -108,22 +107,22 @@
                                 <p>@producto.Nombre</p>
                             }
                         }
-                        <h4>RD$ @producto.Precio</h4>
-                        <br />
+                        <h5>RD$ @producto.Precio</h5>
                     </div>
                     <div class="m-auto" style="height: 25%;">
                         <a class="btn btn-outline-oscuro btn-block btn-sm" asp-route-id="@producto.IdProducto" asp-controller="Home" asp-action="Detalle_Producto">Comprar ahora</a>
                     </div>
                 </div>
             </div>
-
+            
         }
 
         <input id="added" value="@ViewBag.Added" class="d-none" />
         <input id="total" value="@ViewBag.Producto.Precio" class="d-none" />
-
     </div>
 </div>
+
+
 <form asp-action="Comprado" asp-controller='Home' class="d-none">
     <input type="text" name="telefono" id="telefono" />
     <input type="text" name="comentario" id="comentario" />
