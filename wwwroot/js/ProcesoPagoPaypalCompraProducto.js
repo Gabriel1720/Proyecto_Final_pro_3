@@ -132,7 +132,6 @@ function showPosition(position) {
         zoomOffset: -1,
     }).addTo(map);
 
-    L.marker([latitud, longitud]).addTo(map)
 
     map.on('click', onMapClick);
 

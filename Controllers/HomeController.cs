@@ -72,6 +72,9 @@ namespace Tienda_.Controllers
                 ViewBag.cantidad = listaProductos.Count();
             }
 
+            var listaCategoria = await _contex.Categoria.ToListAsync();
+            ViewBag.Categorias = listaCategoria;
+
             string session = HttpContext.Session.GetString("userID");
             ViewBag.UserID = session;
 
@@ -127,7 +130,7 @@ namespace Tienda_.Controllers
             if (id != null)
             {
                 var p = await _contex.Producto.Where(x => x.IdProducto == int.Parse(id)).FirstOrDefaultAsync();   
-                await _contex.Database.ExecuteSqlRawAsync($"comprarProducto {userID}, {int.Parse(cantidad)}, {p.IdProducto}, {p.Precio}, {p.Precio}, {float.Parse(lat)}, {float.Parse(lon)}, '{comentario}', '{telefono}'");
+                await _contex.Database.ExecuteSqlRawAsync($"comprarProducto {userID}, {int.Parse(cantidad)}, {p.IdProducto}, {p.Precio * int.Parse(cantidad)}, {p.Precio}, {float.Parse(lat)}, {float.Parse(lon)}, '{comentario}', '{telefono}'");
               
                 return RedirectToAction("Detalle_Producto", "Home", new { id = p.IdProducto });
             }
@@ -158,13 +161,13 @@ namespace Tienda_.Controllers
 
                 TotalPagar = SubTotal - TotalDescuento;
 
+            int contador = 0;
 
-                foreach (var p in carrito)
-                { 
-       
-                    
-                    await _contex.Database.ExecuteSqlRawAsync($"comprarCarrito {userID}, {p.Cantidad}, {p.IdProducto}, {TotalPagar}, {p.IdProductoNavigation.Precio}, {float.Parse(lat)}, {float.Parse(lon)}, '{comentario}', '{telefono}'");
-
+            foreach (var p in carrito)
+                {
+                 
+                    await _contex.Database.ExecuteSqlRawAsync($"comprarCarrito {userID}, {p.Cantidad}, {p.IdProducto}, {TotalPagar}, {p.IdProductoNavigation.Precio}, {float.Parse(lat)}, {float.Parse(lon)}, '{comentario}', '{telefono}', {contador}");
+                    contador++; 
                 }
 
                 return RedirectToAction("index", "AdministrarCarrito", new { area = "Cliente" });

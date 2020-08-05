@@ -126,9 +126,7 @@ function showPosition(position) {
         tileSize: 512,
         zoomOffset: -1,
     }).addTo(map);
-
-    L.marker([latitud, longitud]).addTo(map)
-
+ 
     map.on('click', onMapClick);
 
     function onMapClick(e) {
