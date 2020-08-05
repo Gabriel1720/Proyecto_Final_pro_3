@@ -132,6 +132,7 @@ function showPosition(position) {
         zoomOffset: -1,
     }).addTo(map);
 
+  
 
     map.on('click', onMapClick);
 
