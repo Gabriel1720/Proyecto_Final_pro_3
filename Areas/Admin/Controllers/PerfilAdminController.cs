@@ -12,7 +12,11 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
     [Area("Admin")]
     public class PerfilAdminController : Controller
     {
-        public DB_A64A4C_SuperMercadoContext _context = new DB_A64A4C_SuperMercadoContext();
+        public DB_A64A4C_SuperMercadoContext _context;
+
+        public PerfilAdminController(DB_A64A4C_SuperMercadoContext context) {
+            _context = context; 
+        }
 
         public IActionResult Index()
         {          

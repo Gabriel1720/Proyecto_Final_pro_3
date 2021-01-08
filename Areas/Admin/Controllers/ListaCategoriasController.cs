@@ -11,17 +11,15 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
     public class ListaCategoriasController : Controller
     {
 
-        public DB_A64A4C_SuperMercadoContext CT = new DB_A64A4C_SuperMercadoContext();
+        public DB_A64A4C_SuperMercadoContext _context;
 
-        public ListaCategoriasController()
-        {
-
-
-
+        public ListaCategoriasController(DB_A64A4C_SuperMercadoContext context) {
+            _context = context; 
         }
+
         public IActionResult Index()
         {
-            ViewBag.Categoria = CT.Categoria.ToList();
+            ViewBag.Categoria = _context.Categoria.ToList();
             return View();
         }
 
@@ -45,8 +43,8 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
 
             }
 
-            CT.Categoria.Add(categoria);
-            CT.SaveChanges();
+            _context.Categoria.Add(categoria);
+            _context.SaveChanges();
 
 
             return RedirectToAction("Index");

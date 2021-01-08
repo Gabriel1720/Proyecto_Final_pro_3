@@ -12,7 +12,12 @@ namespace Proyecto_final_pro_3.Areas.Cliente.Controllers
     [Area("Cliente")]
     public class AdministrarCarritoController : Controller
     {
-        DB_A64A4C_SuperMercadoContext _context = new DB_A64A4C_SuperMercadoContext();
+        DB_A64A4C_SuperMercadoContext _context;
+
+
+        public AdministrarCarritoController(DB_A64A4C_SuperMercadoContext context) {
+            _context = context; 
+        }
 
         public async Task<IActionResult> Index()
         {

@@ -9,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ReflectionIT.Mvc.Paging;
+using Proyecto_final_pro_3.Models;
+using Microsoft.EntityFrameworkCore;
+using Proyecto_final_pro_3.Services;
 
 namespace Proyecto_final_pro_3
 {
@@ -24,8 +27,12 @@ namespace Proyecto_final_pro_3
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddDbContext<DB_A64A4C_SuperMercadoContext>(options => 
+            options.UseSqlServer(Configuration.GetConnectionString("DefualtConnection")));
 
+            services.AddScoped<IContextService, ContextService>();
+
+            services.AddControllersWithViews();
             services.AddPaging();
 
             services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache

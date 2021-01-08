@@ -13,7 +13,13 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
     [Area("Admin")]
     public class CambiarSlider : Controller
     {
-        DB_A64A4C_SuperMercadoContext _context = new DB_A64A4C_SuperMercadoContext();
+        DB_A64A4C_SuperMercadoContext _context;
+
+        public CambiarSlider(DB_A64A4C_SuperMercadoContext context) {
+            _context = context; 
+        }
+
+
         public async Task<IActionResult> Index()
         {
              ViewBag.Foto = await _context.Slider.ToListAsync();           

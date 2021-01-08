@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject DB_A64A4C_SuperMercadoContext _context
+
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8" />
@@ -51,7 +53,7 @@
 
                         <a class="link-ir text-decoration-none" asp-controller="Cuenta" asp-action="Login">Login</a>
                         <samp class="link-ir">|</samp>
-                        <a class="link-ir text-decoration-none" asp-controller="Cuenta" asp-action="Nueva_cuenta">Registrarse</a>
+                        <a class="link-ir text-decoration-none" asp-controller="Cuenta" asp-action="Registrarse">Registrarse</a>
 
                     </li>
                 </ul>
@@ -90,7 +92,7 @@
             <div class="text-muted container py-3">
                 <section class="row pl-5">
                     @{
-                        DB_A64A4C_SuperMercadoContext _context = new DB_A64A4C_SuperMercadoContext();
+                    
                         var Catego = _context.Categoria.ToList();
 
                         foreach (Categoria categoria in Catego)

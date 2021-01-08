@@ -16,7 +16,11 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
     [Area("Admin")]
     public class GestionProductos : Controller
     {
-        readonly DB_A64A4C_SuperMercadoContext _context = new DB_A64A4C_SuperMercadoContext();
+        readonly DB_A64A4C_SuperMercadoContext _context;
+
+        public GestionProductos(DB_A64A4C_SuperMercadoContext context) {
+            _context = context; 
+        }
 
         [HttpGet]
         //get the specific product

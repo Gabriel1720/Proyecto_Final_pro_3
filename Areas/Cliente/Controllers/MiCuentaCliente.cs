@@ -13,7 +13,11 @@ namespace Proyecto_final_pro_3.Areas.Cliente.Controllers
     [Area("Cliente")]
     public class MiCuentaCliente : Controller
     {
-        DB_A64A4C_SuperMercadoContext _context = new DB_A64A4C_SuperMercadoContext();
+        private readonly  DB_A64A4C_SuperMercadoContext _context;
+
+        public MiCuentaCliente(DB_A64A4C_SuperMercadoContext context) {
+            _context = context; 
+        }
 
         public async Task<IActionResult> Index()
         {
@@ -98,21 +102,19 @@ namespace Proyecto_final_pro_3.Areas.Cliente.Controllers
             //int id = 2;
             //var usuario = await CT.Orden.Where(x => x.IdUsuario == id).ToListAsync();
             List<Pedidos> lst;
-            using (DB_A64A4C_SuperMercadoContext CT = new DB_A64A4C_SuperMercadoContext()) 
-            {
-                lst = await (from o in CT.Orden
-                       join e in CT.StatusOrden on o.IdStatusOrden equals e.IdStatusOrden
-                      join d in CT.Domicilio on o.IdDomicilio equals d.IdDomicilio
-                      where o.IdUsuario == id
-                      select new Pedidos
-                      {
-                          Id = o.IdOrden,
-                          Fecha = o.Fecha.ToString(),
-                          latlong = d.Latitud.ToString() + " " + d.Longitud.ToString(),
-                          Estado = e.Nombre,
-                          Monto = o.Total,
-                      }).ToListAsync();
-            }
+
+            lst = await (from o in _context.Orden
+                    join e in _context.StatusOrden on o.IdStatusOrden equals e.IdStatusOrden
+                    join d in _context.Domicilio on o.IdDomicilio equals d.IdDomicilio
+                    where o.IdUsuario == id
+                    select new Pedidos
+                    {
+                        Id = o.IdOrden,
+                        Fecha = o.Fecha.ToString(),
+                        latlong = d.Latitud.ToString() + " " + d.Longitud.ToString(),
+                        Estado = e.Nombre,
+                        Monto = o.Total,
+                    }).ToListAsync();
 
             ViewBag.userID = id; 
 

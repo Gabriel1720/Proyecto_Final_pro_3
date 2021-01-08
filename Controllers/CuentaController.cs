@@ -15,7 +15,11 @@ namespace Tienda_.Controllers
 {
     public class CuentaController : Controller
     {
-        private readonly static DB_A64A4C_SuperMercadoContext _context = new DB_A64A4C_SuperMercadoContext();
+        private readonly DB_A64A4C_SuperMercadoContext _context;
+
+        public CuentaController(DB_A64A4C_SuperMercadoContext context) {
+            _context = context; 
+        }
 
 
         [HttpGet]
@@ -98,8 +102,6 @@ namespace Tienda_.Controllers
             
             if (ModelState.IsValid)
             {
-                using (DB_A64A4C_SuperMercadoContext db = new DB_A64A4C_SuperMercadoContext())
-                {
                     var oUser = new Usuario();
                     oUser.Nombre = user.Nombre;
                     oUser.Apellido = user.Apellido;
@@ -111,14 +113,13 @@ namespace Tienda_.Controllers
 
                     if (repPass == oUser.Password)
                     {
-                        db.Usuario.Add(oUser);
-                        db.SaveChanges();
+                        _context.Usuario.Add(oUser);
+                        _context.SaveChanges();
                     }
                     else
                     {
                         return Redirect("/Cuenta/Registrarse");
                     }
-                }
                 return Redirect("/Cuenta/Login");
             }
 

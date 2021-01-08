@@ -6,46 +6,26 @@
 }
 
 
-<div class="container-fluid mt-4">
-    <div class="row">
-        <div class="col-sm-12 col-md-6 text-center" >
-            <div class="p-4 w-75 shadow-sm">
-                <h4>INICIAR SESIÓN </h4>
-                <button class="border-0 my-2 p-2 w-75" style="color:white; border-radius:50px; background:#0088EA; margin-bottom:5px;"> <img class="mb-1 mr-2" src="~/iconos/facebook-icon.png" width="20" height="20" /> Facebook</button> <br />
-                <button class="border-0 mb-3 p-2  w-75" style="color:white; border-radius:50px; background:#FF6258;">  <img class="mb-1 mr-2" src="~/iconos/google_icon.png" width="26" /> Google</button>
-
-                <br />
-                <div class="d-inline-block" style="width: 40%; border: 1px solid rgb(255, 11, 65, 0.3);height: 1px"></div>
-                <b>o</b>
-                <div class="d-inline-block" style="width: 40%;border: 1px solid rgb(255, 11, 65, 0.3);height: 1px;"></div>
-
-                <div class="mb-5 mt-3">
-                    <form asp-controller="Cuenta" asp-action="Login">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <div class="form-group">
-                            <input asp-for="Correo" placeholder="Correo Electronico" class="form-control text-center" style="background-color:rgb(255, 114, 68, 0.1); border:none; border-radius:50px; color:#323232; width: 75%; margin-left: 12%;">
-                            <span asp-validation-for="Correo" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <input asp-for="Password" type="password" placeholder="Contraseña" class="form-control text-center" style="background-color: rgb(255, 114, 68, 0.1); border: none; border-radius: 50px; color: #323232; margin-left: 12%; width: 75%;">
-                            <span asp-validation-for="Password" class="text-danger"></span>
-                        </div>
-                        <div>
-                        </div>
-                        <a href="#">¿Olvide la contraseña?</a><br />
-                        <input class="my-2 border-0 px-3 py-1 text-white mt-2" type="submit" value="Entrar a Mi Cuenta" style="background:#FD5924;border-radius:50px;">
-                    </form>
+<div class="container-fluid text-center">
+        <div class="py-4">
+            <form asp-controller="Cuenta" asp-action="Login" class="d-flex justify-content-center flex-column login">
+                <h2 class="my-4 text-center">INICIAR SESIÓN </h2>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group mx-auto">
+                    <input asp-for="Correo" placeholder="Correo Electronico" class="form-control rounded-lg  text-center">
+                    <span asp-validation-for="Correo" class="text-danger"></span>
                 </div>
-                <br />
-                <strong>No tengo mi cuenta todavia,</strong>
-                <a asp-action="Registrarse">Registrarme.</a>
-
-            </div>
+                <div class="form-group mx-auto">
+                    <input asp-for="Password" type="password" placeholder="Contraseña" class="form-control rounded-lg text-center">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <!--<a href="#">¿Olvide la contraseña?</a><br />-->
+                <input class="my-2 border-0 py-2 px-3 text-white mx-auto" type="submit" value="Entrar a Mi Cuenta" style="background:#FD5924; width: 300px;">
+            </form>
+            <br />
+            <span>No tengo mi cuenta todavia,</span>
+            <a asp-action="Registrarse">Registrarme.</a>
         </div>
-        <div class="col-md-6">
-            <h1 style="font-size: 72px;color: #FD8D75">¡Compra lo que te gusta!</h1>
-        </div>
-    </div>
 </div>
 
 

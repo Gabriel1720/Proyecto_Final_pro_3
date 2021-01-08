@@ -13,12 +13,14 @@ namespace Proyecto_final_pro_3.Areas.Admin.Controllers
     [Area("Admin")]
     public class UsuariosAdminController : Controller
     {
-        public DB_A64A4C_SuperMercadoContext CT = new DB_A64A4C_SuperMercadoContext();
+        public DB_A64A4C_SuperMercadoContext CT; 
 
-        public UsuariosAdminController()
+        public UsuariosAdminController(DB_A64A4C_SuperMercadoContext context)
         {
-
+            CT = context; 
         }
+
+
         public async Task<IActionResult> Index(string srt = "0", int page = 1)
         {
             IOrderedQueryable<Usuario> usuarios = null;

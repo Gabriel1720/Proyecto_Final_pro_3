@@ -1,6 +1,9 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,500;0,700;1,300;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -72,8 +75,9 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    font-family: 'Poppins', sans-serif;
 }
 .footer {
   position: absolute;
@@ -132,15 +136,13 @@ link-white,
     outline: none;
 }
 
+
 /*Registrarse*/
-.registro {
-    width: 50%;
-    height: 600px;
+.registro div, .login div {
+    max-width: 400px;
+    min-width: 300px;
 }
 
-.input-round {
-    border-radius: 20px;
-}
 
 @media (max-width: 600px) {
     .registro {

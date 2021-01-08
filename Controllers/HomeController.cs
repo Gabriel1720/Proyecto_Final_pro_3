@@ -17,7 +17,11 @@ namespace Tienda_.Controllers
 {
     public class HomeController : Controller
     {
-        public DB_A64A4C_SuperMercadoContext _contex = new DB_A64A4C_SuperMercadoContext();
+        public DB_A64A4C_SuperMercadoContext _contex;
+
+        public HomeController(DB_A64A4C_SuperMercadoContext context) {
+            _contex = context; 
+        }
 
         public async Task<IActionResult> Index()
         {

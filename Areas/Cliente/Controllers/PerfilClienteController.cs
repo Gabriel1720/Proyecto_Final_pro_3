@@ -12,11 +12,11 @@ namespace Proyecto_final_pro_3.Areas.Cliente.Controllers
     [Area("Cliente")]
     public class PerfilClienteController : Controller
     {
-        DB_A64A4C_SuperMercadoContext _context = new DB_A64A4C_SuperMercadoContext();
+        private readonly DB_A64A4C_SuperMercadoContext _context; 
 
-        public PerfilClienteController()
+        public PerfilClienteController(DB_A64A4C_SuperMercadoContext context)
         {
-
+            _context = context; 
         }
         public IActionResult Index()
         {

@@ -10,38 +10,8 @@
     List<Slider> lista = ViewBag.Foto;
 }
 
-<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            @{
-                var base1 = Convert.ToBase64String(lista.ElementAt(0).Foto);
-                var imgSrc1 = string.Format("data:image/gif;base64,{0}", base1);
-            }
-            <img src="@imgSrc1" class="d-block w-100" alt="..." style="max-height:600px;">
-        </div>
-        <div class="carousel-item">
-            @{
-                var base2 = Convert.ToBase64String(lista.ElementAt(1).Foto);
-                var imgSrc2 = string.Format("data:image/gif;base64,{0}", base2);
-            }
-            <img src="@imgSrc2" class="d-block w-100" alt="..." style="max-height:600px;">
-        </div>
-        <div class="carousel-item">
-            @{
-                var base3 = Convert.ToBase64String(lista.ElementAt(2).Foto);
-                var imgSrc3 = string.Format("data:image/gif;base64,{0}", base3);
-            }
-            <img src="@imgSrc3" class="d-block w-100" alt="..." style="max-height:600px;">
-        </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleFade" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleFade" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
+<div class="imageGoeshere">
+ <!--Poner una imagen en esta parte-->
 </div>
 
 <div class="padre d-flex align-items-center justify-content-center" style="height:170px;">
